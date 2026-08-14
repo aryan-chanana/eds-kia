@@ -197,7 +197,7 @@
         "component": "text",
         "name": "tabName",
         "label": "Tab Name",
-        "description": "Cards added after this tab (and before the next tab) are grouped under it.",
+        "description": "Label shown on the tab (e.g. SUV, MPV, EV).",
         "valueType": "string"
       }
     ]
