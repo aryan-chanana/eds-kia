@@ -16,7 +16,8 @@
       "cards",
       "columns",
       "fragment",
-      "explore-range"
+      "explore-range",
+      "startJourney_cards"
     ]
   },
   {
@@ -45,6 +46,12 @@
     "components": [
       "explore-range-tab",
       "explore-range-card"
+    ]
+  },
+   {
+    "id": "startJourney_cards",
+    "components": [
+         "startJourney_cards"
     ]
   }
 ]

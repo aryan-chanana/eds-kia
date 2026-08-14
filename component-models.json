@@ -283,7 +283,7 @@
         "valueType": "string"
       },
       {
-        "id": "start-your-kia-journey",
+        "id": "startJourney_cards",
         "fields": [
         {
           "component": "reference",
