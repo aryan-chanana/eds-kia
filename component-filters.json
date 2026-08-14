@@ -15,8 +15,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "explore-range"
+      "fragment"
     ]
   },
   {
@@ -43,7 +42,12 @@
   {
     "id": "explore-range",
     "components": [
-      "explore-range-tab",
+      "explore-range-tab"
+    ]
+  },
+  {
+    "id": "explore-range-tab",
+    "components": [
       "explore-range-card"
     ]
   }
