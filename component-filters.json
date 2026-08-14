@@ -38,5 +38,12 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "explore-range",
+    "components": [
+      "explore-range-tab",
+      "explore-range-card"
+    ]
   }
 ]
