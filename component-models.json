@@ -180,24 +180,36 @@
     ]
   },
   {
+    "id": "explore-range-tab",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tabLabel",
+        "label": "Tab Label",
+        "description": "Label shown on the tab (e.g. SUV, MPV, EV).",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "explore-range",
     "fields": [
       {
         "component": "text",
         "name": "heading",
         "label": "Heading",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "explore-range-tab",
-    "fields": [
-      {
-        "component": "text",
-        "name": "tabName",
-        "label": "Tab Name",
-        "description": "Label shown on the tab (e.g. SUV, MPV, EV).",
+        "description": "Shown above the tab list. Only the value on the first Explore Range block in a group is used.",
         "valueType": "string"
       }
     ]
@@ -281,6 +293,18 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "startJourney_cards",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
         "id": "startJourney_cards",
