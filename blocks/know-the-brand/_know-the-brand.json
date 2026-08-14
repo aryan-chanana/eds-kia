@@ -58,15 +58,8 @@
         },
         {
           "component": "text",
-          "name": "card1ButtonText",
-          "label": "Card 1 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card1Link",
-          "label": "Card 1 Link",
+          "name": "card1Button",
+          "label": "Card 1 Button",
           "value": "",
           "valueType": "string"
         },
@@ -94,15 +87,8 @@
         },
         {
           "component": "text",
-          "name": "card2ButtonText",
-          "label": "Card 2 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card2Link",
-          "label": "Card 2 Link",
+          "name": "card2Button",
+          "label": "Card 2 Button",
           "value": "",
           "valueType": "string"
         },
@@ -130,15 +116,8 @@
         },
         {
           "component": "text",
-          "name": "card3ButtonText",
-          "label": "Card 3 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card3Link",
-          "label": "Card 3 Link",
+          "name": "card3Button",
+          "label": "Card 3 Button",
           "value": "",
           "valueType": "string"
         }
