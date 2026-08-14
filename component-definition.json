@@ -217,14 +217,14 @@
           }
         },
         {
-          "title": "Start Your Kia Journey",
+          "title": "start Journey",
           "id": "startJourney_richtext",
           "plugins": {
           "xwalk": {
           "page": {
           "resourceType": "core/franklin/components/block/v1/block",
           "template": {
-          "name":"Start Your Kia Journey",
+          "name":"start Journey",
           "text-align":"center",
           "model":"startJourney_richtext"
         } 
@@ -234,7 +234,7 @@
 },
 {
           "title": "Start Your Kia Journey Cards",
-          "id": "startJourney_cards",
+          "id": "Journey_cards",
           "plugins": {
           "xwalk": {
           "page": {
@@ -242,7 +242,7 @@
           "template": {
           "name":"Start Your Kia Journey Cards",
           "text-align":"center",
-          "model":"startJourney_cards"
+          "model":"Journey_cards"
           }
           }
           }
@@ -250,7 +250,7 @@
         },
         {
           "title": "Start Your Kia Journey Cards",
-          "id": "startJourney_cards",
+          "id": "Journey_cards",
           "plugins": {
           "xwalk": {
           "page": {
@@ -258,14 +258,14 @@
           "template": {
           "name":"Start Your Kia Journey Cards",
           "text-align":"center",
-          "model":"startJourney_cards"
+          "model":"Journey_cards"
           }
           }
           }
           }
         },{
           "title": "Start Your Kia Journey Cards",
-          "id": "startJourney_cards",
+          "id": "Journey_cards",
           "plugins": {
           "xwalk": {
           "page": {
@@ -273,7 +273,7 @@
           "template": {
           "name":"Start Your Kia Journey Cards",
           "text-align":"center",
-          "model":"startJourney_cards"
+          "model":"Journey_cards"
           }
           }
           }
