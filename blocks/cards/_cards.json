@@ -1,15 +1,30 @@
 {
   "definitions": [
     {
-      "title": "Know The Brand",
-      "id": "know-the-brand",
+      "title": "Cards",
+      "id": "cards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Know The Brand",
-              "model": "know-the-brand"
+              "name": "Cards",
+              "filter": "cards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Card",
+      "id": "card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Card",
+              "model": "card"
             }
           }
         }
@@ -18,132 +33,31 @@
   ],
   "models": [
     {
-      "id": "know-the-brand",
+      "id": "card",
       "fields": [
         {
-          "component": "text",
-          "name": "heading",
-          "label": "Heading",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "description",
-          "label": "Description",
-          "value": "",
-          "valueType": "string"
-        },
-
-        {
           "component": "reference",
-          "name": "card1Image",
-          "label": "Card 1 Image",
-          "multi": false,
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card1Title",
-          "label": "Card 1 Title",
-          "value": "",
-          "valueType": "string"
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
         },
         {
           "component": "richtext",
-          "name": "card1Description",
-          "label": "Card 1 Description",
+          "name": "text",
           "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card1ButtonText",
-          "label": "Card 1 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card1Link",
-          "label": "Card 1 Link",
-          "value": "",
-          "valueType": "string"
-        },
-
-        {
-          "component": "reference",
-          "name": "card2Image",
-          "label": "Card 2 Image",
-          "multi": false,
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card2Title",
-          "label": "Card 2 Title",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "card2Description",
-          "label": "Card 2 Description",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card2ButtonText",
-          "label": "Card 2 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card2Link",
-          "label": "Card 2 Link",
-          "value": "",
-          "valueType": "string"
-        },
-
-        {
-          "component": "reference",
-          "name": "card3Image",
-          "label": "Card 3 Image",
-          "multi": false,
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card3Title",
-          "label": "Card 3 Title",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "card3Description",
-          "label": "Card 3 Description",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "card3ButtonText",
-          "label": "Card 3 Button Text",
-          "value": "Know More",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "card3Link",
-          "label": "Card 3 Link",
-          "value": "",
+          "label": "Text",
           "valueType": "string"
         }
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "cards",
+      "components": [
+        "card"
+      ]
+    }
+  ]
 }

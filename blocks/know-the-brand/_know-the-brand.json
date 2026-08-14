@@ -34,7 +34,6 @@
           "value": "",
           "valueType": "string"
         },
-
         {
           "component": "reference",
           "name": "card1Image",
@@ -63,7 +62,6 @@
           "value": "",
           "valueType": "string"
         },
-
         {
           "component": "reference",
           "name": "card2Image",
@@ -92,7 +90,6 @@
           "value": "",
           "valueType": "string"
         },
-
         {
           "component": "reference",
           "name": "card3Image",
