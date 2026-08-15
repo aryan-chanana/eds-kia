@@ -180,82 +180,25 @@
     ]
   },
   {
-    "id": "explore-range-tab",
-    "fields": [
-      {
-        "component": "text",
-        "name": "tabLabel",
-        "label": "Tab Label",
-        "description": "Label shown on the tab (e.g. SUV, MPV, EV).",
-        "valueType": "string"
-      },
-      {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Highlight",
-            "value": "highlight"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "explore-range",
     "fields": [
       {
         "component": "text",
         "name": "heading",
         "label": "Heading",
-        "description": "Shown above the tab list. Only the value on the first Explore Range block in a group is used.",
+        "description": "Section heading shown above the tabs (e.g. Explore The Range).",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "explore-range-card",
+    "id": "explore-range-tab",
     "fields": [
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
         "component": "text",
-        "name": "imageAlt",
-        "label": "Alt Text",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "label": "Description",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta1",
-        "label": "Primary CTA Link"
-      },
-      {
-        "component": "text",
-        "name": "cta1Text",
-        "label": "Primary CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta2",
-        "label": "Secondary CTA Link"
-      },
-      {
-        "component": "text",
-        "name": "cta2Text",
-        "label": "Secondary CTA Text",
+        "name": "tabLabel",
+        "label": "Tab Label",
+        "description": "Label shown on the tab button (e.g. SUV, MPV, EV).",
         "valueType": "string"
       }
     ]
@@ -307,44 +250,31 @@
         "multi": false
       },
       {
-        "id": "startJourney_cards",
-        "fields": [
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false
-        },
-        {
-         "component": "text",
-         "valueType": "string",
-         "name": "imageAlt",
-         "label": "Image Alt Text",
-        "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "title",
-          "label": "Title",
-          "value": ""
-        },
-        {
-          "component": "richtext",
-          "name": "text",
-          "value": "",
-          "label": "Text",
-          "text align": "center",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "link",
-          "label": "Link"
-        }
-      ]
-    }
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "startJourney_cards",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
     ]
   }
 ]
