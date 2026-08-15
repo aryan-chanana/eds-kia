@@ -71,8 +71,8 @@
         {
           "component": "text",
           "name": "title",
-          "label": "Title",
-          "description": "Model name shown under the image (e.g. SELTOS).",
+          "label": "Car Name",
+          "description": "Model name shown above the description (e.g. SELTOS).",
           "valueType": "string"
         },
         {
@@ -82,15 +82,26 @@
           "valueType": "string"
         },
         {
+          "component": "aem-content",
+          "name": "cta1",
+          "label": "Primary CTA Link"
+        },
+        {
           "component": "text",
-          "name": "ctaText",
-          "label": "CTA Text",
+          "name": "cta1Text",
+          "label": "Primary CTA Text",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "name": "ctaLink",
-          "label": "CTA Link"
+          "name": "cta2",
+          "label": "Secondary CTA Link"
+        },
+        {
+          "component": "text",
+          "name": "cta2Text",
+          "label": "Secondary CTA Text",
+          "valueType": "string"
         }
       ]
     }

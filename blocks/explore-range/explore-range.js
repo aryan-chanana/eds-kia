@@ -1,6 +1,18 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function buildCta(textCell, linkCell, variant) {
+  const label = (textCell?.textContent || '').trim();
+  const anchor = linkCell?.querySelector('a');
+  const href = anchor?.getAttribute('href') || (linkCell?.textContent || '').trim();
+  if (!label || !href) return null;
+  const cta = document.createElement('a');
+  cta.className = `explore-range-card-cta explore-range-card-cta-${variant} button`;
+  cta.href = href;
+  cta.textContent = label;
+  return cta;
+}
+
 function buildCard(row) {
   const [
     tabCell,
@@ -8,8 +20,10 @@ function buildCard(row) {
     altCell,
     titleCell,
     textCell,
-    ctaTextCell,
-    ctaLinkCell,
+    cta1LinkCell,
+    cta1TextCell,
+    cta2LinkCell,
+    cta2TextCell,
   ] = [...row.children];
 
   const tabLabel = (tabCell?.textContent || '').trim();
@@ -46,15 +60,14 @@ function buildCard(row) {
     body.append(desc);
   }
 
-  const ctaLabel = (ctaTextCell?.textContent || '').trim();
-  const ctaAnchor = ctaLinkCell?.querySelector('a');
-  const ctaHref = ctaAnchor?.getAttribute('href') || (ctaLinkCell?.textContent || '').trim();
-  if (ctaLabel && ctaHref) {
-    const cta = document.createElement('a');
-    cta.className = 'explore-range-card-cta button';
-    cta.href = ctaHref;
-    cta.textContent = ctaLabel;
-    body.append(cta);
+  const cta1 = buildCta(cta1TextCell, cta1LinkCell, 'primary');
+  const cta2 = buildCta(cta2TextCell, cta2LinkCell, 'secondary');
+  if (cta1 || cta2) {
+    const ctas = document.createElement('div');
+    ctas.className = 'explore-range-card-ctas';
+    if (cta1) ctas.append(cta1);
+    if (cta2) ctas.append(cta2);
+    body.append(ctas);
   }
 
   article.append(media, body);
@@ -111,12 +124,58 @@ export default function decorate(block) {
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', tabId);
     if (index !== 0) panel.hidden = true;
-    const grid = document.createElement('div');
-    grid.className = 'explore-range-grid';
-    cards.forEach((c) => grid.append(c));
-    panel.append(grid);
+
+    const carousel = document.createElement('div');
+    carousel.className = 'explore-range-carousel';
+
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'explore-range-carousel-arrow explore-range-carousel-prev';
+    prev.setAttribute('aria-label', 'Previous cars');
+    prev.innerHTML = '<span aria-hidden="true">&#8249;</span>';
+
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'explore-range-carousel-arrow explore-range-carousel-next';
+    next.setAttribute('aria-label', 'Next cars');
+    next.innerHTML = '<span aria-hidden="true">&#8250;</span>';
+
+    const track = document.createElement('div');
+    track.className = 'explore-range-track';
+    cards.forEach((c) => track.append(c));
+
+    carousel.append(prev, track, next);
+    panel.append(carousel);
     panels.append(panel);
     tabPanels.push(panel);
+
+    const isCarouselActive = () => window.matchMedia('(min-width: 600px)').matches;
+    const step = () => {
+      const first = track.querySelector('.explore-range-card');
+      if (!first) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return first.offsetWidth + gap;
+    };
+    const updateArrows = () => {
+      if (!isCarouselActive()) {
+        prev.hidden = true;
+        next.hidden = true;
+        return;
+      }
+      const canScroll = track.scrollWidth - track.clientWidth > 1;
+      if (!canScroll) {
+        prev.hidden = true;
+        next.hidden = true;
+        return;
+      }
+      prev.hidden = track.scrollLeft <= 1;
+      next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    requestAnimationFrame(updateArrows);
   });
 
   const activate = (nextIndex) => {
