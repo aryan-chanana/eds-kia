@@ -128,20 +128,6 @@
           }
         },
         {
-          "title": "Explore Range Tab",
-          "id": "explore-range-tab",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "model": "explore-range-tab"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Explore Range",
           "id": "explore-range",
           "plugins": {
@@ -150,37 +136,24 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Explore Range",
-                  "model": "explore-range"
+                  "model": "explore-range",
+                  "filter": "explore-range"
                 }
               }
             }
           }
         },
         {
-          "title": "Explore Range Cards",
-          "id": "explore-range-cards",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Explore Range Cards",
-                  "filter": "explore-range-cards"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Explore Range Card",
-          "id": "explore-range-card",
+          "title": "Explore Range Tab",
+          "id": "explore-range-tab",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Card",
-                  "model": "explore-range-card"
+                  "name": "Tab",
+                  "model": "explore-range-tab",
+                  "filter": "explore-range-tab"
                 }
               }
             }
@@ -217,66 +190,63 @@
           }
         },
         {
-          "title": "start Journey",
-          "id": "startJourney_richtext",
+          "title": "Start Your Kia Journey",
+          "id": "startJourney_cards",
           "plugins": {
-          "xwalk": {
-          "page": {
-          "resourceType": "core/franklin/components/block/v1/block",
-          "template": {
-          "name":"start Journey",
-          "text-align":"center",
-          "model":"startJourney_richtext"
-        } 
-        }
-    }
-  }
-},
-{
-          "title": "Start Your Kia Journey Cards",
-          "id": "Journey_cards",
-          "plugins": {
-          "xwalk": {
-          "page": {
-          "resourceType": "core/franklin/components/block/v1/block",
-          "template": {
-          "name":"Start Your Kia Journey Cards",
-          "text-align":"center",
-          "model":"Journey_cards"
-          }
-          }
-          }
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "startJourney_cards",
+                  "filter": "cards"
+                }
+              }
+            }
           }
         },
         {
-          "title": "Start Your Kia Journey Cards",
-          "id": "Journey_cards",
+          "title": "Start Your Kia Journey",
+          "id": "startJourney_cards",
           "plugins": {
-          "xwalk": {
-          "page": {
-          "resourceType": "core/franklin/components/block/v1/block",
-          "template": {
-          "name":"Start Your Kia Journey Cards",
-          "text-align":"center",
-          "model":"Journey_cards"
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "startJourney_cards",
+                  "model": "startJourney_cards"
+                }
+              }
+            }
           }
-          }
-          }
-          }
-        },{
-          "title": "Start Your Kia Journey Cards",
-          "id": "Journey_cards",
+        },
+        {
+          "title": "Start Your Kia Journey",
+          "id": "startJourney_cards",
           "plugins": {
-          "xwalk": {
-          "page": {
-          "resourceType": "core/franklin/components/block/v1/block",
-          "template": {
-          "name":"Start Your Kia Journey Cards",
-          "text-align":"center",
-          "model":"Journey_cards"
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "startJourney_cards",
+                  "filter": "cards"
+                }
+              }
+            }
           }
-          }
-          }
+        },
+        {
+          "title": "Start Your Kia Journey",
+          "id": "startJourney_cards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "startJourney_cards",
+                  "model": "startJourney_cards"
+                }
+              }
+            }
           }
         }
       ]

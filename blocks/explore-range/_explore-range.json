@@ -1,20 +1,6 @@
 {
   "definitions": [
     {
-      "title": "Explore Range Tab",
-      "id": "explore-range-tab",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/section/v1/section",
-            "template": {
-              "model": "explore-range-tab"
-            }
-          }
-        }
-      }
-    },
-    {
       "title": "Explore Range",
       "id": "explore-range",
       "plugins": {
@@ -23,37 +9,24 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Explore Range",
-              "model": "explore-range"
+              "model": "explore-range",
+              "filter": "explore-range"
             }
           }
         }
       }
     },
     {
-      "title": "Explore Range Cards",
-      "id": "explore-range-cards",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block",
-            "template": {
-              "name": "Explore Range Cards",
-              "filter": "explore-range-cards"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Explore Range Card",
-      "id": "explore-range-card",
+      "title": "Explore Range Tab",
+      "id": "explore-range-tab",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Card",
-              "model": "explore-range-card"
+              "name": "Tab",
+              "model": "explore-range-tab",
+              "filter": "explore-range-tab"
             }
           }
         }
@@ -62,82 +35,25 @@
   ],
   "models": [
     {
-      "id": "explore-range-tab",
-      "fields": [
-        {
-          "component": "text",
-          "name": "tabLabel",
-          "label": "Tab Label",
-          "description": "Label shown on the tab (e.g. SUV, MPV, EV).",
-          "valueType": "string"
-        },
-        {
-          "component": "multiselect",
-          "name": "style",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Highlight",
-              "value": "highlight"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "explore-range",
       "fields": [
         {
           "component": "text",
           "name": "heading",
           "label": "Heading",
-          "description": "Shown above the tab list. Only the value on the first Explore Range block in a group is used.",
+          "description": "Section heading shown above the tabs (e.g. Explore The Range).",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "explore-range-card",
+      "id": "explore-range-tab",
       "fields": [
         {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false
-        },
-        {
           "component": "text",
-          "name": "imageAlt",
-          "label": "Alt Text",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "text",
-          "label": "Description",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "cta1",
-          "label": "Primary CTA Link"
-        },
-        {
-          "component": "text",
-          "name": "cta1Text",
-          "label": "Primary CTA Text",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "cta2",
-          "label": "Secondary CTA Link"
-        },
-        {
-          "component": "text",
-          "name": "cta2Text",
-          "label": "Secondary CTA Text",
+          "name": "tabLabel",
+          "label": "Tab Label",
+          "description": "Label shown on the tab button (e.g. SUV, MPV, EV).",
           "valueType": "string"
         }
       ]
@@ -145,9 +61,15 @@
   ],
   "filters": [
     {
-      "id": "explore-range-cards",
+      "id": "explore-range",
       "components": [
-        "explore-range-card"
+        "explore-range-tab"
+      ]
+    },
+    {
+      "id": "explore-range-tab",
+      "components": [
+        "columns"
       ]
     }
   ]

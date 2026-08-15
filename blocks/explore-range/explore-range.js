@@ -1,85 +1,88 @@
-function readHeading(block) {
-  const firstCell = block.querySelector(':scope > div > div');
-  return firstCell ? firstCell.textContent.trim() : '';
-}
-
-function collectTabSections(hostSection) {
-  const sections = [];
-  let current = hostSection.nextElementSibling;
-  while (current) {
-    const label = current.dataset ? current.dataset.tabLabel : undefined;
-    if (!label) break;
-    sections.push({ label, section: current });
-    current = current.nextElementSibling;
-  }
-  return sections;
-}
-
-function setupTabSwitching(buttons, entries) {
-  const activate = (index) => {
-    buttons.forEach((btn, i) => {
-      const active = i === index;
-      btn.setAttribute('aria-selected', active ? 'true' : 'false');
-      btn.tabIndex = active ? 0 : -1;
-    });
-    entries.forEach((entry, i) => {
-      entry.section.classList.toggle('explore-range-tab-active', i === index);
-    });
-  };
-
-  buttons.forEach((btn, i) => {
-    btn.addEventListener('click', () => activate(i));
-    btn.addEventListener('keydown', (e) => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
-      e.preventDefault();
-      let next = i;
-      if (e.key === 'ArrowLeft') next = (i - 1 + buttons.length) % buttons.length;
-      if (e.key === 'ArrowRight') next = (i + 1) % buttons.length;
-      if (e.key === 'Home') next = 0;
-      if (e.key === 'End') next = buttons.length - 1;
-      buttons[next].focus();
-      activate(next);
-    });
-  });
-
-  activate(0);
-}
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const heading = readHeading(block);
-  const hostSection = block.closest('.section');
-  if (!hostSection) return;
+  const rows = [...block.children];
+  if (!rows.length) return;
 
-  const entries = collectTabSections(hostSection);
+  const [headingRow, ...tabRows] = rows;
 
-  block.textContent = '';
+  const headingText = headingRow.textContent.trim();
+  const heading = document.createElement('h2');
+  heading.className = 'explore-range-heading';
+  moveInstrumentation(headingRow, heading);
+  heading.textContent = headingText;
 
-  if (heading) {
-    const h = document.createElement('h2');
-    h.className = 'explore-range-heading';
-    h.textContent = heading;
-    block.append(h);
-  }
+  const tablist = document.createElement('div');
+  tablist.className = 'explore-range-tablist';
+  tablist.setAttribute('role', 'tablist');
 
-  if (!entries.length) return;
+  const panels = document.createElement('div');
+  panels.className = 'explore-range-panels';
 
-  const tabList = document.createElement('div');
-  tabList.className = 'explore-range-tabs';
-  tabList.setAttribute('role', 'tablist');
+  tabRows.forEach((row, index) => {
+    const cells = [...row.children];
+    const labelCell = cells[0];
+    const contentCell = cells[1];
+    const label = (labelCell?.textContent || `Tab ${index + 1}`).trim();
+    const id = `explore-range-tab-${index}`;
+    const panelId = `explore-range-panel-${index}`;
 
-  const buttons = entries.map(({ label, section }, index) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'explore-range-tab';
-    btn.setAttribute('role', 'tab');
-    btn.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-    btn.tabIndex = index === 0 ? 0 : -1;
-    btn.textContent = label;
-    section.classList.add('explore-range-tab-panel');
-    tabList.append(btn);
-    return btn;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'explore-range-tab';
+    button.id = id;
+    button.textContent = label;
+    button.setAttribute('role', 'tab');
+    button.setAttribute('aria-controls', panelId);
+    button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    button.setAttribute('tabindex', index === 0 ? '0' : '-1');
+    moveInstrumentation(labelCell, button);
+    tablist.append(button);
+
+    const panel = document.createElement('div');
+    panel.className = 'explore-range-panel';
+    panel.id = panelId;
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', id);
+    if (index !== 0) panel.hidden = true;
+    moveInstrumentation(row, panel);
+    if (contentCell) {
+      while (contentCell.firstChild) panel.append(contentCell.firstChild);
+    }
+    panels.append(panel);
   });
 
-  block.append(tabList);
-  setupTabSwitching(buttons, entries);
+  const tabs = [...tablist.children];
+  const tabPanels = [...panels.children];
+
+  const activate = (nextIndex) => {
+    tabs.forEach((tab, i) => {
+      const selected = i === nextIndex;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.setAttribute('tabindex', selected ? '0' : '-1');
+      tabPanels[i].hidden = !selected;
+    });
+    tabs[nextIndex].focus();
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(index));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        activate((index + 1) % tabs.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        activate((index - 1 + tabs.length) % tabs.length);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        activate(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        activate(tabs.length - 1);
+      }
+    });
+  });
+
+  block.replaceChildren(heading, tablist, panels);
 }
