@@ -43,13 +43,7 @@
   {
     "id": "explore-range",
     "components": [
-      "explore-range-tab"
-    ]
-  },
-  {
-    "id": "explore-range-tab",
-    "components": [
-      "columns"
+      "explore-range-card"
     ]
   },
   {

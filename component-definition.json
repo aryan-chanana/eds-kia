@@ -144,16 +144,15 @@
           }
         },
         {
-          "title": "Explore Range Tab",
-          "id": "explore-range-tab",
+          "title": "Explore Range Card",
+          "id": "explore-range-card",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Tab",
-                  "model": "explore-range-tab",
-                  "filter": "explore-range-tab"
+                  "name": "Card",
+                  "model": "explore-range-card"
                 }
               }
             }
