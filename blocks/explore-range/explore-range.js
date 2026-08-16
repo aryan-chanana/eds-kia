@@ -1,29 +1,25 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function buildCta(textCell, linkCell, variant) {
-  const label = (textCell?.textContent || '').trim();
-  const anchor = linkCell?.querySelector('a');
-  const href = anchor?.getAttribute('href') || (linkCell?.textContent || '').trim();
+function buildCta(cell, variant) {
+  const anchor = cell?.querySelector('a');
+  if (!anchor) return null;
+  const label = (anchor.textContent || '').trim();
+  const href = anchor.getAttribute('href') || '';
   if (!label || !href) return null;
-  const cta = document.createElement('a');
-  cta.className = `explore-range-card-cta explore-range-card-cta-${variant} button`;
-  cta.href = href;
-  cta.textContent = label;
-  return cta;
+  anchor.className = `explore-range-card-cta explore-range-card-cta-${variant} button`;
+  anchor.textContent = label;
+  return anchor;
 }
 
 function buildCard(row) {
   const [
     tabCell,
     imageCell,
-    altCell,
     titleCell,
     textCell,
-    cta1LinkCell,
-    cta1TextCell,
-    cta2LinkCell,
-    cta2TextCell,
+    cta1Cell,
+    cta2Cell,
   ] = [...row.children];
 
   const tabLabel = (tabCell?.textContent || '').trim();
@@ -36,8 +32,7 @@ function buildCard(row) {
   media.className = 'explore-range-card-image';
   const img = imageCell?.querySelector('img');
   if (img) {
-    const alt = (altCell?.textContent || '').trim() || img.alt || '';
-    const optimized = createOptimizedPicture(img.src, alt, false, [{ width: '750' }]);
+    const optimized = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
     moveInstrumentation(img, optimized.querySelector('img'));
     media.append(optimized);
   }
@@ -60,8 +55,8 @@ function buildCard(row) {
     body.append(desc);
   }
 
-  const cta1 = buildCta(cta1TextCell, cta1LinkCell, 'primary');
-  const cta2 = buildCta(cta2TextCell, cta2LinkCell, 'secondary');
+  const cta1 = buildCta(cta1Cell, 'primary');
+  const cta2 = buildCta(cta2Cell, 'secondary');
   if (cta1 || cta2) {
     const ctas = document.createElement('div');
     ctas.className = 'explore-range-card-ctas';
@@ -128,17 +123,19 @@ export default function decorate(block) {
     const carousel = document.createElement('div');
     carousel.className = 'explore-range-carousel';
 
+    const arrowSvg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13m0 0-5-5m5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
     const prev = document.createElement('button');
     prev.type = 'button';
     prev.className = 'explore-range-carousel-arrow explore-range-carousel-prev';
     prev.setAttribute('aria-label', 'Previous cars');
-    prev.innerHTML = '<span aria-hidden="true">&#8249;</span>';
+    prev.innerHTML = arrowSvg;
 
     const next = document.createElement('button');
     next.type = 'button';
     next.className = 'explore-range-carousel-arrow explore-range-carousel-next';
     next.setAttribute('aria-label', 'Next cars');
-    next.innerHTML = '<span aria-hidden="true">&#8250;</span>';
+    next.innerHTML = arrowSvg;
 
     const track = document.createElement('div');
     track.className = 'explore-range-track';

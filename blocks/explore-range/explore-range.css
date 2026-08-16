@@ -20,7 +20,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 4px;
   margin: 0 auto 32px;
   padding: 0;
   background-color: transparent;
@@ -166,31 +166,17 @@
   font-size: 14px;
   padding: 14px 24px;
   text-align: center;
-  border: 2px solid #05141f;
+  background-color: #05141f;
+  color: #fff;
+  border: 0;
   border-radius: 0;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.25s ease;
 }
 
-.explore-range .explore-range-card-cta-primary {
-  background-color: #05141f;
-  color: #fff;
-}
-
-.explore-range .explore-range-card-cta-primary:hover,
-.explore-range .explore-range-card-cta-primary:focus-visible {
+.explore-range .explore-range-card-cta:hover,
+.explore-range .explore-range-card-cta:focus-visible {
   background-color: #1a2b38;
-  border-color: #1a2b38;
-}
-
-.explore-range .explore-range-card-cta-secondary {
-  background-color: transparent;
-  color: #05141f;
-}
-
-.explore-range .explore-range-card-cta-secondary:hover,
-.explore-range .explore-range-card-cta-secondary:focus-visible {
-  background-color: #05141f;
-  color: #fff;
+  outline: none;
 }
 
 .explore-range .explore-range-carousel-arrow {
@@ -220,7 +206,7 @@
   }
 
   .explore-range .explore-range-tablist {
-    gap: 24px;
+    gap: 6px;
     margin-bottom: 40px;
   }
 
@@ -269,17 +255,22 @@
     z-index: 2;
     width: 44px;
     height: 44px;
+    padding: 0;
     border-radius: 50%;
-    border: 0;
-    background-color: #05141f;
-    color: #fff;
-    font-size: 24px;
-    line-height: 1;
+    border: 1px solid #05141f;
+    background-color: transparent;
+    color: #05141f;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.25s ease, opacity 0.25s ease;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .explore-range .explore-range-carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+    display: block;
   }
 
   .explore-range .explore-range-carousel-arrow[hidden] {
@@ -288,12 +279,18 @@
 
   .explore-range .explore-range-carousel-arrow:hover,
   .explore-range .explore-range-carousel-arrow:focus-visible {
-    background-color: #1a2b38;
+    background-color: #05141f;
+    color: #fff;
+    border-color: #05141f;
     outline: none;
   }
 
   .explore-range .explore-range-carousel-prev {
     left: 0;
+  }
+
+  .explore-range .explore-range-carousel-prev svg {
+    transform: rotate(180deg);
   }
 
   .explore-range .explore-range-carousel-next {
@@ -312,7 +309,7 @@
   }
 
   .explore-range .explore-range-tablist {
-    gap: 32px;
+    gap: 8px;
   }
 
   .explore-range .explore-range-tab {
