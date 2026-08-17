@@ -340,40 +340,22 @@
     ]
   },
   {
-    "id": "Start Your Kia Journey card",
-    "fields": [
-      {
-      "component": "card",
-      "name": "card",
-      "label": "Text",
-      "valueType": "string" 
-      },
-       {
-        "component": "text",
-        "name": "text",
-        "value": "",
-        "label": "richtext",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "Start Your Kia Journey Card",
-    "fields": [
-      {
-        "component": "image",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  }
-]
+  "models": [
+    {
+      "id": "start-your-kia-journey",
+      "fields": [
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Heading"
+        },
+        {
+          "component": "reference",
+          "name": "card1Image",
+          "label": "Card 1 Image"
+        }
+      ]
+    }
+  ]
+}
+ ]

@@ -1,143 +1,111 @@
-/* Start Your Kia Journey - Cards */
-
-.cards.startJourney_cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px;
+.start-your-kia-journey {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 48px;
 }
 
-.cards.startJourney_cards > ul > li {
-  box-sizing: border-box;
-  border: 0;
-  background-color: #cfcfcf;
-  border-radius: 6px;
-  min-height: 380px;
-  padding: 50px 30px;
-  text-align: center;
+.start-your-kia-journey > div {
+  width: 100%;
+}
+
+/* Cards container */
+.start-your-kia-journey > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Individual card */
+.start-your-kia-journey .start-journey-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  transition:
-    background-color 0.4s ease,
-    color 0.4s ease,
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
 }
 
-/* Card image / icon */
-.cards.startJourney_cards .cards-card-image {
-  line-height: 0;
+/* Image */
+.start-your-kia-journey .start-journey-card-image {
   width: 100%;
-  margin: 0 0 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
-.cards.startJourney_cards > ul > li img {
-  width: 90px;
+.start-your-kia-journey .start-journey-card-image img {
+  display: block;
+  width: 100%;
   height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-  transition: filter 0.3s ease;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
-/* Card content */
-.cards.startJourney_cards .cards-card-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
+/* Content */
+.start-your-kia-journey .start-journey-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0;
 }
 
-/* Card title */
-.cards.startJourney_cards .cards-card-body strong,
-.cards.startJourney_cards .cards-card-body h3 {
-  display: block;
+/* Title */
+.start-your-kia-journey .start-journey-card-title {
   margin: 0 0 12px;
-  font-size: 28px;
-  line-height: 1.2;
+  font-size: 24px;
+  line-height: 1.25;
   font-weight: 600;
-  text-align: center;
 }
 
-/* Card description */
-.cards.startJourney_cards .cards-card-body p {
-  margin: 0;
-  font-size: 18px;
+/* Description */
+.start-your-kia-journey .start-journey-card-description {
+  margin: 0 0 20px;
+  font-size: 16px;
   line-height: 1.5;
-  text-align: center;
 }
 
-/* Hover effect */
-.cards.startJourney_cards > ul > li:hover {
-  background-color: #000;
-  color: #fff;
-  transform: scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-  position: relative;
-  z-index: 2;
+/* CTA */
+.start-your-kia-journey .start-journey-card-cta {
+  margin-top: auto;
 }
 
-.cards.startJourney_cards > ul > li:hover img {
-  filter: brightness(0) invert(1);
+.start-your-kia-journey .start-journey-card-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
+.start-your-kia-journey .start-journey-card-link::after {
+  content: '→';
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.start-your-kia-journey .start-journey-card-link:hover::after {
+  transform: translateX(4px);
+}
 
 /* Tablet */
 @media (max-width: 900px) {
-  .cards.startJourney_cards > ul {
-    gap: 24px;
+  .start-your-kia-journey {
+    padding: 48px 32px;
   }
 
-  .cards.startJourney_cards > ul > li {
-    min-height: 340px;
-    padding: 40px 25px;
-  }
-
-  .cards.startJourney_cards > ul > li img {
-    width: 80px;
-  }
-
-  .cards.startJourney_cards .cards-card-body strong,
-  .cards.startJourney_cards .cards-card-body h3 {
-    font-size: 24px;
-  }
-
-  .cards.startJourney_cards .cards-card-body p {
-    font-size: 16px;
+  .start-your-kia-journey > div {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-
 /* Mobile */
 @media (max-width: 600px) {
-  .cards.startJourney_cards > ul {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cards.startJourney_cards > ul > li {
-    min-height: 280px;
+  .start-your-kia-journey {
     padding: 40px 20px;
   }
 
-  .cards.startJourney_cards > ul > li img {
-    width: 70px;
+  .start-your-kia-journey > div {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .cards.startJourney_cards .cards-card-body strong,
-  .cards.startJourney_cards .cards-card-body h3 {
-    font-size: 22px;
-  }
-
-  .cards.startJourney_cards .cards-card-body p {
-    font-size: 16px;
+  .start-your-kia-journey .start-journey-card-title {
+    font-size: 20px;
   }
 }
