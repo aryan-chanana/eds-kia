@@ -40,7 +40,6 @@ function buildCard(row) {
     const heading = document.createElement('h3');
     heading.className = 'know-the-brand-card-title';
     heading.textContent = title;
-
     body.append(heading);
   }
 
@@ -64,7 +63,6 @@ function buildCard(row) {
     if (label && href) {
       anchor.className = 'know-the-brand-card-button button';
       anchor.textContent = label;
-
       body.append(anchor);
     }
   }
@@ -79,44 +77,88 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  const [introRow, ...cardRows] = rows;
+  const [headingRow, ...cardRows] = rows;
 
-  const intro = document.createElement('div');
-  intro.className = 'know-the-brand-intro';
+  const heading = document.createElement('h2');
+  heading.className = 'know-the-brand-heading';
+  heading.textContent = (headingRow.textContent || '').trim();
 
-  const introCells = [...introRow.children];
+  moveInstrumentation(headingRow, heading);
 
-  const headingText = (introCells[0]?.textContent || '').trim();
+  const carousel = document.createElement('div');
+  carousel.className = 'know-the-brand-carousel';
 
-  if (headingText) {
-    const heading = document.createElement('h2');
-    heading.className = 'know-the-brand-heading';
-    heading.textContent = headingText;
+  const prev = document.createElement('button');
+  prev.type = 'button';
+  prev.className = 'know-the-brand-arrow know-the-brand-prev';
+  prev.setAttribute('aria-label', 'Previous cards');
+  prev.innerHTML = '&#8592;';
 
-    moveInstrumentation(introRow, heading);
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.className = 'know-the-brand-arrow know-the-brand-next';
+  next.setAttribute('aria-label', 'Next cards');
+  next.innerHTML = '&#8594;';
 
-    intro.append(heading);
-  }
-
-  const descriptionCell = introCells[1];
-
-  if (descriptionCell && descriptionCell.innerHTML.trim()) {
-    const description = document.createElement('div');
-    description.className = 'know-the-brand-description';
-
-    while (descriptionCell.firstChild) {
-      description.append(descriptionCell.firstChild);
-    }
-
-    intro.append(description);
-  }
-
-  const cards = document.createElement('div');
-  cards.className = 'know-the-brand-cards';
+  const track = document.createElement('div');
+  track.className = 'know-the-brand-track';
 
   cardRows.forEach((row) => {
-    cards.append(buildCard(row));
+    track.append(buildCard(row));
   });
 
-  block.replaceChildren(intro, cards);
+  carousel.append(prev, track, next);
+
+  const updateArrows = () => {
+    const canScroll = track.scrollWidth - track.clientWidth > 1;
+
+    if (!canScroll) {
+      prev.hidden = true;
+      next.hidden = true;
+      return;
+    }
+
+    prev.hidden = track.scrollLeft <= 1;
+    next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+  };
+
+  const getStep = () => {
+    const card = track.querySelector('.know-the-brand-card');
+
+    if (!card) {
+      return track.clientWidth;
+    }
+
+    const gap = parseFloat(
+      getComputedStyle(track).columnGap,
+    ) || 0;
+
+    return card.offsetWidth + gap;
+  };
+
+  prev.addEventListener('click', () => {
+    track.scrollBy({
+      left: -getStep(),
+      behavior: 'smooth',
+    });
+  });
+
+  next.addEventListener('click', () => {
+    track.scrollBy({
+      left: getStep(),
+      behavior: 'smooth',
+    });
+  });
+
+  track.addEventListener(
+    'scroll',
+    updateArrows,
+    { passive: true },
+  );
+
+  window.addEventListener('resize', updateArrows);
+
+  requestAnimationFrame(updateArrows);
+
+  block.replaceChildren(heading, carousel);
 }

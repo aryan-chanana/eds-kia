@@ -48,6 +48,12 @@
     ]
   },
   {
+    "id": "know-the-brand",
+    "components": [
+      "know-the-brand-card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
