@@ -1,89 +1,122 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+function buildCard(row) {
+  const [
+    imageCell,
+    titleCell,
+    descriptionCell,
+    buttonCell,
+  ] = [...row.children];
+
+  const article = document.createElement('article');
+  article.className = 'know-the-brand-card';
+
+  moveInstrumentation(row, article);
+
+  const media = document.createElement('div');
+  media.className = 'know-the-brand-card-image';
+
+  const img = imageCell?.querySelector('img');
+
+  if (img) {
+    const optimized = createOptimizedPicture(
+      img.src,
+      img.alt || '',
+      false,
+      [{ width: '750' }],
+    );
+
+    moveInstrumentation(img, optimized.querySelector('img'));
+    media.append(optimized);
+  }
+
+  const body = document.createElement('div');
+  body.className = 'know-the-brand-card-body';
+
+  const title = (titleCell?.textContent || '').trim();
+
+  if (title) {
+    const heading = document.createElement('h3');
+    heading.className = 'know-the-brand-card-title';
+    heading.textContent = title;
+
+    body.append(heading);
+  }
+
+  if (descriptionCell && descriptionCell.innerHTML.trim()) {
+    const description = document.createElement('div');
+    description.className = 'know-the-brand-card-description';
+
+    while (descriptionCell.firstChild) {
+      description.append(descriptionCell.firstChild);
+    }
+
+    body.append(description);
+  }
+
+  const anchor = buttonCell?.querySelector('a');
+
+  if (anchor) {
+    const label = (anchor.textContent || '').trim();
+    const href = anchor.getAttribute('href') || '';
+
+    if (label && href) {
+      anchor.className = 'know-the-brand-card-button button';
+      anchor.textContent = label;
+
+      body.append(anchor);
+    }
+  }
+
+  article.append(media, body);
+
+  return article;
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Heading
-  const heading = rows[0]?.querySelector('div');
-  if (heading) {
-    heading.classList.add('know-the-brand-heading');
+  if (!rows.length) return;
+
+  const [introRow, ...cardRows] = rows;
+
+  const intro = document.createElement('div');
+  intro.className = 'know-the-brand-intro';
+
+  const introCells = [...introRow.children];
+
+  const headingText = (introCells[0]?.textContent || '').trim();
+
+  if (headingText) {
+    const heading = document.createElement('h2');
+    heading.className = 'know-the-brand-heading';
+    heading.textContent = headingText;
+
+    moveInstrumentation(introRow, heading);
+
+    intro.append(heading);
   }
 
-  // Description
-  const description = rows[1]?.querySelector('div');
-  if (description) {
-    description.classList.add('know-the-brand-description');
+  const descriptionCell = introCells[1];
+
+  if (descriptionCell && descriptionCell.innerHTML.trim()) {
+    const description = document.createElement('div');
+    description.className = 'know-the-brand-description';
+
+    while (descriptionCell.firstChild) {
+      description.append(descriptionCell.firstChild);
+    }
+
+    intro.append(description);
   }
 
-  // Cards container
   const cards = document.createElement('div');
   cards.className = 'know-the-brand-cards';
 
-  // Remaining rows contain the 3 cards
-  rows.slice(2).forEach((row, index) => {
-    const cells = [...row.children];
-
-    const card = document.createElement('div');
-    card.className = 'know-the-brand-card';
-
-    // Image
-    if (cells[0]) {
-      const image = cells[0].querySelector('picture, img');
-
-      if (image) {
-        const imageWrapper = document.createElement('div');
-        imageWrapper.className = 'know-the-brand-card-image';
-        imageWrapper.append(image.cloneNode(true));
-        card.append(imageWrapper);
-      }
-    }
-
-    // Content
-    const content = document.createElement('div');
-    content.className = 'know-the-brand-card-content';
-
-    // Title
-    if (cells[1]) {
-      const title = document.createElement('div');
-      title.className = 'know-the-brand-card-title';
-      title.innerHTML = cells[1].innerHTML;
-      content.append(title);
-    }
-
-    // Description
-    if (cells[2]) {
-      const cardDescription = document.createElement('div');
-      cardDescription.className = 'know-the-brand-card-description';
-      cardDescription.innerHTML = cells[2].innerHTML;
-      content.append(cardDescription);
-    }
-
-    // Button
-    if (cells[3]) {
-      const buttonWrapper = document.createElement('div');
-      buttonWrapper.className = 'know-the-brand-card-button';
-      buttonWrapper.innerHTML = cells[3].innerHTML;
-      content.append(buttonWrapper);
-    }
-
-    card.append(content);
-
-    // Separator between cards
-    if (index < rows.slice(2).length - 1) {
-      card.classList.add('has-separator');
-    }
-
-    cards.append(card);
+  cardRows.forEach((row) => {
+    cards.append(buildCard(row));
   });
 
-  // Replace original block content
-  block.innerHTML = '';
-
-  if (heading) {
-    block.append(heading);
-  }
-
-  if (description) {
-    block.append(description);
-  }
-
-  block.append(cards);
+  block.replaceChildren(intro, cards);
 }

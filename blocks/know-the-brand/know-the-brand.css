@@ -1,243 +1,151 @@
 .know-the-brand {
   width: 100%;
   padding: 80px 0;
-  background: #fff;
 }
 
-.know-the-brand > div {
+.know-the-brand-intro {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 48px;
+  padding: 0 32px;
 }
 
-/* Heading */
-
-.know-the-brand .know-the-brand-heading {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.know-the-brand .know-the-brand-heading h1,
-.know-the-brand .know-the-brand-heading h2,
-.know-the-brand .know-the-brand-heading h3 {
-  margin: 0;
-  font-size: 42px;
+.know-the-brand-heading {
+  margin: 0 0 16px;
+  font-size: 40px;
   line-height: 1.15;
   font-weight: 700;
-  letter-spacing: -0.5px;
 }
 
-/* Description */
-
-.know-the-brand .know-the-brand-description {
-  max-width: 850px;
-  margin: 0 auto 60px;
-  text-align: center;
-  color: #555;
-  font-size: 17px;
+.know-the-brand-description {
+  max-width: 800px;
+  font-size: 18px;
   line-height: 1.6;
 }
 
-.know-the-brand .know-the-brand-description p {
-  margin: 0;
-}
-
-/* Cards */
-
 .know-the-brand-cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 100%;
+  gap: 24px;
 }
-
-/* Individual card */
 
 .know-the-brand-card {
-  position: relative;
-  padding: 0 35px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
 }
-
-.know-the-brand-card:first-child {
-  padding-left: 0;
-}
-
-.know-the-brand-card:last-child {
-  padding-right: 0;
-}
-
-/* Vertical separator */
-
-.know-the-brand-card.has-separator::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1px;
-  height: 100%;
-  background: #d8d8d8;
-}
-
-/* Image */
 
 .know-the-brand-card-image {
   width: 100%;
-  margin-bottom: 25px;
-  overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
 }
 
 .know-the-brand-card-image picture {
   display: block;
   width: 100%;
+  height: 100%;
 }
 
 .know-the-brand-card-image img {
   display: block;
   width: 100%;
-  height: 240px;
+  height: 220px;
   object-fit: cover;
 }
 
-/* Card content */
+.know-the-brand-card-image:empty {
+  min-height: 220px;
+}
 
-.know-the-brand-card-content {
+.know-the-brand-card-body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  flex: 1;
+  padding: 24px;
 }
-
-/* Card title */
 
 .know-the-brand-card-title {
-  margin-bottom: 14px;
-}
-
-.know-the-brand-card-title h1,
-.know-the-brand-card-title h2,
-.know-the-brand-card-title h3,
-.know-the-brand-card-title p {
-  margin: 0;
-}
-
-.know-the-brand-card-title h2,
-.know-the-brand-card-title h3 {
+  margin: 0 0 12px;
   font-size: 24px;
   line-height: 1.25;
   font-weight: 700;
 }
 
-/* Card description */
-
 .know-the-brand-card-description {
   margin-bottom: 24px;
-  color: #555;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.5;
 }
-
-.know-the-brand-card-description p {
-  margin: 0;
-}
-
-/* Know More button */
 
 .know-the-brand-card-button {
   margin-top: auto;
-}
-
-.know-the-brand-card-button a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
+  width: fit-content;
   padding: 12px 24px;
-  border: 1px solid #111;
-  background: #111;
-  color: #fff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 1;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  border-radius: 2px;
 }
-
-.know-the-brand-card-button a:hover {
-  background: #fff;
-  color: #111;
-}
-
-/* Tablet */
 
 @media (max-width: 900px) {
-  .know-the-brand {
-    padding: 60px 24px;
-  }
-
   .know-the-brand-cards {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 50px;
   }
 
-  .know-the-brand-card:nth-child(2)::after {
-    display: none;
-  }
-
-  .know-the-brand-card:nth-child(3) {
-    grid-column: 1 / -1;
-    max-width: 50%;
-    margin: 0 auto;
+  .know-the-brand-heading {
+    font-size: 34px;
   }
 }
-
-/* Mobile */
 
 @media (max-width: 600px) {
   .know-the-brand {
-    padding: 50px 20px;
+    padding: 48px 0;
   }
 
-  .know-the-brand .know-the-brand-heading h1,
-  .know-the-brand .know-the-brand-heading h2,
-  .know-the-brand .know-the-brand-heading h3 {
-    font-size: 32px;
+  .know-the-brand-intro {
+    margin-bottom: 32px;
+    padding: 0 20px;
   }
 
-  .know-the-brand .know-the-brand-description {
-    margin-bottom: 40px;
+  .know-the-brand-heading {
+    font-size: 28px;
+  }
+
+  .know-the-brand-description {
     font-size: 16px;
   }
 
   .know-the-brand-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
   }
 
-  .know-the-brand-card,
-  .know-the-brand-card:first-child,
-  .know-the-brand-card:last-child {
-    width: 100%;
-    padding: 0;
-  }
-
-  .know-the-brand-card.has-separator::after {
-    top: auto;
-    right: 0;
-    bottom: -20px;
-    width: 100%;
-    height: 1px;
-  }
-
-  .know-the-brand-card:nth-child(3) {
-    max-width: 100%;
+  .know-the-brand-card-image {
+    min-height: 200px;
   }
 
   .know-the-brand-card-image img {
-    height: 220px;
+    height: 200px;
   }
 
-  .know-the-brand-card-title h2,
-  .know-the-brand-card-title h3 {
-    font-size: 22px;
+  .know-the-brand-card-body {
+    padding: 20px;
+  }
+
+  .know-the-brand-card-title {
+    font-size: 21px;
   }
 }
