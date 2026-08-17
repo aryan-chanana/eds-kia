@@ -391,18 +391,25 @@
     ]
   },
   {
-    "id": "startJourney_cards",
+    "id": "Start Your Kia Journey card",
     "fields": [
       {
-      "component": "cards",
-      "name": "cards",
-      "label": "Cards",
+      "component": "text",
+      "name": "text",
+      "label": "Text",
       "valueType": "string" 
+      }
+       {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "richtext",
+        "valueType": "string"
       }
     ]
   },
   {
-    "id": "startJourney_cards",
+    "id": "Start Your Kia Journey Card",
     "fields": [
       {
         "component": "reference",
