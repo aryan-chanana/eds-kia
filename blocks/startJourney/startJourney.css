@@ -1,115 +1,92 @@
-.start-your-kia-journey {
-  display: block;
-}
-.start-your-kia-journey {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 64px 48px;
-}
-
-.start-your-kia-journey > div {
-  width: 100%;
-}
-
-/* Cards container */
 .start-your-kia-journey > div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
 }
 
-/* Individual card */
-.start-your-kia-journey .startJourney_cards {
+.startJourney_cards {
+  box-sizing: border-box;
+  background: #cfcfcf;
+  min-height: 380px;
+  padding: 50px 30px;
+  text-align: center;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  background: #fff;
-}
-
-/* Image */
-.start-your-kia-journey .startJourney_cards-image {
-  width: 100%;
-  overflow: hidden;
-}
-
-.start-your-kia-journey .startJourney_cards-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-/* Content */
-.start-your-kia-journey .startJourney_cards-content {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0 0;
-}
-
-/* Title */
-.start-your-kia-journey .startJourney_cards-title {
-  margin: 0 0 12px;
-  font-size: 24px;
-  line-height: 1.25;
-  font-weight: 600;
-}
-
-/* Description */
-.start-your-kia-journey .startJourney_cards-description {
-  margin: 0 0 20px;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* CTA */
-.start-your-kia-journey .startJourney_cards-cta {
-  margin-top: auto;
-}
-
-.start-your-kia-journey .startJourney_cards-link {
-  display: inline-flex;
   align-items: center;
-  font-size: 16px;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.startJourney_cards-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.startJourney_cards-icon {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+}
+
+.startJourney_cards-content {
+  width: 100%;
+  text-align: center;
+}
+
+.startJourney_cards-title {
+  margin: 0 0 12px;
+  font-size: 28px;
+  line-height: 1.2;
   font-weight: 600;
-  text-decoration: none;
 }
 
-.start-your-kia-journey .startJourney_cards-link::after {
-  content: '→';
-  margin-left: 8px;
-  transition: transform 0.2s ease;
+.startJourney_cards-description {
+  width: 100%;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
 }
 
-.start-your-kia-journey .startJourney_cards-link:hover::after {
-  transform: translateX(4px);
+.startJourney_cards:hover {
+  background: #000;
+  color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 2;
 }
 
-/* Tablet */
-@media (max-width: 900px) {
-  .start-your-kia-journey {
-    padding: 48px 32px;
-  }
+.startJourney_cards:hover .startJourney_cards-icon {
+  filter: brightness(0) invert(1);
+}
 
+@media (max-width: 768px) {
   .start-your-kia-journey > div {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-}
 
-/* Mobile */
-@media (max-width: 600px) {
-  .start-your-kia-journey {
+  .startJourney_cards {
+    min-height: 280px;
     padding: 40px 20px;
   }
 
-  .start-your-kia-journey > div {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .startJourney_cards-icon {
+    width: 70px;
   }
 
-  .start-your-kia-journey .startJourney_cards-title {
-    font-size: 20px;
+  .startJourney_cards-title {
+    font-size: 24px;
+  }
+
+  .startJourney_cards-description {
+    font-size: 16px;
   }
 }

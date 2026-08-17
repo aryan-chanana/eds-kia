@@ -1,9 +1,9 @@
+import { moveInstrumentation } from '../../scripts/aem.js';
+
 export default function decorate(block) {
-  debugger;
+  const cards = [...block.children];
+
   block.classList.add('start-your-kia-journey');
-  debugger;
-  console.log('START YOUR KIA JOURNEY LOADED');
-}
 
   cards.forEach((row) => {
     const cells = [...row.children];
@@ -12,11 +12,10 @@ export default function decorate(block) {
     const titleCell = cells[1];
     const descriptionCell = cells[2];
 
-    // Create card
     const article = document.createElement('article');
+
     article.className = 'startJourney_cards';
 
-    // Preserve Universal Editor instrumentation
     moveInstrumentation(row, article);
 
     // Image
@@ -47,9 +46,11 @@ export default function decorate(block) {
       article.append(titleCell);
     }
 
-    // Description / CTA
+    // Description
     if (descriptionCell) {
-      descriptionCell.classList.add('startJourney_cards-description');
+      descriptionCell.classList.add(
+        'startJourney_cards-description'
+      );
 
       const link = descriptionCell.querySelector('a');
 
@@ -57,12 +58,10 @@ export default function decorate(block) {
         descriptionCell.classList.add('startJourney_cards-cta');
         link.classList.add('startJourney_cards-link');
 
-        const cardTitle = titleCell
-          ?.textContent
+        const cardTitle = titleCell?.textContent
           .trim()
           .toLowerCase();
 
-        // Get a Quote CTA
         if (cardTitle === 'get a quote') {
           link.addEventListener('click', (event) => {
             event.preventDefault();
@@ -74,6 +73,6 @@ export default function decorate(block) {
       article.append(descriptionCell);
     }
 
-    // Replace the original Universal Editor row
     row.replaceWith(article);
-  }) 
+  });
+}
