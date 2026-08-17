@@ -1,53 +1,80 @@
+import { moveInstrumentation } from '../../scripts/aem.js';
+
 export default function decorate(block) {
   const cards = [...block.children];
 
   block.classList.add('start-your-kia-journey');
 
-  cards.forEach((card) => {
-    card.classList.add('startJourney_cards');
-
-    const cells = [...card.children];
+  cards.forEach((row) => {
+    const cells = [...row.children];
 
     const imageCell = cells[0];
-    const textCell = cells[1];
+    const titleCell = cells[1];
+    const descriptionCell = cells[2];
 
+    // Create card
+    const article = document.createElement('article');
+    article.className = 'startJourney_cards';
+
+    // Preserve Universal Editor instrumentation
+    moveInstrumentation(row, article);
+
+    // Image
     if (imageCell) {
       imageCell.classList.add('startJourney_cards-image');
+
+      const image = imageCell.querySelector('img');
+
+      if (image) {
+        image.classList.add('startJourney_cards-icon');
+      }
+
+      article.append(imageCell);
     }
 
-    if (textCell) {
-      textCell.classList.add('startJourney_cards-content');
+    // Title
+    if (titleCell) {
+      titleCell.classList.add('startJourney_cards-content');
 
-      const title = textCell.querySelector('h1, h2, h3, h4, h5, h6');
+      const title = titleCell.querySelector(
+        'h1, h2, h3, h4, h5, h6, strong'
+      );
 
       if (title) {
         title.classList.add('startJourney_cards-title');
       }
 
-      const paragraphs = textCell.querySelectorAll('p');
-
-      paragraphs.forEach((paragraph) => {
-        const link = paragraph.querySelector('a');
-
-        if (link) {
-          paragraph.classList.add('startJourney_cards-cta');
-          link.classList.add('startJourney_cards-link');
-
-          // Get the card title
-          const cardTitle = title?.textContent.trim().toLowerCase();
-
-          // Redirect Get a Quote CTA
-          if (cardTitle === 'get a quote') {
-            link.addEventListener('click', (event) => {
-              event.preventDefault();
-
-              window.location.href = '/in/buy/get-a-quote.html';
-            });
-          }
-        } else {
-          paragraph.classList.add('startJourney_cards-description');
-        }
-      });
+      article.append(titleCell);
     }
+
+    // Description / CTA
+    if (descriptionCell) {
+      descriptionCell.classList.add('startJourney_cards-description');
+
+      const link = descriptionCell.querySelector('a');
+
+      if (link) {
+        descriptionCell.classList.add('startJourney_cards-cta');
+        link.classList.add('startJourney_cards-link');
+
+        const cardTitle = titleCell
+          ?.textContent
+          .trim()
+          .toLowerCase();
+
+        // Get a Quote CTA
+        if (cardTitle === 'get a quote') {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.location.href = '/in/buy/get-a-quote.html';
+          });
+        }
+      }
+
+      article.append(descriptionCell);
+    }
+
+    // Replace the original Universal Editor row
+    row.replaceWith(article);
   });
 }

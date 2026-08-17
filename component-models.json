@@ -340,21 +340,27 @@
     ]
   },
   {
-  "models": [
+  "id": "startJourney_cards",
+  "fields": [
     {
-      "id": "startJourney_cards",
-      "fields": [
-        {
-          "component": "text",
-          "name": "heading",
-          "label": "Heading"
-        },
-        {
-          "component": "reference",
-          "name": "card1Image",
-          "label": "Card 1 Image"
-        }
-      ]
+      "component": "reference",
+      "name": "image",
+      "label": "Image",
+      "valueType": "string",
+      "required": true
+    },
+    {
+      "component": "text",
+      "name": "title",
+      "label": "Title",
+      "valueType": "string",
+      "required": true
+    },
+    {
+      "component": "richtext",
+      "name": "description",
+      "label": "Description",
+      "valueType": "string"
     }
   ]
 }
