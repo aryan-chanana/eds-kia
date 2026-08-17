@@ -219,8 +219,6 @@
             }
           }
         },
-        {
-          "definitions": [
             {
               "title": "Start Your Kia Journey",
               "id": "start-your-kia-journey",
@@ -237,8 +235,7 @@
               }
             }
           ]
-        }
+    }
       ]
     }
-  ]
-}
+  
