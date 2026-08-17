@@ -16,7 +16,7 @@
       "cards",
       "columns",
       "fragment",
-      "explore-range"
+      "know-the-brand"
     ]
   },
   {
@@ -44,12 +44,6 @@
     "id": "explore-range",
     "components": [
       "explore-range-card"
-    ]
-  },
-  {
-    "id": "cards",
-    "components": [
-      "card"
     ]
   },
   {
