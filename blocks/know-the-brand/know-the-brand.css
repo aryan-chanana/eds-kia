@@ -1,0 +1,151 @@
+.know-the-brand {
+  width: 100%;
+  padding: 80px 0;
+}
+
+.know-the-brand-intro {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  padding: 0 32px;
+}
+
+.know-the-brand-heading {
+  margin: 0 0 16px;
+  font-size: 40px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.know-the-brand-description {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.know-the-brand-cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.know-the-brand-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+}
+
+.know-the-brand-card-image {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.know-the-brand-card-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.know-the-brand-card-image img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.know-the-brand-card-image:empty {
+  min-height: 220px;
+}
+
+.know-the-brand-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.know-the-brand-card-title {
+  margin: 0 0 12px;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.know-the-brand-card-description {
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.know-the-brand-card-button {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .know-the-brand-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .know-the-brand-heading {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  .know-the-brand {
+    padding: 48px 0;
+  }
+
+  .know-the-brand-intro {
+    margin-bottom: 32px;
+    padding: 0 20px;
+  }
+
+  .know-the-brand-heading {
+    font-size: 28px;
+  }
+
+  .know-the-brand-description {
+    font-size: 16px;
+  }
+
+  .know-the-brand-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .know-the-brand-card-image {
+    min-height: 200px;
+  }
+
+  .know-the-brand-card-image img {
+    height: 200px;
+  }
+
+  .know-the-brand-card-body {
+    padding: 20px;
+  }
+
+  .know-the-brand-card-title {
+    font-size: 21px;
+  }
+}
