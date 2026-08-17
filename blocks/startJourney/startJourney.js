@@ -1,78 +1,23 @@
-import { moveInstrumentation } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const cards = [...block.children];
-
-  block.classList.add('start-your-kia-journey');
-
-  cards.forEach((row) => {
-    const cells = [...row.children];
-
-    const imageCell = cells[0];
-    const titleCell = cells[1];
-    const descriptionCell = cells[2];
-
-    const article = document.createElement('article');
-
-    article.className = 'startJourney_cards';
-
-    moveInstrumentation(row, article);
-
-    // Image
-    if (imageCell) {
-      imageCell.classList.add('startJourney_cards-image');
-
-      const image = imageCell.querySelector('img');
-
-      if (image) {
-        image.classList.add('startJourney_cards-icon');
-      }
-
-      article.append(imageCell);
-    }
-
-    // Title
-    if (titleCell) {
-      titleCell.classList.add('startJourney_cards-content');
-
-      const title = titleCell.querySelector(
-        'h1, h2, h3, h4, h5, h6, strong'
-      );
-
-      if (title) {
-        title.classList.add('startJourney_cards-title');
-      }
-
-      article.append(titleCell);
-    }
-
-    // Description
-    if (descriptionCell) {
-      descriptionCell.classList.add(
-        'startJourney_cards-description'
-      );
-
-      const link = descriptionCell.querySelector('a');
-
-      if (link) {
-        descriptionCell.classList.add('startJourney_cards-cta');
-        link.classList.add('startJourney_cards-link');
-
-        const cardTitle = titleCell?.textContent
-          .trim()
-          .toLowerCase();
-
-        if (cardTitle === 'get a quote') {
-          link.addEventListener('click', (event) => {
-            event.preventDefault();
-            window.location.href = '/in/buy/get-a-quote.html';
-          });
-        }
-      }
-
-      article.append(descriptionCell);
-    }
-
-    row.replaceWith(article);
+  /* change to ul, li */
+  const ul = document.createElement('ul');
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+    moveInstrumentation(row, li);
+    while (row.firstElementChild) li.append(row.firstElementChild);
+    [...li.children].forEach((div) => {
+      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'startJourney_card-image';
+      else div.className = 'startJourney_card-content';
+    });
+    ul.append(li);
   });
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    moveInstrumentation(img, optimizedPic.querySelector('img'));
+    img.closest('picture').replaceWith(optimizedPic);
+  });
+  block.replaceChildren(ul);
 }
