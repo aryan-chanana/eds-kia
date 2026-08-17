@@ -233,7 +233,22 @@
                   }
                 }
               }
+            },
+            {
+          "title": "Start Your Kia Journey Card",
+          "id": "startJourney_cards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "startJourney_cards"
+                }
+              }
             }
+          }
+        }
           ]
     }
       ]
