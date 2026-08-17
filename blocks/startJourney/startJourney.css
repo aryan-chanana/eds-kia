@@ -1,10 +1,10 @@
-.start-your-kia-journey > div {
+.startJourney > div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 36px;
 }
 
-.startJourney_cards {
+.startJourney.startJourney_card {
   box-sizing: border-box;
   background: #cfcfcf;
   min-height: 380px;
@@ -21,7 +21,7 @@
     box-shadow 0.4s ease;
 }
 
-.startJourney_cards-image {
+.startJourney.startJourney_card-image {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -29,32 +29,32 @@
   margin-bottom: 25px;
 }
 
-.startJourney_cards-icon {
+.startJourney.startJourney_card-icon {
   width: 90px;
   height: auto;
   object-fit: contain;
 }
 
-.startJourney_cards-content {
+.startJourney.startJourney_card-content {
   width: 100%;
   text-align: center;
 }
 
-.startJourney_cards-title {
+.startJourney.startJourney_card-title {
   margin: 0 0 12px;
   font-size: 28px;
   line-height: 1.2;
   font-weight: 600;
 }
 
-.startJourney_cards-description {
+.startJourney.startJourney_card-description {
   width: 100%;
   font-size: 18px;
   line-height: 1.5;
   text-align: center;
 }
 
-.startJourney_cards:hover {
+.startJourney.startJourney_card:hover {
   background: #000;
   color: #fff;
   transform: scale(1.03);
@@ -63,30 +63,30 @@
   z-index: 2;
 }
 
-.startJourney_cards:hover .startJourney_cards-icon {
+.startJourney.startJourney_card:hover .startJourney_card-icon {
   filter: brightness(0) invert(1);
 }
 
 @media (max-width: 768px) {
-  .start-your-kia-journey > div {
+  .startJourney > div {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .startJourney_cards {
+  .startJourney.startJourney_card {
     min-height: 280px;
     padding: 40px 20px;
   }
 
-  .startJourney_cards-icon {
+  .startJourney.startJourney_card-icon {
     width: 70px;
   }
 
-  .startJourney_cards-title {
+  .startJourney.startJourney_card-title {
     font-size: 24px;
   }
 
-  .startJourney_cards-description {
+  .startJourney.startJourney_card-description {
     font-size: 16px;
   }
 }
