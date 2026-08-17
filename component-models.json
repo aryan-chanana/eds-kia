@@ -342,7 +342,7 @@
   {
   "models": [
     {
-      "id": "start-your-kia-journey-card",
+      "id": "startJourney_cards",
       "fields": [
         {
           "component": "text",
