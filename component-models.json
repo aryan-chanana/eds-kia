@@ -398,7 +398,7 @@
       "name": "text",
       "label": "Text",
       "valueType": "string" 
-      }
+      },
        {
         "component": "richtext",
         "name": "text",
