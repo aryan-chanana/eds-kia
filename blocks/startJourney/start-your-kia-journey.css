@@ -16,7 +16,7 @@
 }
 
 /* Individual card */
-.start-your-kia-journey .start-journey-card {
+.start-your-kia-journey .startJourney_cards {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -25,12 +25,12 @@
 }
 
 /* Image */
-.start-your-kia-journey .start-journey-card-image {
+.start-your-kia-journey .startJourney_cards-image {
   width: 100%;
   overflow: hidden;
 }
 
-.start-your-kia-journey .start-journey-card-image img {
+.start-your-kia-journey .startJourney_cards-image img {
   display: block;
   width: 100%;
   height: auto;
@@ -39,14 +39,14 @@
 }
 
 /* Content */
-.start-your-kia-journey .start-journey-card-content {
+.start-your-kia-journey .startJourney_cards-content {
   display: flex;
   flex-direction: column;
   padding: 24px 0 0;
 }
 
 /* Title */
-.start-your-kia-journey .start-journey-card-title {
+.start-your-kia-journey .startJourney_cards-title {
   margin: 0 0 12px;
   font-size: 24px;
   line-height: 1.25;
@@ -54,18 +54,18 @@
 }
 
 /* Description */
-.start-your-kia-journey .start-journey-card-description {
+.start-your-kia-journey .startJourney_cards-description {
   margin: 0 0 20px;
   font-size: 16px;
   line-height: 1.5;
 }
 
 /* CTA */
-.start-your-kia-journey .start-journey-card-cta {
+.start-your-kia-journey .startJourney_cards-cta {
   margin-top: auto;
 }
 
-.start-your-kia-journey .start-journey-card-link {
+.start-your-kia-journey .startJourney_cards-link {
   display: inline-flex;
   align-items: center;
   font-size: 16px;
@@ -73,13 +73,13 @@
   text-decoration: none;
 }
 
-.start-your-kia-journey .start-journey-card-link::after {
+.start-your-kia-journey .startJourney_cards-link::after {
   content: '→';
   margin-left: 8px;
   transition: transform 0.2s ease;
 }
 
-.start-your-kia-journey .start-journey-card-link:hover::after {
+.start-your-kia-journey .startJourney_cards-link:hover::after {
   transform: translateX(4px);
 }
 
@@ -105,7 +105,7 @@
     gap: 40px;
   }
 
-  .start-your-kia-journey .start-journey-card-title {
+  .start-your-kia-journey .startJourney_cards-title {
     font-size: 20px;
   }
 }

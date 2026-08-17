@@ -18,14 +18,14 @@
     },
     {
       "title": "Start Your Kia Journey Card",
-      "id": "start-your-kia-journey-card",
+      "id": "startJourney_cards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Start Your Kia Journey card",
-              "model": "start-your-kia-journey-card"
+              "name": "startJourney_cards",
+              "model": "startJourney_cards"
             }
           }
         }
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "start-your-kia-journey-card",
+      "id": "startJourney_cards",
       "fields": [
         {
           "component": "reference",
@@ -76,7 +76,7 @@
     {
       "id": "start-your-kia-journey",
       "components": [
-        "start-your-kia-journey-card"
+        "startJourney_cards"
       ]
     }
   ]

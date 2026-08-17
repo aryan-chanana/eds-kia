@@ -4,7 +4,7 @@ export default function decorate(block) {
   block.classList.add('start-your-kia-journey');
 
   cards.forEach((card) => {
-    card.classList.add('start-journey-card');
+    card.classList.add('startJourney_cards');
 
     const cells = [...card.children];
 
@@ -12,16 +12,16 @@ export default function decorate(block) {
     const textCell = cells[1];
 
     if (imageCell) {
-      imageCell.classList.add('start-journey-card-image');
+      imageCell.classList.add('startJourney_cards-image');
     }
 
     if (textCell) {
-      textCell.classList.add('start-journey-card-content');
+      textCell.classList.add('startJourney_cards-content');
 
       const title = textCell.querySelector('h1, h2, h3, h4, h5, h6');
 
       if (title) {
-        title.classList.add('start-journey-card-title');
+        title.classList.add('startJourney_cards-title');
       }
 
       const paragraphs = textCell.querySelectorAll('p');
@@ -30,8 +30,8 @@ export default function decorate(block) {
         const link = paragraph.querySelector('a');
 
         if (link) {
-          paragraph.classList.add('start-journey-card-cta');
-          link.classList.add('start-journey-card-link');
+          paragraph.classList.add('startJourney_cards-cta');
+          link.classList.add('startJourney_cards-link');
 
           // Get the card title
           const cardTitle = title?.textContent.trim().toLowerCase();
@@ -45,7 +45,7 @@ export default function decorate(block) {
             });
           }
         } else {
-          paragraph.classList.add('start-journey-card-description');
+          paragraph.classList.add('startJourney_cards-description');
         }
       });
     }
