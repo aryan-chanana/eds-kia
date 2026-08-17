@@ -1,9 +1,8 @@
 import { moveInstrumentation } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  console.log('START YOUR KIA JOURNEY BLOCK LOADED');
-
   block.classList.add('start-your-kia-journey');
+  console.log('START YOUR KIA JOURNEY LOADED');
 }
 
   cards.forEach((row) => {
