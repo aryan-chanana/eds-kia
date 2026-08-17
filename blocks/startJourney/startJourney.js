@@ -1,7 +1,7 @@
-import { moveInstrumentation } from '../../scripts/aem.js';
-
 export default function decorate(block) {
+  debugger;
   block.classList.add('start-your-kia-journey');
+  debugger;
   console.log('START YOUR KIA JOURNEY LOADED');
 }
 
