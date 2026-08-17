@@ -305,5 +305,16 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "startJourney_cards",
+    "fields": [
+      {
+      "component": "reference",
+      "name": "cards",
+      "label": "Cards",
+      "valueType": "string" 
+      }
+    ]
   }
 ]
