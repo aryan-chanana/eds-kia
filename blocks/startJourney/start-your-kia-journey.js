@@ -1,8 +1,9 @@
 import { moveInstrumentation } from '../../scripts/aem.js';
 
-export default function decorate(block) {
+export default function decorate(block) {{
   const cards = [...block.children];
-
+  console.log('START YOUR KIA JOURNEY LOADED');
+}}
   block.classList.add('start-your-kia-journey');
 
   cards.forEach((row) => {
