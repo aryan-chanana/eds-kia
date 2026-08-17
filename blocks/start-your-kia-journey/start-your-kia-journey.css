@@ -1,4 +1,4 @@
-.startJourney ul {
+.start-your-kia-journey ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@
   gap: 30px;
 }
 
-.startJourney ul > li {
+.start-your-kia-journey ul > li {
   background: #cfcfcf;
   min-height: 236px;
   padding: 40px;
@@ -25,41 +25,41 @@
   justify-content: center;
 }
 
-.startJourney .startJourney_card-image {
+.start-your-kia-journey .startJourney_card-image {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
 }
 
-.startJourney .startJourney_card-image img {
+.start-your-kia-journey .startJourney_card-image img {
   width: 90px;
   height: auto;
   display: block;
 }
 
-.startJourney .startJourney_card-content {
+.start-your-kia-journey .startJourney_card-content {
   width: 100%;
 }
 
-.startJourney .startJourney_card-content h1,
-.startJourney .startJourney_card-content h2,
-.startJourney .startJourney_card-content h3,
-.startJourney .startJourney_card-content h4,
-.startJourney .startJourney_card-content h5,
-.startJourney .startJourney_card-content h6 {
+.start-your-kia-journey .startJourney_card-content h1,
+.start-your-kia-journey .startJourney_card-content h2,
+.start-your-kia-journey .startJourney_card-content h3,
+.start-your-kia-journey .startJourney_card-content h4,
+.start-your-kia-journey .startJourney_card-content h5,
+.start-your-kia-journey .startJourney_card-content h6 {
   font-size: 26px;
   font-weight: 600;
   margin: 0 0 10px;
 }
 
-.startJourney .startJourney_card-content p {
+.start-your-kia-journey .startJourney_card-content p {
   font-size: 18px;
   margin: 0;
   opacity: 0.85;
 }
 
-.startJourney ul > li:hover {
+.start-your-kia-journey ul > li:hover {
   background: #000;
   color: #fff;
   transform: scale(1.07);
@@ -68,31 +68,31 @@
   z-index: 5;
 }
 
-.startJourney ul > li:hover img {
+.start-your-kia-journey ul > li:hover img {
   filter: brightness(0) invert(1);
 }
 
 @media (max-width: 768px) {
-  .startJourney ul {
+  .start-your-kia-journey ul {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .startJourney ul > li {
+  .start-your-kia-journey ul > li {
     min-height: 200px;
     padding: 50px 20px;
   }
 
-  .startJourney .startJourney_card-content h1,
-  .startJourney .startJourney_card-content h2,
-  .startJourney .startJourney_card-content h3,
-  .startJourney .startJourney_card-content h4,
-  .startJourney .startJourney_card-content h5,
-  .startJourney .startJourney_card-content h6 {
+  .start-your-kia-journey .startJourney_card-content h1,
+  .start-your-kia-journey .startJourney_card-content h2,
+  .start-your-kia-journey .startJourney_card-content h3,
+  .start-your-kia-journey .startJourney_card-content h4,
+  .start-your-kia-journey .startJourney_card-content h5,
+  .start-your-kia-journey .startJourney_card-content h6 {
     font-size: 1.3rem;
   }
 
-  .startJourney .startJourney_card-content p {
+  .start-your-kia-journey .startJourney_card-content p {
     font-size: 1rem;
   }
 }
