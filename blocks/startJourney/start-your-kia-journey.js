@@ -77,5 +77,4 @@ export default function decorate(block) {{
 
     // Replace the original Universal Editor row
     row.replaceWith(article);
-  });
-}
+  }) 
