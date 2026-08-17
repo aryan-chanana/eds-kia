@@ -286,37 +286,18 @@
         "valueType": "string"
       }
     ]
-  },
+  }, 
   {
     "id": "startJourney_cards",
     "fields": [
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "startJourney_cards",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
+      "component": "text",
+      "name": "title",
+      "label": "Title",
+      "valueType": "string",
+      "value": "" 
+    },
+    {
         "component": "richtext",
         "name": "text",
         "value": "",
