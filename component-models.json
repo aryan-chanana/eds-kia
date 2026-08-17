@@ -412,7 +412,7 @@
     "id": "Start Your Kia Journey Card",
     "fields": [
       {
-        "component": "reference",
+        "component": "card",
         "valueType": "string",
         "name": "image",
         "label": "Image",
