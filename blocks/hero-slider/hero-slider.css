@@ -1,0 +1,303 @@
+/*
+ * Hero Slider — migrated from kia.com/in/home.html (#hero-car).
+ * Values pulled from live computed styles at 375px and 1440px.
+ * Single breakpoint at 768/769px, mobile-first.
+ * Typography uses the source's Kia Signature font, self-hosted below.
+ * rev: 2
+ */
+
+@font-face {
+  font-family: kia-signature;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/kia-signature-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: kia-signature;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/kia-signature-regular.woff2') format('woff2');
+}
+
+.hero-slider {
+  /* measured Kia values as custom properties (mobile-first defaults) */
+  --hero-slider-aspect: 375 / 667;
+  --hero-slider-gutter: 31px;
+  --hero-slider-content-offset: 66px;
+  --hero-slider-title-size: 19.2px;
+  --hero-slider-title-line: 25px;
+  --hero-slider-tagline-size: 12px;
+  --hero-slider-tagline-line: 18px;
+  --hero-slider-cta-margin: 30px;
+  --hero-slider-text-color: #fff;
+  --hero-slider-font: kia-signature, roboto, roboto-fallback, sans-serif;
+
+  position: relative;
+  overflow: hidden;
+  color: var(--hero-slider-text-color);
+  font-family: var(--hero-slider-font);
+
+  /* enable container queries so sizing tracks the block's own width — correct
+     in the Universal Editor's narrow iframe as well as on the live page */
+  container-type: inline-size;
+}
+
+.hero-slider-container .hero-slider-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* viewport + track --------------------------------------------------------- */
+.hero-slider-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Horizontal sliding track (matches the source's translate-based transition,
+   so slides move sideways rather than cross-fading — no text overlap). */
+.hero-slider-track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+.hero-slider-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  aspect-ratio: var(--hero-slider-aspect);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider-track { transition: none; }
+}
+
+/* media -------------------------------------------------------------------- */
+.hero-slider-media,
+.hero-slider-media picture,
+.hero-slider-media img,
+.hero-slider-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slider-media img,
+.hero-slider-video {
+  object-fit: cover;
+}
+
+/* desktop / mobile image swap (single 769px breakpoint) */
+.hero-slider-desktop { display: none; }
+.hero-slider-mobile { display: block; }
+
+/* content ------------------------------------------------------------------ */
+.hero-slider-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: var(--hero-slider-content-offset);
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-slider-wrap {
+  width: 100%;
+  max-width: none;
+  margin: 0 var(--hero-slider-gutter);
+}
+
+.hero-slider-wrap > * {
+  pointer-events: auto;
+}
+
+.hero-slider-content h1,
+.hero-slider-content h2,
+.hero-slider-content h3,
+.hero-slider-content h4,
+.hero-slider-content h5,
+.hero-slider-content h6 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--hero-slider-font);
+  font-size: var(--hero-slider-title-size);
+  line-height: var(--hero-slider-title-line);
+  font-weight: 700;
+  letter-spacing: 0.16px;
+}
+
+.hero-slider-content p {
+  margin: 7px 0;
+  color: inherit;
+  font-family: var(--hero-slider-font);
+  font-size: var(--hero-slider-tagline-size);
+  line-height: var(--hero-slider-tagline-line);
+  font-weight: 400;
+}
+
+/* CTA button (square corners). Default (non-italic CTA) = black fill / white
+   text; italicised CTA link => white fill / black text (data-button="light"). */
+.hero-slider-content a.button {
+  display: inline-block;
+  margin-top: var(--hero-slider-cta-margin);
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 18px 40px 19px;
+  background-color: #000;
+  color: #fff;
+  font-family: var(--hero-slider-font);
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hero-slider-content a.button:hover,
+.hero-slider-content a.button:focus-visible {
+  opacity: 0.9;
+}
+
+/* italicised CTA link => white fill / black text */
+.hero-slider-slide[data-button="light"] .hero-slider-content a.button {
+  border-color: #fff;
+  background-color: #fff;
+  color: #000;
+}
+
+/* disclaimer — flows within content below the CTA (10px), right-aligned with
+   a little right padding. */
+.hero-slider-disclaimer.hero-slider-disclaimer {
+  margin: 16px 0 0;
+  padding-right: 16px;
+  color: var(--hero-slider-text-color);
+  font-family: var(--hero-slider-font);
+  font-size: 10px;
+  line-height: 15px;
+  font-weight: 400;
+  text-align: right;
+}
+
+/* arrows (measured: 80x80 translucent circles, vertically centred) --------- */
+.hero-slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: none; /* hidden on mobile, shown >=769 */
+  width: 80px;
+  height: 80px;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 20%);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-slider-arrow:hover,
+.hero-slider-arrow:focus-visible {
+  background-color: rgb(0 0 0); /* solid black on hover, matching the source */
+}
+
+/* non-looping: hide the arrow that has nowhere to go (first/last slide) */
+.hero-slider-arrow[disabled] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* full arrow glyph (shaft + arrowhead) in white, matching the source arrows. */
+.hero-slider-arrow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  mask: center / contain no-repeat;
+}
+
+/* shift each glyph into the visible (inner) half of the edge-hugging circle */
+.hero-slider-prev::before {
+  transform: translate(-50%, -50%);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="2" stroke-linecap="square" d="M21 12 H4 M11 5 L4 12 L11 19"/></svg>');
+}
+
+.hero-slider-next::before {
+  transform: translate(-50%, -50%);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="2" stroke-linecap="square" d="M3 12 H20 M13 5 L20 12 L13 19"/></svg>');
+}
+
+/* arrows inset 40px from each edge (matches the source's on-screen position) */
+.hero-slider-prev { left: 40px; }
+.hero-slider-next { right: 40px; }
+
+/* visually-hidden live region */
+.hero-slider-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* desktop styling — applied when the BLOCK is >=769px wide (container query),
+   so it holds inside the editor iframe, with a viewport-width @media fallback
+   for browsers without container-query support. */
+@container (width >= 769px) {
+  .hero-slider {
+    --hero-slider-aspect: 1440 / 945;
+    --hero-slider-gutter: 80px;
+    --hero-slider-content-offset: 94px;
+    --hero-slider-title-size: 40px;
+    --hero-slider-title-line: 60px;
+    --hero-slider-tagline-size: 28px;
+    --hero-slider-tagline-line: 42px;
+    --hero-slider-cta-margin: 40px;
+  }
+
+  .hero-slider-desktop { display: block; }
+  .hero-slider-mobile { display: none; }
+
+  .hero-slider-arrow { display: block; }
+}
+
+@media (width >= 769px) {
+  .hero-slider {
+    --hero-slider-aspect: 1440 / 945;
+    --hero-slider-gutter: 80px;
+    --hero-slider-content-offset: 94px;
+    --hero-slider-title-size: 40px;
+    --hero-slider-title-line: 60px;
+    --hero-slider-tagline-size: 28px;
+    --hero-slider-tagline-line: 42px;
+    --hero-slider-cta-margin: 40px;
+  }
+
+  .hero-slider-desktop { display: block; }
+  .hero-slider-mobile { display: none; }
+
+  .hero-slider-arrow { display: block; }
+}
+
+/* reduced motion: no sliding transition */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider-track {
+    transition: none;
+  }
+}
