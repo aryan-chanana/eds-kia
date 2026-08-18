@@ -16,9 +16,12 @@
       "cards",
       "columns",
       "fragment",
-      "startJourney_cards",
       "know-the-brand"
     ]
+  },
+  {
+    "id": "app-download-link",
+    "components": []
   },
   {
     "id": "cards",
@@ -54,14 +57,9 @@
     ]
   },
   {
-    "id": "cards",
+    "id": "startJourney",
     "components": [
-      "card"
-    ]
-  },   
-  {"id": "startJourney",
-    "components": [
-      "startJourney_cards"
+      "startJourney_card"
     ]
   }
 ]

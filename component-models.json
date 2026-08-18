@@ -142,6 +142,120 @@
     ]
   },
   {
+    "id": "app-download-link",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "backgroundImage",
+        "label": "Section Background Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "phoneImage",
+        "label": "Phone Mockup Image (left column)",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "titleText",
+        "label": "Title Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "iconImage",
+        "label": "Feature Banner Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subTitleText",
+        "label": "Sub Title Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage1",
+        "label": "Store Badge 1 Image (e.g. Google Play)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink1",
+        "label": "Store Badge 1 Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel1",
+        "label": "Store Badge 1 Accessible Label"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage2",
+        "label": "Store Badge 2 Image (e.g. App Store)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink2",
+        "label": "Store Badge 2 Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel2",
+        "label": "Store Badge 2 Accessible Label"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage3",
+        "label": "Store Badge 3 Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink3",
+        "label": "Store Badge 3 Link (optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel3",
+        "label": "Store Badge 3 Accessible Label (optional)"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage4",
+        "label": "Store Badge 4 Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink4",
+        "label": "Store Badge 4 Link (optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel4",
+        "label": "Store Badge 4 Accessible Label (optional)"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -286,18 +400,18 @@
         "valueType": "string"
       }
     ]
-  }, 
+  },
   {
     "id": "know-the-brand",
     "fields": [
       {
-      "component": "text",
-      "name": "title",
-      "label": "Title",
-      "valueType": "string",
-      "value": "" 
-    },
-    {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "value": "",
+        "valueType": "string"
+      },
+      {
         "component": "richtext",
         "name": "description",
         "label": "Description",
@@ -340,28 +454,41 @@
     ]
   },
   {
-  "id": "startJourney_cards",
-  "fields": [
-    {
-      "component": "reference",
-      "name": "image",
-      "label": "Image",
-      "valueType": "string",
-      "required": true
-    },
-    {
-      "component": "text",
-      "name": "title",
-      "label": "Title",
-      "valueType": "string",
-      "required": true
-    },
-    {
-      "component": "richtext",
-      "name": "description",
-      "label": "Description",
-      "valueType": "string"
-    }
-  ]
-}
- ]
+    "id": "start-your-kia-journey",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "value": "",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "startJourney_card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "value": "",
+        "valueType": "string"
+      }
+    ]
+  }
+]
