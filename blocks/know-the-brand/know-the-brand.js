@@ -171,7 +171,7 @@ export default function decorate(block) {
       left: getStep(),
       behavior: 'smooth',
     });
-  });
+  }); 
 
   track.addEventListener('scroll', updateArrows, {
     passive: true,
