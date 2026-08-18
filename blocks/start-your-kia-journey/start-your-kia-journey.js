@@ -21,9 +21,9 @@ export default function decorate(block) {
         div.children.length === 1
         && div.querySelector('picture')
       ) {
-        div.className = 'startJourney_card-image';
+        div.className = 'start-journey-card-image';
       } else {
-        div.className = 'startJourney_card-content';
+        div.className = 'start-journey-card-content';
       }
     });
 
