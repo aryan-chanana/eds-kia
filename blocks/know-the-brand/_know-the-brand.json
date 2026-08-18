@@ -80,7 +80,7 @@
           "component": "text",
           "name": "button",
           "label": "Button",
-          "value": "",
+          "value": "Know More",
           "valueType": "string"
         }
       ]

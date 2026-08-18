@@ -1,15 +1,26 @@
 .know-the-brand {
   width: 100%;
-  padding: 80px 0;
+  padding: 72px 0 80px;
+  background: #f5f5f5;
 }
 
 .know-the-brand-heading {
   max-width: 1200px;
-  margin: 0 auto 40px;
+  margin: 0 auto 12px;
   padding: 0 32px;
+  text-align: center;
   font-size: 40px;
   line-height: 1.15;
   font-weight: 700;
+}
+
+.know-the-brand-description {
+  max-width: 760px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 .know-the-brand-carousel {
@@ -39,13 +50,11 @@
   overflow: hidden;
   background: #fff;
   border: 1px solid #e5e5e5;
-  border-radius: 4px;
   scroll-snap-align: start;
 }
 
 .know-the-brand-card-image {
   width: 100%;
-  min-height: 220px;
   background: #f5f5f5;
 }
 
@@ -57,8 +66,8 @@
 .know-the-brand-card-image img {
   display: block;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .know-the-brand-card-body {
@@ -85,9 +94,15 @@
   width: fit-content;
   margin-top: auto;
   padding: 12px 24px;
+  background: #000;
+  color: #fff;
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
+}
+
+.know-the-brand-card-button:hover {
+  opacity: 0.85;
 }
 
 .know-the-brand-arrow {
@@ -131,13 +146,19 @@
 
 @media (max-width: 599px) {
   .know-the-brand {
-    padding: 48px 0;
+    padding: 48px 0 56px;
   }
 
   .know-the-brand-heading {
-    margin-bottom: 32px;
+    margin-bottom: 12px;
     padding: 0 20px;
     font-size: 28px;
+  }
+
+  .know-the-brand-description {
+    margin-bottom: 32px;
+    padding: 0 20px;
+    font-size: 16px;
   }
 
   .know-the-brand-carousel {
@@ -146,14 +167,6 @@
 
   .know-the-brand-card {
     flex: 0 0 100%;
-  }
-
-  .know-the-brand-card-image {
-    min-height: 200px;
-  }
-
-  .know-the-brand-card-image img {
-    height: 200px;
   }
 
   .know-the-brand-card-body {
