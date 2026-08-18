@@ -1,7 +1,13 @@
+
+
 .know-the-brand {
   width: 100%;
   padding: 50px 0 75px;
   background: #f7f4ef;
+}
+
+.know-the-brand ~ .know-the-brand {
+  background: #979695;
 }
 
 .know-the-brand-heading {
