@@ -1,6 +1,14 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function hasCardContent(row) {
+  return [...row.children].some((cell) => (
+    cell.textContent.trim()
+    || cell.querySelector('img')
+    || cell.querySelector('a')
+  ));
+}
+
 function buildCard(row) {
   const [
     imageCell,
@@ -43,7 +51,7 @@ function buildCard(row) {
     body.append(heading);
   }
 
-  if (descriptionCell && descriptionCell.innerHTML.trim()) {
+  if (descriptionCell?.innerHTML.trim()) {
     const description = document.createElement('div');
     description.className = 'know-the-brand-card-description';
 
@@ -54,17 +62,16 @@ function buildCard(row) {
     body.append(description);
   }
 
-  const anchor = buttonCell?.querySelector('a');
+  const buttonText = (buttonCell?.textContent || '').trim();
 
-  if (anchor) {
-    const label = (anchor.textContent || '').trim();
-    const href = anchor.getAttribute('href') || '';
+  if (buttonText) {
+    const button = document.createElement('a');
+    button.className = 'know-the-brand-card-button';
+    button.href = '#';
+    button.textContent = buttonText;
+    button.setAttribute('aria-label', buttonText);
 
-    if (label && href) {
-      anchor.className = 'know-the-brand-card-button button';
-      anchor.textContent = label;
-      body.append(anchor);
-    }
+    body.append(button);
   }
 
   article.append(media, body);
@@ -77,13 +84,24 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  const [headingRow, ...cardRows] = rows;
+  const [headingRow, descriptionRow, ...cardRows] = rows;
 
   const heading = document.createElement('h2');
   heading.className = 'know-the-brand-heading';
-  heading.textContent = (headingRow.textContent || '').trim();
+  heading.textContent = (headingRow?.textContent || '').trim();
 
   moveInstrumentation(headingRow, heading);
+
+  const description = document.createElement('div');
+  description.className = 'know-the-brand-description';
+
+  if (descriptionRow) {
+    while (descriptionRow.firstChild) {
+      description.append(descriptionRow.firstChild);
+    }
+
+    moveInstrumentation(descriptionRow, description);
+  }
 
   const carousel = document.createElement('div');
   carousel.className = 'know-the-brand-carousel';
@@ -103,24 +121,13 @@ export default function decorate(block) {
   const track = document.createElement('div');
   track.className = 'know-the-brand-track';
 
-  cardRows.forEach((row) => {
-    track.append(buildCard(row));
-  });
+  cardRows
+    .filter(hasCardContent)
+    .forEach((row) => {
+      track.append(buildCard(row));
+    });
 
   carousel.append(prev, track, next);
-
-  const updateArrows = () => {
-    const canScroll = track.scrollWidth - track.clientWidth > 1;
-
-    if (!canScroll) {
-      prev.hidden = true;
-      next.hidden = true;
-      return;
-    }
-
-    prev.hidden = track.scrollLeft <= 1;
-    next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-  };
 
   const getStep = () => {
     const card = track.querySelector('.know-the-brand-card');
@@ -136,6 +143,22 @@ export default function decorate(block) {
     return card.offsetWidth + gap;
   };
 
+  const updateArrows = () => {
+    const canScroll = track.scrollWidth - track.clientWidth > 1;
+
+    if (!canScroll) {
+      prev.hidden = true;
+      next.hidden = true;
+      return;
+    }
+
+    prev.hidden = track.scrollLeft <= 1;
+    next.hidden = (
+      track.scrollLeft + track.clientWidth
+      >= track.scrollWidth - 1
+    );
+  };
+
   prev.addEventListener('click', () => {
     track.scrollBy({
       left: -getStep(),
@@ -148,17 +171,19 @@ export default function decorate(block) {
       left: getStep(),
       behavior: 'smooth',
     });
-  });
+  }); 
 
-  track.addEventListener(
-    'scroll',
-    updateArrows,
-    { passive: true },
-  );
+  track.addEventListener('scroll', updateArrows, {
+    passive: true,
+  });
 
   window.addEventListener('resize', updateArrows);
 
   requestAnimationFrame(updateArrows);
 
-  block.replaceChildren(heading, carousel);
+  block.replaceChildren(
+    heading,
+    description,
+    carousel,
+  );
 }
