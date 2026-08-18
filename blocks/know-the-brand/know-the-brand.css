@@ -71,23 +71,21 @@
 
 .know-the-brand-card-image {
   width: 100%;
-  height: 220px;
-  min-height: 220px;
-  overflow: hidden;
-  background: #eee;
+  overflow: visible;
+  background: transparent;
 }
 
 .know-the-brand-card-image picture {
   display: block;
   width: 100%;
-  height: 100%;
 }
 
 .know-the-brand-card-image img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-width: 100%;
+  margin-bottom: 15px;
 }
 
 .know-the-brand-card-body {
@@ -215,11 +213,6 @@
 
   .know-the-brand-card::after {
     display: none !important;
-  }
-
-  .know-the-brand-card-image {
-    height: 220px;
-    min-height: 220px;
   }
 
   .know-the-brand-card-body {
