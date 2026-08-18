@@ -36,12 +36,12 @@ export default function decorate(block) {
       img.src,
       img.alt,
       false,
-      [{ width: '750' }]
+      [{ width: '750' }],
     );
 
     moveInstrumentation(
       img,
-      optimizedPic.querySelector('img')
+      optimizedPic.querySelector('img'),
     );
 
     img.closest('picture').replaceWith(optimizedPic);
