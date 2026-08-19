@@ -330,7 +330,6 @@ c0-1.06,0.24-1.67,1.18-2.24l5.63-3.38C7.21,9.1,7.26,9.09,7.31,9.09c0.09,0,0.13,0
 c0.05,0,0.1-0.03,0.17-0.07L26.73,9.61c0.45-0.27,0.73-0.35,1.25-0.35h10.23c0.71,0,1.18,0.47,1.18,1.18V23.11z"></path>
         </svg>
       </a>`;
-  primaryNav.append(svgKia);
   primaryNav.append(leftWrap);
 
   const rightWrap = document.createElement('div');
@@ -341,6 +340,7 @@ c0.05,0,0.1-0.03,0.17-0.07L26.73,9.61c0.45-0.27,0.73-0.35,1.25-0.35h10.23c0.71,0
   primaryNav.append(rightWrap);
 
   headerInner.append(primaryNav);
+  headerInner.append(svgKia);
 
   if (tools && tools.dealerLabel) {
     const actions = document.createElement('div');
@@ -348,7 +348,7 @@ c0.05,0,0.1-0.03,0.17-0.07L26.73,9.61c0.45-0.27,0.73-0.35,1.25-0.35h10.23c0.71,0
     const dealerA = document.createElement('a');
     dealerA.className = 'btn-dealer';
     dealerA.href = tools.dealerHref || '#';
-    dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span>${tools.dealerLabel}`;
+    dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span><span class="btn-dealer-label">${tools.dealerLabel}</span>`;
     actions.append(dealerA);
     headerInner.append(actions);
   }

@@ -370,8 +370,8 @@ header:has(.kia-header) {
   top: 25%;
   left: 0;
   height: 30px;
-  border-left: 1px solid;
-  opacity: 0.2;
+  border-left: 1px solid currentcolor;
+  opacity: 0.45;
 }
 
 .btn-dealer .location-icon {
@@ -650,7 +650,27 @@ a{
     justify-content: space-between;
   }
 
+  /* Keep the dealer button visible on tablet, but compact — text label
+     still shows to give context alongside the location icon. */
   .btn-dealer {
+    padding: 9px 12px 9px 22px;
+    font-size: 12px;
+  }
+}
+
+/* On mobile, the dealer button collapses to icon-only so hamburger + logo
+   + location icon fit comfortably across the width. */
+@media (width <= 640px) {
+  .btn-dealer {
+    padding: 9px 10px 9px 20px;
+  }
+
+  .btn-dealer .btn-dealer-label {
     display: none;
+  }
+
+  .btn-dealer::before {
+    height: 22px;
+    top: 30%;
   }
 }
