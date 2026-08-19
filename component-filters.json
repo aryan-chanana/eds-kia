@@ -16,9 +16,9 @@
       "cards",
       "columns",
       "fragment",
-      "startJourneycard",
       "know-the-brand",
-      "app-download-link"
+      "nav-item",
+      "nav-tools"
     ]
   },
   {
@@ -56,6 +56,22 @@
     "id": "know-the-brand",
     "components": [
       "know-the-brand-card"
+    ]
+  },
+  {
+    "id": "nav-item",
+    "components": [
+      "nav-link"
+    ]
+  },
+  {
+    "id": "nav-tools",
+    "components": []
+  },
+  {
+    "id": "startJourney",
+    "components": [
+      "startJourney_card"
     ]
   },
   {
