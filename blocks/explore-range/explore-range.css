@@ -1,14 +1,19 @@
 .explore-range {
   padding: 40px 16px;
   background-color: #f5f0e8;
-  font-family: var(--body-font-family);
+  font-family: Poppins, sans-serif;
   color: #05141f;
   text-align: center;
 }
 
+main > .section > .explore-range-wrapper{
+  max-width: 1400px;
+  padding: 0;
+}
+
 .explore-range .explore-range-heading {
   margin: 0 0 32px;
-  font-family: var(--heading-font-family);
+  font-family: Poppins, sans-serif;
   font-size: 34px;
   line-height: 1.15;
   font-weight: 700;
@@ -33,17 +38,18 @@
   background-color: #d9d9d9;
   color: #05141f;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
-  padding: 12px 40px;
+  flex: 1;
+  padding: 12px 30px;
   border-radius: 0;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.explore-range .explore-range-tab:hover {
+/* .explore-range .explore-range-tab:hover {
   background-color: #c9c9c9;
-}
+} */
 
 .explore-range .explore-range-tab[aria-selected="true"] {
   background-color: #05141f;
@@ -100,7 +106,7 @@
 }
 
 .explore-range .explore-range-card-body {
-  padding: 20px 12px 8px;
+  padding: 20px 12px 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,7 +139,7 @@
 .explore-range .explore-range-card-text strong {
   display: block;
   margin: 0 0 12px;
-  font-family: var(--heading-font-family);
+  font-family: Poppins, sans-serif;
   font-size: 26px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -143,6 +149,8 @@
 }
 
 .explore-range .explore-range-card-text p {
+  color: #666;
+  font-size: 1rem;
   margin: 0 0 8px;
 }
 
@@ -155,16 +163,20 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
 }
 
-.explore-range .explore-range-card-cta {
+.explore-range a.explore-range-card-cta.button,
+.explore-range a.explore-range-card-cta.button:any-link,
+.explore-range a.explore-range-card-cta.button:visited {
   display: inline-block;
   text-decoration: none;
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
-  padding: 14px 24px;
+  padding: 16px 32px;
+  min-width: 180px;
   text-align: center;
   background-color: #05141f;
   color: #fff;
@@ -173,9 +185,11 @@
   transition: background-color 0.25s ease;
 }
 
-.explore-range .explore-range-card-cta:hover,
-.explore-range .explore-range-card-cta:focus-visible {
+.explore-range a.explore-range-card-cta.button:hover,
+.explore-range a.explore-range-card-cta.button:focus-visible {
   background-color: #1a2b38;
+  color: #fff;
+  text-decoration: none;
   outline: none;
 }
 
@@ -212,11 +226,16 @@
 
   .explore-range .explore-range-tab {
     font-size: 16px;
-    padding: 14px 56px;
+    padding: 14px 28px;
+  }
+
+  .explore-range .explore-range-tab:hover{
+    transform: scale(1.01);
+    font-weight: 600;
   }
 
   .explore-range .explore-range-carousel {
-    padding: 0 44px;
+    padding: 0;
   }
 
   .explore-range .explore-range-track {
@@ -239,37 +258,28 @@
     scroll-snap-align: start;
   }
 
-  .explore-range .explore-range-card-ctas {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .explore-range .explore-range-card-cta {
-    flex: 1;
-  }
-
   .explore-range .explore-range-carousel-arrow {
     position: absolute;
-    top: 50%;
+    top: var(--explore-range-arrow-top, 50%);
     transform: translateY(-50%);
     z-index: 2;
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 80px;
     padding: 0;
     border-radius: 50%;
-    border: 1px solid #05141f;
-    background-color: transparent;
-    color: #05141f;
+    border: 0;
+    background-color: rgb(0 0 0 / 25%);
+    color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   .explore-range .explore-range-carousel-arrow svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: block;
   }
 
@@ -279,14 +289,13 @@
 
   .explore-range .explore-range-carousel-arrow:hover,
   .explore-range .explore-range-carousel-arrow:focus-visible {
-    background-color: #05141f;
+    background-color: #000;
     color: #fff;
-    border-color: #05141f;
     outline: none;
   }
 
   .explore-range .explore-range-carousel-prev {
-    left: 0;
+    left: 20px;
   }
 
   .explore-range .explore-range-carousel-prev svg {
@@ -294,11 +303,11 @@
   }
 
   .explore-range .explore-range-carousel-next {
-    right: 0;
+    right: 20px;
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 1200px) {
   .explore-range {
     padding: 72px 40px;
   }
@@ -313,11 +322,7 @@
   }
 
   .explore-range .explore-range-tab {
-    padding: 14px 72px;
-  }
-
-  .explore-range .explore-range-carousel {
-    padding: 0 56px;
+    padding: 10px 35px;
   }
 
   .explore-range .explore-range-track {

@@ -1,26 +1,32 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function buildCta(cell, variant) {
-  const anchor = cell?.querySelector('a');
+function pickImage(cell) {
+  if (!cell) return null;
+  const picture = cell.querySelector('picture');
+  if (picture) return picture;
+  const img = cell.querySelector('img');
+  if (img) {
+    const optimized = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
+    moveInstrumentation(img, optimized.querySelector('img'));
+    return optimized;
+  }
+  return null;
+}
+
+function decorateCta(anchor, variant) {
   if (!anchor) return null;
   const label = (anchor.textContent || '').trim();
   const href = anchor.getAttribute('href') || '';
   if (!label || !href) return null;
   anchor.className = `explore-range-card-cta explore-range-card-cta-${variant} button`;
   anchor.textContent = label;
+  anchor.style.color = '#fff';
   return anchor;
 }
 
 function buildCard(row) {
-  const [
-    tabCell,
-    imageCell,
-    titleCell,
-    textCell,
-    cta1Cell,
-    cta2Cell,
-  ] = [...row.children];
+  const [tabCell, imageCell, textCell, ctasCell] = [...row.children];
 
   const tabLabel = (tabCell?.textContent || '').trim();
 
@@ -30,23 +36,11 @@ function buildCard(row) {
 
   const media = document.createElement('div');
   media.className = 'explore-range-card-image';
-  const img = imageCell?.querySelector('img');
-  if (img) {
-    const optimized = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
-    moveInstrumentation(img, optimized.querySelector('img'));
-    media.append(optimized);
-  }
+  const picture = pickImage(imageCell);
+  if (picture) media.append(picture);
 
   const body = document.createElement('div');
   body.className = 'explore-range-card-body';
-
-  const title = (titleCell?.textContent || '').trim();
-  if (title) {
-    const h3 = document.createElement('h3');
-    h3.className = 'explore-range-card-title';
-    h3.textContent = title;
-    body.append(h3);
-  }
 
   if (textCell && textCell.innerHTML.trim()) {
     const desc = document.createElement('div');
@@ -55,8 +49,9 @@ function buildCard(row) {
     body.append(desc);
   }
 
-  const cta1 = buildCta(cta1Cell, 'primary');
-  const cta2 = buildCta(cta2Cell, 'secondary');
+  const anchors = ctasCell ? [...ctasCell.querySelectorAll('a')] : [];
+  const cta1 = decorateCta(anchors[0], 'primary');
+  const cta2 = decorateCta(anchors[1], 'secondary');
   if (cta1 || cta2) {
     const ctas = document.createElement('div');
     ctas.className = 'explore-range-card-ctas';
@@ -97,6 +92,7 @@ export default function decorate(block) {
 
   const tabs = [];
   const tabPanels = [];
+  const updaters = [];
   [...groups.entries()].forEach(([label, cards], index) => {
     const tabId = `explore-range-tab-${index}`;
     const panelId = `explore-range-panel-${index}`;
@@ -151,27 +147,56 @@ export default function decorate(block) {
       const first = track.querySelector('.explore-range-card');
       if (!first) return track.clientWidth;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return first.offsetWidth + gap;
+      const cardWidth = first.offsetWidth + gap;
+      const visible = Math.max(1, Math.round((track.clientWidth + gap) / cardWidth));
+      return cardWidth * visible;
     };
-    const updateArrows = () => {
+    const positionArrows = () => {
+      const image = track.querySelector('.explore-range-card-image');
+      if (!image) return;
+      const carouselRect = carousel.getBoundingClientRect();
+      const imageRect = image.getBoundingClientRect();
+      const centerY = imageRect.top - carouselRect.top + imageRect.height / 2;
+      carousel.style.setProperty('--explore-range-arrow-top', `${centerY}px`);
+    };
+    let targetScroll = null;
+    const applyArrowState = (scroll) => {
+      positionArrows();
       if (!isCarouselActive()) {
         prev.hidden = true;
         next.hidden = true;
         return;
       }
-      const canScroll = track.scrollWidth - track.clientWidth > 1;
-      if (!canScroll) {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 1) {
         prev.hidden = true;
         next.hidden = true;
         return;
       }
-      prev.hidden = track.scrollLeft <= 1;
-      next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+      prev.hidden = scroll <= 1;
+      next.hidden = scroll >= maxScroll - 1;
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-    track.addEventListener('scroll', updateArrows, { passive: true });
+    const updateArrows = () => applyArrowState(targetScroll ?? track.scrollLeft);
+    const goBy = (delta) => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      targetScroll = Math.max(0, Math.min(maxScroll, track.scrollLeft + delta));
+      applyArrowState(targetScroll);
+      track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    };
+    prev.addEventListener('click', () => goBy(-step()));
+    next.addEventListener('click', () => goBy(step()));
+    track.addEventListener('scroll', () => {
+      if (targetScroll !== null && Math.abs(track.scrollLeft - targetScroll) < 2) {
+        targetScroll = null;
+      }
+      updateArrows();
+    }, { passive: true });
     window.addEventListener('resize', updateArrows);
+    track.querySelectorAll('img').forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', updateArrows, { once: true });
+    });
+    updaters.push(updateArrows);
     requestAnimationFrame(updateArrows);
   });
 
@@ -183,6 +208,7 @@ export default function decorate(block) {
       tabPanels[i].hidden = !selected;
     });
     tabs[nextIndex].focus();
+    requestAnimationFrame(() => updaters[nextIndex]?.());
   };
 
   tabs.forEach((tab, index) => {
