@@ -566,6 +566,24 @@
     ]
   },
   {
+    "id": "startJourneycard",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "startJourney_card",
     "fields": [
       {
@@ -599,24 +617,6 @@
         "name": "text",
         "label": "Text",
         "value": "",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "startJourneycard",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "label": "Description",
         "valueType": "string"
       }
     ]

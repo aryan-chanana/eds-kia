@@ -18,8 +18,7 @@
       "fragment",
       "know-the-brand",
       "nav-item",
-      "nav-tools",
-      "startJourneycard"
+      "nav-tools"
     ]
   },
   {
@@ -70,15 +69,15 @@
     "components": []
   },
   {
-    "id": "startJourney",
-    "components": [
-      "startJourney_card"
-    ]
-  },
-  {
     "id": "startJourneycard",
     "components": [
       "startJourneycard"
+    ]
+  },
+  {
+    "id": "startJourney",
+    "components": [
+      "startJourney_card"
     ]
   }
 ]
