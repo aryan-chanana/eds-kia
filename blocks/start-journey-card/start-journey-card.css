@@ -1,18 +1,27 @@
-/* Section-level grid: multiple start-journey-card blocks lay out 2x2 */
-.section.start-journey-card-container {
+/* Full-width section, no outer margins so the grey band and grid can span edge-to-edge */
+main > .section.start-journey-card-container {
+  margin: 0;
+  padding: 48px 24px;
+  background-color: #e8e8e8;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 48px 32px;
-  background-color: #e8e8e8;
 }
 
 /* Let wrappers fill their grid track instead of being centered at 1200px */
-main > .section.start-journey-card-container > div {
-  max-width: none;
+main > .section.start-journey-card-container > div,
+main > .section.start-journey-card-container > .start-journey-card-wrapper,
+main > .section.start-journey-card-container > .default-content-wrapper {
+  max-width: none !important;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+.section.start-journey-card-container > .start-journey-card-wrapper > .start-journey-card,
+.section.start-journey-card-container > .default-content-wrapper > * {
+  max-width: none;
+  width: 100%;
 }
 
 .section.start-journey-card-container > .default-content-wrapper {
@@ -175,10 +184,10 @@ main > .section.start-journey-card-container > div {
 }
 
 @media (width >= 600px) {
-  .section.start-journey-card-container {
+  main > .section.start-journey-card-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    padding: 56px 40px;
+    padding: 56px 32px;
   }
 
   .section.start-journey-card-container > .default-content-wrapper {
@@ -218,9 +227,9 @@ main > .section.start-journey-card-container > div {
 }
 
 @media (width >= 900px) {
-  .section.start-journey-card-container {
+  main > .section.start-journey-card-container {
     gap: 28px;
-    padding: 72px 48px;
+    padding: 72px 40px;
   }
 
   .section.start-journey-card-container > .default-content-wrapper {
