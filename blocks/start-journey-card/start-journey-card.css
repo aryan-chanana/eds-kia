@@ -60,21 +60,51 @@
   min-height: 220px;
   padding: 40px 24px;
   background-color: #dcdcdc;
-  border: 2px solid transparent;
+  color: #333;
+  border: 0;
   border-radius: 0;
   text-align: center;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.start-journey-card > a.start-journey-card-item,
+.start-journey-card > a.start-journey-card-item:any-link,
+.start-journey-card > a.start-journey-card-item:visited {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .start-journey-card > .start-journey-card-item:hover,
+.start-journey-card > .start-journey-card-item:focus-visible,
 .start-journey-card > .start-journey-card-item:focus-within {
-  border-color: #05141f;
-  background-color: #d0d0d0;
+  background-color: #000;
+  color: #fff;
+  outline: none;
+}
+
+.start-journey-card > .start-journey-card-item:hover .start-journey-card-title,
+.start-journey-card > .start-journey-card-item:focus-visible .start-journey-card-title,
+.start-journey-card > .start-journey-card-item:focus-within .start-journey-card-title,
+.start-journey-card > .start-journey-card-item:hover .start-journey-card-description,
+.start-journey-card > .start-journey-card-item:focus-visible .start-journey-card-description,
+.start-journey-card > .start-journey-card-item:focus-within .start-journey-card-description,
+.start-journey-card > .start-journey-card-item:hover .start-journey-card-content strong,
+.start-journey-card > .start-journey-card-item:focus-visible .start-journey-card-content strong,
+.start-journey-card > .start-journey-card-item:focus-within .start-journey-card-content strong {
+  color: #fff;
+}
+
+.start-journey-card > .start-journey-card-item:hover .start-journey-card-icon,
+.start-journey-card > .start-journey-card-item:focus-visible .start-journey-card-icon,
+.start-journey-card > .start-journey-card-item:focus-within .start-journey-card-icon {
+  filter: brightness(0) invert(1);
 }
 
 /* Icon */
