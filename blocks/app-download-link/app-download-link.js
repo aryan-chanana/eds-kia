@@ -97,21 +97,21 @@ export default function decorate(block) {
     const href = getHref(linkRow);
 
     // Skip empty/unfilled badge slots (author left 3rd/4th badge blank)
-    if (!picture || !href) continue;
+    if (picture && href) {
+      const img = picture.querySelector('img');
+      if (img) {
+        img.loading = 'lazy';
+      }
 
-    const img = picture.querySelector('img');
-    if (img) {
-      img.loading = 'lazy';
+      const badge = document.createElement('a');
+      badge.className = 'adl-badge';
+      badge.href = href;
+      badge.target = '_blank';
+      badge.rel = 'noopener noreferrer';
+      badge.setAttribute('aria-label', getLabel(labelRow) || 'Download app');
+      badge.append(picture);
+      badgeContainer.append(badge);
     }
-
-    const badge = document.createElement('a');
-    badge.className = 'adl-badge';
-    badge.href = href;
-    badge.target = '_blank';
-    badge.rel = 'noopener noreferrer';
-    badge.setAttribute('aria-label', getLabel(labelRow) || 'Download app');
-    badge.append(picture);
-    badgeContainer.append(badge);
   }
 
   linksWrap.append(badgeContainer);
