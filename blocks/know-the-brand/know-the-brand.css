@@ -1,3 +1,8 @@
+main > .section > div:has(.know-the-brand) {
+  max-width: none;
+  padding: 0;
+}
+
 .know-the-brand {
   width: 100%;
   padding: 72px 0;
@@ -57,11 +62,10 @@
   }
 }
 
-
 .know-the-brand-track {
   display: flex;
   gap: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
@@ -188,13 +192,11 @@
   align-items: center;
   justify-content: center;
   background: rgb(0 0 0 / 20%);
-  color: #fff;
-  box-shadow: none;
-  transform: none;
   cursor: pointer;
-  font-size: 30px;
-  line-height: 1;
-  transition: background-color 0.125s ease-out;
+}
+
+.know-the-brand-arrow[hidden] {
+  display: none;
 }
 
 .know-the-brand-arrow::before {

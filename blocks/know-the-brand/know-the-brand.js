@@ -132,22 +132,13 @@ export default function decorate(block) {
   const getStep = () => {
     const card = track.querySelector('.know-the-brand-card');
 
-    if (!card) {
-      return track.clientWidth;
-    }
+    if (!card) return track.clientWidth;
 
-    const gap = parseFloat(
-      getComputedStyle(track).columnGap,
-    ) || 0;
-
-    return card.offsetWidth + gap;
+    return card.offsetWidth;
   };
 
   const updateArrows = () => {
-    const maxScrollLeft = Math.max(
-      0,
-      track.scrollWidth - track.clientWidth,
-    );
+    const maxScrollLeft = track.scrollWidth - track.clientWidth;
 
     if (maxScrollLeft <= 1) {
       prev.hidden = true;
