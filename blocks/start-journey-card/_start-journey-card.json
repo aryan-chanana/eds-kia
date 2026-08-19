@@ -1,4 +1,4 @@
-{
+json{
   "definitions": [
     {
       "title": "Start Journey Card",
@@ -44,9 +44,9 @@
           "multi": false
         },
         {
-          "component": "text",
+          "component": "button",
           "name": "button",
-          "label": "Image Link",
+          "label": "Link",
           "value": "",
           "valueType": "string"
         },
