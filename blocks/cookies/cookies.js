@@ -1,5 +1,11 @@
 const STORAGE_KEY = 'cookies-consent';
 
+// UE authoring runs the page inside an author-*.adobeaemcloud.com iframe.
+// In that context we must NOT hoist the block out of its section (breaks the content tree)
+// and must NOT remove the block on accept (author would lose it after one click).
+const IS_AUTHOR = typeof window !== 'undefined'
+  && /\.adobeaemcloud\.com$/i.test(window.location.hostname);
+
 function readCells(block) {
   const rows = [...block.children];
   if (rows.length === 0) return { contentSource: null, buttonLabel: '' };
@@ -26,7 +32,7 @@ export default function decorate(block) {
     }
   })();
 
-  if (alreadyAccepted) {
+  if (alreadyAccepted && !IS_AUTHOR) {
     const wrapper = block.closest('.cookies-wrapper');
     (wrapper || block).remove();
     return;
@@ -49,6 +55,7 @@ export default function decorate(block) {
   button.className = 'cookies-accept';
   button.textContent = buttonLabel || 'Accept & Close';
   button.addEventListener('click', () => {
+    if (IS_AUTHOR) return;
     try {
       localStorage.setItem(STORAGE_KEY, 'accepted');
     } catch {
@@ -61,11 +68,13 @@ export default function decorate(block) {
 
   block.append(content, button);
 
-  // Hoist the block out of its authored section and pin it to <body>.
-  // Guarantees position:fixed anchors to the viewport, above every other block.
-  const wrapper = block.closest('.cookies-wrapper');
-  if (wrapper) wrapper.remove();
-  document.body.append(block);
+  if (!IS_AUTHOR) {
+    // Hoist the block out of its authored section and pin it to <body>.
+    // Guarantees position:fixed anchors to the viewport, above every other block.
+    const wrapper = block.closest('.cookies-wrapper');
+    if (wrapper) wrapper.remove();
+    document.body.append(block);
+  }
 
   block.classList.add('cookies-ready');
 }
