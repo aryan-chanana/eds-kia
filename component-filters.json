@@ -13,6 +13,7 @@
       "button",
       "title",
       "hero",
+      "hero-slider",
       "cards",
       "columns",
       "fragment",
@@ -53,6 +54,12 @@
     "id": "explore-range",
     "components": [
       "explore-range-card"
+    ]
+  },
+  {
+    "id": "hero-slider",
+    "components": [
+      "hero-slider-slide"
     ]
   },
   {
