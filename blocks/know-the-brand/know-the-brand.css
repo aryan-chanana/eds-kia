@@ -1,5 +1,4 @@
 .know-the-brand {
-  width: 100%;
   padding: 72px 0;
   background: #f6f3ee;
   box-sizing: border-box;
@@ -58,18 +57,18 @@
 }
 
 
-.know-the-brand-track {
+/* .know-the-brand-track {
   display: flex;
   gap: 0;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
-}
+} */
 
-.know-the-brand-track::-webkit-scrollbar {
+/* .know-the-brand-track::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .know-the-brand-card {
   position: relative;
@@ -81,7 +80,7 @@
   background: transparent;
   border: 0;
   border-radius: 0;
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
   box-sizing: border-box;
 }
 
