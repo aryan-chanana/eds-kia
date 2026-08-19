@@ -242,7 +242,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "startJourneycard",
+                  "name": "Card",
                   "model": "startJourneycard",
                   "filter": "startJourneycard"
                 }
