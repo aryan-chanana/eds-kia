@@ -303,6 +303,65 @@
     ]
   },
   {
+    "id": "floating-menu",
+    "fields": []
+  },
+  {
+    "id": "floating-menu-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Item Text",
+        "value": "",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "Icon shown next to the label.",
+        "value": "",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Handle (offer / call)",
+            "value": "icon-handle"
+          },
+          {
+            "name": "Schedule (calendar)",
+            "value": "icon-schedule"
+          },
+          {
+            "name": "Brochure",
+            "value": "icon-brochure"
+          },
+          {
+            "name": "Chat",
+            "value": "icon-chat"
+          },
+          {
+            "name": "Vehicle",
+            "value": "icon-vehicle-solid"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link URL",
+        "value": "",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
