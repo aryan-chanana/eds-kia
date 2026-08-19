@@ -6,9 +6,6 @@
   background: #f6f3ee;
 }
 
-.know-the-brand-wrapper:nth-child(3) .know-the-brand {
-  background: #f0f1f3;
-}
 
 .know-the-brand-wrapper:nth-child(3) .know-the-brand {
   background: #f0f1f3;
@@ -35,11 +32,14 @@
   color: #171717;
 }
 
+
 .know-the-brand-carousel {
   position: relative;
-  max-width: 1650px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 0 55px;
+  box-sizing: border-box;
 }
 
 .know-the-brand-track {
@@ -170,13 +170,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #071522;
+  background: rgba(0, 0, 0, 0.2);
   color: #fff;
   box-shadow: none;
   transform: none;
   cursor: pointer;
   font-size: 30px;
   line-height: 1;
+  transition: background-color 0.125s ease-out;
 }
 
 .know-the-brand-prev {
@@ -194,11 +195,6 @@
   color: #fff;
   transform: none;
 }
-
-/* .know-the-brand-arrow:hover {
-  background: #071522;
-  transform: translateY(-50%);
-} */
 
 @media (max-width: 1100px) {
   .know-the-brand-card {

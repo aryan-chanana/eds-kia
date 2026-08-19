@@ -585,19 +585,19 @@
         "valueType": "string"
       },
       {
+        "component": "link",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string"
+      },
+      {
         "component": "richtext",
         "name": "title",
         "label": "Title",
         "value": "",
         "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "text",
-        "label": "Text",
-        "value": "",
-        "valueType": "string"
       }
+      
     ]
   }
 ]

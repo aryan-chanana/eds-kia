@@ -75,11 +75,5 @@
     "components": [
       "start-journey-card"
     ]
-  },
-  {
-    "id": "startJourney",
-    "components": [
-      "startJourney_card"
-    ]
   }
 ]
