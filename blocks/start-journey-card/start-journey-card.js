@@ -7,7 +7,7 @@ export default function decorate(block) {
   // No image authored anywhere in this block → whole block is a heading.
   const picture = block.querySelector('picture, img');
   if (!picture) {
-    block.classList.add('start-journey-card--heading');
+    block.classList.add('start-journey-card-heading');
     return;
   }
 

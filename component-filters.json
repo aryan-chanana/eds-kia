@@ -22,12 +22,15 @@
       "nav-tools",
       "start-journey-card",
       "explore-range",
+      "app-download-link",
       "cookies"
     ]
   },
   {
     "id": "app-download-link",
-    "components": []
+    "components": [
+      "app-download-badge"
+    ]
   },
   {
     "id": "cards",
