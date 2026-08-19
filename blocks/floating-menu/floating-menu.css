@@ -2,13 +2,8 @@
 
 /* =========================================================
    Floating Menu — Kia India header clone
+   Icons are inline SVGs injected by floating-menu.js
    ========================================================= */
-@font-face {
-  font-family: icon;
-  src: url('/icon.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
 
 .a11y {
   position: absolute !important;
@@ -179,34 +174,10 @@
    Icon font — class code entered in the "Icon" authoring field
    maps directly to one of these classes
    ========================================================= */
-.floating-menu [class^='icon-']::before,
-.floating-menu [class*=' icon-']::before {
-  font-family: icon, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  text-decoration: none;
-  text-transform: none;
+.floating-menu-link .icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: inherit;
 }
 
-.floating-menu .icon-vehicle-solid::before {
-  content: '\E046';
-}
-
-.floating-menu .icon-handle::before {
-  content: '\E01C';
-}
-
-.floating-menu .icon-schedule::before {
-  content: '\E036';
-}
-
-.floating-menu .icon-brochure::before {
-  content: '\E006';
-}
-
-.floating-menu .icon-chat::before {
-  content: '\E00B';
-}
