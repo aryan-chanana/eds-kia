@@ -1,6 +1,6 @@
 /* Start Your Kia Journey - Cards */
 
-.cards.startJourney_cards > ul {
+.cards.startJourneycard > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
   gap: 36px;
 }
 
-.cards.startJourney_cards > ul > li {
+.cards.startJourneycard > ul > li {
   box-sizing: border-box;
   border: 0;
   background-color: #cfcfcf;
@@ -29,7 +29,7 @@
 }
 
 /* Card image / icon */
-.cards.startJourney_cards .cards-card-image {
+.cards.startJourneycard .cards-card-image {
   line-height: 0;
   width: 100%;
   margin: 0 0 25px;
@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-.cards.startJourney_cards > ul > li img {
+.cards.startJourneycard > ul > li img {
   width: 90px;
   height: auto;
   aspect-ratio: auto;
@@ -49,7 +49,7 @@
 }
 
 /* Card content */
-.cards.startJourney_cards .cards-card-body {
+.cards.startJourneycard .cards-card-body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -57,8 +57,8 @@
 }
 
 /* Card title */
-.cards.startJourney_cards .cards-card-body strong,
-.cards.startJourney_cards .cards-card-body h3 {
+.cards.startJourneycard .cards-card-body strong,
+.cards.startJourneycard .cards-card-body h3 {
   display: block;
   margin: 0 0 12px;
   font-size: 28px;
@@ -68,7 +68,7 @@
 }
 
 /* Card description */
-.cards.startJourney_cards .cards-card-body p {
+.cards.startJourneycard .cards-card-body p {
   margin: 0;
   font-size: 18px;
   line-height: 1.5;
@@ -76,7 +76,7 @@
 }
 
 /* Hover effect */
-.cards.startJourney_cards > ul > li:hover {
+.cards.startJourneycard > ul > li:hover {
   background-color: #000;
   color: #fff;
   transform: scale(1.03);
@@ -84,33 +84,40 @@
   position: relative;
   z-index: 2;
 }
+.startJourneycard-heading {
+    font-size: 38px;
+  }
 
-.cards.startJourney_cards > ul > li:hover img {
+  .startJourneycard-heading {
+    padding: 0 20px;
+    font-size: 32px;
+  }
+.cards.startJourneycard > ul > li:hover img {
   filter: brightness(0) invert(1);
 }
 
 
 /* Tablet */
 @media (max-width: 900px) {
-  .cards.startJourney_cards > ul {
+  .cards.startJourneycard > ul {
     gap: 24px;
   }
 
-  .cards.startJourney_cards > ul > li {
+  .cards.startJourneycard > ul > li {
     min-height: 340px;
     padding: 40px 25px;
   }
 
-  .cards.startJourney_cards > ul > li img {
+  .cards.startJourneycard > ul > li img {
     width: 80px;
   }
 
-  .cards.startJourney_cards .cards-card-body strong,
-  .cards.startJourney_cards .cards-card-body h3 {
+  .cards.startJourneycard .cards-card-body strong,
+  .cards.startJourneycard .cards-card-body h3 {
     font-size: 24px;
   }
 
-  .cards.startJourney_cards .cards-card-body p {
+  .cards.startJourneycard .cards-card-body p {
     font-size: 16px;
   }
 }
@@ -118,26 +125,26 @@
 
 /* Mobile */
 @media (max-width: 600px) {
-  .cards.startJourney_cards > ul {
+  .cards.startJourneycard > ul {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .cards.startJourney_cards > ul > li {
+  .cards.startJourneycard > ul > li {
     min-height: 280px;
     padding: 40px 20px;
   }
 
-  .cards.startJourney_cards > ul > li img {
+  .cards.startJourneycard > ul > li img {
     width: 70px;
   }
 
-  .cards.startJourney_cards .cards-card-body strong,
-  .cards.startJourney_cards .cards-card-body h3 {
+  .cards.startJourneycard .cards-card-body strong,
+  .cards.startJourneycard .cards-card-body h3 {
     font-size: 22px;
   }
 
-  .cards.startJourney_cards .cards-card-body p {
+  .cards.startJourneycard .cards-card-body p {
     font-size: 16px;
   }
 }

@@ -2,7 +2,7 @@ export default function decorate(block) {
   const cards = [...block.children];
 
   cards.forEach((card) => {
-    card.classList.add('start-journey-card');
+    card.classList.add('startJourneycard');
 
     const cells = [...card.children];
 
@@ -11,26 +11,26 @@ export default function decorate(block) {
 
     // Image
     if (imageCell) {
-      imageCell.classList.add('start-journey-card-image');
+      imageCell.classList.add('startJourneycard-image');
 
       const image = imageCell.querySelector('img');
       if (image) {
-        image.classList.add('start-journey-card-icon');
+        image.classList.add('startJourneycard-icon');
       }
     }
 
     // Text content
     if (textCell) {
-      textCell.classList.add('start-journey-card-content');
+      textCell.classList.add('startJourneycard-content');
 
       const heading = textCell.querySelector('h2, h3, h4');
 
       if (heading) {
-        heading.classList.add('start-journey-card-title');
+        heading.classList.add('startJourneycard-title');
       }
 
       textCell.querySelectorAll('p').forEach((paragraph) => {
-        paragraph.classList.add('start-journey-card-description');
+        paragraph.classList.add('startJourneycard-description');
       });
     }
   });
