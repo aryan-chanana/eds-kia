@@ -1,4 +1,4 @@
-{
+json{
   "definitions": [
     {
       "title": "Start Journey Card",
@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Start Journey Card Description",
-      "id": "start-journey-card-description",
+      "title": "Start Journey Card",
+      "id": "start-journey-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Start Journey Card Description",
-              "model": "start-journey-card-description"
+              "name": "Card",
+              "model": "start-journey-card"
             }
           }
         }
@@ -44,22 +44,16 @@
           "multi": false
         },
         {
+          "component": "button",
+          "name": "button",
+          "label": "Link",
+          "value": "",
+          "valueType": "string"
+        },
+        {
           "component": "richtext",
           "name": "text",
           "label": "Description",
-          "value": "",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "start-journey-card-description",
-      "fields": [
-        {
-          "component": "richtext",
-          "name": "description",
-          "label": "Description",
-          "value": "",
           "valueType": "string"
         }
       ]
@@ -69,7 +63,7 @@
     {
       "id": "start-journey-card",
       "components": [
-        "start-journey-card-description"
+        "start-journey-card"
       ]
     }
   ]
