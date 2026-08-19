@@ -401,6 +401,23 @@
         "label": "Description",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Variant",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Know The Brand",
+            "value": ""
+          },
+          {
+            "name": "Explore Mobility",
+            "value": "explore-mobility"
+          }
+        ]
       }
     ]
   },

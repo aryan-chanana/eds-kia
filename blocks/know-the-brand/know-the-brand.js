@@ -84,12 +84,13 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  if (block.classList.contains('explore-mobility')) {
-    block.classList.add('explore-mobility');
-  }
-
-
   const [headingRow, descriptionRow, ...cardRows] = rows;
+
+  const variant = block.querySelector('[data-aue-prop="variant"]');
+
+if (variant?.textContent.trim() === 'explore-mobility') {
+  block.classList.add('explore-mobility');
+}
 
   const heading = document.createElement('h2');
   heading.className = 'know-the-brand-heading';

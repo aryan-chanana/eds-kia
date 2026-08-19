@@ -34,24 +34,41 @@
   ],
   "models": [
     {
-      "id": "know-the-brand",
-      "fields": [
+  "id": "know-the-brand",
+  "fields": [
+    {
+      "component": "text",
+      "name": "heading",
+      "label": "Heading",
+      "value": "",
+      "valueType": "string"
+    },
+    {
+      "component": "richtext",
+      "name": "description",
+      "label": "Description",
+      "value": "",
+      "valueType": "string"
+    },
+    {
+      "component": "select",
+      "name": "variant",
+      "label": "Variant",
+      "value": "",
+      "valueType": "string",
+      "options": [
         {
-          "component": "text",
-          "name": "heading",
-          "label": "Heading",
-          "value": "",
-          "valueType": "string"
+          "name": "Know The Brand",
+          "value": ""
         },
         {
-          "component": "richtext",
-          "name": "description",
-          "label": "Description",
-          "value": "",
-          "valueType": "string"
+          "name": "Explore Mobility",
+          "value": "explore-mobility"
         }
       ]
-    },
+    }
+  ]
+},
     {
       "id": "know-the-brand-card",
       "fields": [
