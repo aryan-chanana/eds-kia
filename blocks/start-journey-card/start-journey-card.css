@@ -3,14 +3,22 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 48px 20px;
+  padding: 48px 32px;
   background-color: #e8e8e8;
+}
+
+/* Let wrappers fill their grid track instead of being centered at 1200px */
+main > .section.start-journey-card-container > div {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .section.start-journey-card-container > .default-content-wrapper {
   grid-column: 1 / -1;
   text-align: center;
-  margin: 0 0 12px;
+  margin: 0 0 24px;
 }
 
 .section.start-journey-card-container > .default-content-wrapper h1,
@@ -169,8 +177,12 @@
 @media (width >= 600px) {
   .section.start-journey-card-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 48px 32px;
+    gap: 24px;
+    padding: 56px 40px;
+  }
+
+  .section.start-journey-card-container > .default-content-wrapper {
+    margin: 0 0 32px;
   }
 
   .section.start-journey-card-container > .default-content-wrapper h1,
@@ -207,8 +219,12 @@
 
 @media (width >= 900px) {
   .section.start-journey-card-container {
-    gap: 24px;
-    padding: 64px 40px;
+    gap: 28px;
+    padding: 72px 48px;
+  }
+
+  .section.start-journey-card-container > .default-content-wrapper {
+    margin: 0 0 40px;
   }
 
   .section.start-journey-card-container > .default-content-wrapper h1,
