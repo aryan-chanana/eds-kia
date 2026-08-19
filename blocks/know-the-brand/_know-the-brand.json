@@ -5,7 +5,7 @@
       "id": "know-the-brand",
       "plugins": {
         "xwalk": {
-          "page": { 
+          "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Know The Brand",
@@ -49,6 +49,12 @@
           "label": "Description",
           "value": "",
           "valueType": "string"
+        },
+        {
+          "id": "lightBackground",
+          "name": "Light Background",
+          "component": "boolean",
+          "valueType": "boolean"
         }
       ]
     },
