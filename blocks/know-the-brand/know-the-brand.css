@@ -10,7 +10,7 @@ main > .section > div:has(.know-the-brand) {
   box-sizing: border-box;
 }
 
-.know-the-brand.light-background {
+.know-the-brand.explore-mobility {
   background: #f0f1f3;
 }
 
