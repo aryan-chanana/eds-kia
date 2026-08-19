@@ -44,13 +44,6 @@
           "multi": false
         },
         {
-          "component": "text",
-          "name": "button",
-          "label": "Image Link",
-          "value": "",
-          "valueType": "string"
-        },
-        {
           "component": "richtext",
           "name": "text",
           "label": "Description",
