@@ -462,12 +462,6 @@
         "label": "Description",
         "value": "",
         "valueType": "string"
-      },
-      {
-        "id": "lightBackground",
-        "name": "Light Background",
-        "component": "boolean",
-        "valueType": "boolean"
       }
     ]
   },
