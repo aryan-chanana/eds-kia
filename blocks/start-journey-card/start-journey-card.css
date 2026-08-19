@@ -1,21 +1,42 @@
-/* Start Your Kia Journey - Cards */
+/* =========================================
+   Start Your Kia Journey
+   ========================================= */
 
 .start-journey-card {
-  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+
+  padding: 24px 0;
 }
+
+
+/* =========================================
+   Individual Card
+   ========================================= */
 
 .start-journey-card > .start-journey-card-item {
   box-sizing: border-box;
-  border: 0;
+
+  width: 100%;
+  min-height: 380px;
+
+  padding: 50px 30px;
+
   background-color: #cfcfcf;
   border-radius: 6px;
-  min-height: 380px;
-  padding: 50px 30px;
-  text-align: center;
+  border: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  text-align: center;
+
   transition:
     background-color 0.4s ease,
     color 0.4s ease,
@@ -23,109 +44,317 @@
     box-shadow 0.4s ease;
 }
 
+
+/* =========================================
+   Image Area
+   ========================================= */
+
 .start-journey-card .start-journey-card-image {
-  line-height: 0;
   width: 100%;
-  margin: 0 0 25px;
+
+  margin: 0 0 32px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  line-height: 0;
 }
 
-.start-journey-card .start-journey-card-image img {
-  width: 90px;
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-  transition: filter 0.3s ease;
+
+/* Clickable Image */
+.start-journey-card .start-journey-card-image-link {
+  display: inline-flex;
+
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  line-height: 0;
+
+  cursor: pointer;
 }
+
+
+/* Image */
+.start-journey-card .start-journey-card-image img {
+  width: 100px;
+  height: 100px;
+
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
+
+  display: block;
+
+  margin: 0;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+
+/* Image hover */
+.start-journey-card
+.start-journey-card-image-link:hover img {
+  transform: scale(1.08);
+}
+
+
+/* =========================================
+   Hide Image Link Authoring Cell
+   ========================================= */
+
+.start-journey-card
+.start-journey-card-image-link-field {
+  display: none;
+}
+
+
+/* =========================================
+   Content
+   ========================================= */
 
 .start-journey-card .start-journey-card-content {
+  width: 100%;
+
   margin: 0;
   padding: 0;
-  width: 100%;
+
   text-align: center;
 }
 
-.start-journey-card .start-journey-card-content strong,
-.start-journey-card .start-journey-card-content h3,
-.start-journey-card .start-journey-card-title {
+
+/* =========================================
+   Card Title
+   ========================================= */
+
+.start-journey-card
+.start-journey-card-title,
+
+.start-journey-card
+.start-journey-card-content h1,
+
+.start-journey-card
+.start-journey-card-content h2,
+
+.start-journey-card
+.start-journey-card-content h3,
+
+.start-journey-card
+.start-journey-card-content h4,
+
+.start-journey-card
+.start-journey-card-content h5,
+
+.start-journey-card
+.start-journey-card-content h6,
+
+.start-journey-card
+.start-journey-card-content strong {
   display: block;
-  margin: 0 0 12px;
-  font-size: 28px;
+
+  margin: 0 0 22px;
+
+  font-size: 32px;
   line-height: 1.2;
+
   font-weight: 600;
+
   text-align: center;
 }
 
-.start-journey-card .start-journey-card-description,
-.start-journey-card .start-journey-card-content p {
+
+/* =========================================
+   Description
+   ========================================= */
+
+.start-journey-card
+.start-journey-card-description,
+
+.start-journey-card
+.start-journey-card-content p {
   margin: 0;
-  font-size: 18px;
+
+  font-size: 20px;
   line-height: 1.5;
+
+  font-weight: 400;
+
   text-align: center;
 }
 
-.start-journey-card > .start-journey-card-item:hover {
+
+/* =========================================
+   CTA
+   ========================================= */
+
+.start-journey-card .start-journey-card-cta {
+  margin-top: 18px;
+}
+
+.start-journey-card .start-journey-card-link {
+  text-decoration: none;
+}
+
+
+/* =========================================
+   Hover
+   ========================================= */
+
+.start-journey-card
+.start-journey-card-item:hover {
   background-color: #000;
   color: #fff;
-  transform: scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+
+  transform: scale(1.02);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35);
+
   position: relative;
   z-index: 2;
 }
 
-.start-journey-card > .start-journey-card-item:hover img {
+
+/* Make icon white on hover */
+.start-journey-card
+.start-journey-card-item:hover
+.start-journey-card-image img {
   filter: brightness(0) invert(1);
 }
 
-.start-journey-card-heading {
-  font-size: 38px;
-  padding: 0 20px;
+
+/* =========================================
+   Keyboard Accessibility
+   ========================================= */
+
+.start-journey-card
+.start-journey-card-image-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
 }
 
+
+/* =========================================
+   Tablet
+   ========================================= */
+
 @media (max-width: 900px) {
+
+  .start-journey-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
   .start-journey-card > .start-journey-card-item {
     min-height: 340px;
     padding: 40px 25px;
   }
 
-  .start-journey-card .start-journey-card-image img {
-    width: 80px;
+  .start-journey-card
+  .start-journey-card-image img {
+    width: 85px;
+    height: 85px;
   }
 
-  .start-journey-card .start-journey-card-content strong,
-  .start-journey-card .start-journey-card-content h3,
-  .start-journey-card .start-journey-card-title {
-    font-size: 24px;
+  .start-journey-card
+  .start-journey-card-title,
+
+  .start-journey-card
+  .start-journey-card-content h1,
+
+  .start-journey-card
+  .start-journey-card-content h2,
+
+  .start-journey-card
+  .start-journey-card-content h3,
+
+  .start-journey-card
+  .start-journey-card-content h4,
+
+  .start-journey-card
+  .start-journey-card-content h5,
+
+  .start-journey-card
+  .start-journey-card-content h6,
+
+  .start-journey-card
+  .start-journey-card-content strong {
+    font-size: 26px;
   }
 
-  .start-journey-card .start-journey-card-description,
-  .start-journey-card .start-journey-card-content p {
-    font-size: 16px;
+  .start-journey-card
+  .start-journey-card-description,
+
+  .start-journey-card
+  .start-journey-card-content p {
+    font-size: 17px;
   }
 }
 
+
+/* =========================================
+   Mobile
+   ========================================= */
+
 @media (max-width: 600px) {
+
+  .start-journey-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+
+    padding: 15px 0;
+  }
+
   .start-journey-card > .start-journey-card-item {
     min-height: 280px;
     padding: 40px 20px;
   }
 
-  .start-journey-card .start-journey-card-image img {
-    width: 70px;
+  .start-journey-card
+  .start-journey-card-image {
+    margin-bottom: 25px;
   }
 
-  .start-journey-card .start-journey-card-content strong,
-  .start-journey-card .start-journey-card-content h3,
-  .start-journey-card .start-journey-card-title {
-    font-size: 22px;
+  .start-journey-card
+  .start-journey-card-image img {
+    width: 75px;
+    height: 75px;
   }
 
-  .start-journey-card .start-journey-card-description,
-  .start-journey-card .start-journey-card-content p {
+  .start-journey-card
+  .start-journey-card-title,
+
+  .start-journey-card
+  .start-journey-card-content h1,
+
+  .start-journey-card
+  .start-journey-card-content h2,
+
+  .start-journey-card
+  .start-journey-card-content h3,
+
+  .start-journey-card
+  .start-journey-card-content h4,
+
+  .start-journey-card
+  .start-journey-card-content h5,
+
+  .start-journey-card
+  .start-journey-card-content h6,
+
+  .start-journey-card
+  .start-journey-card-content strong {
+    font-size: 23px;
+    margin-bottom: 15px;
+  }
+
+  .start-journey-card
+  .start-journey-card-description,
+
+  .start-journey-card
+  .start-journey-card-content p {
     font-size: 16px;
   }
 }
