@@ -37,18 +37,6 @@
       "id": "startJourneycard",
       "fields": [
         {
-          "component": "text",
-          "name": "heading",
-          "label": "Heading",
-          "description": "Section heading shown above the tabs (e.g. Explore The Range).",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "startJourneycard",
-      "fields": [
-        {
           "component": "reference",
           "valueType": "string",
           "name": "image",

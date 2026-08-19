@@ -34,18 +34,6 @@
   ],
   "models": [
     {
-      "id": "start-your-kia-journey",
-      "fields": [
-        {
-          "component": "text",
-          "name": "heading",
-          "label": "Heading",
-          "value": "",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "startJourney_card",
       "fields": [
         {
@@ -56,16 +44,16 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "name": "title",
           "label": "Title",
           "value": "",
           "valueType": "string"
         },
         {
-          "component": "richtext",
-          "name": "description",
-          "label": "Description",
+          "component": "text",
+          "name": "text",
+          "label": "Text",
           "value": "",
           "valueType": "string"
         }
