@@ -84,7 +84,10 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  rows = [...block.children];
+  if (block.classList.contains('explore-mobility')) {
+    block.classList.add('explore-mobility');
+  }
+
 
   const [headingRow, descriptionRow, ...cardRows] = rows;
 
