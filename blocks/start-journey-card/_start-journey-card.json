@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Start Journey Card",
-      "id": "start-journey-card",
+      "title": "Start Journey Card Description",
+      "id": "start-journey-card-description",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Card",
-              "model": "start-journey-card"
+              "name": "Start Journey Card Description",
+              "model": "start-journey-card-description"
             }
           }
         }
@@ -54,6 +54,19 @@
           "component": "richtext",
           "name": "text",
           "label": "Description",
+          "value": "",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "start-journey-card-description",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "description",
+          "label": "Description",
+          "value": "",
           "valueType": "string"
         }
       ]
@@ -63,7 +76,7 @@
     {
       "id": "start-journey-card",
       "components": [
-        "start-journey-card"
+        "start-journey-card-description"
       ]
     }
   ]
