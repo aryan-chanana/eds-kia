@@ -127,3 +127,7 @@
   }
 }
 
+main .section.app-download-link-container .app-download-link-wrapper{
+    max-width: 100%;
+    padding: 0px;
+}
