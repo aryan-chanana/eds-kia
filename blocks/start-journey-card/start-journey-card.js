@@ -1,10 +1,10 @@
 export default function decorate(block) {
   const cards = [...block.children];
 
-  block.classList.add('startJourney');
+  block.classList.add('start-journey-card');
 
   cards.forEach((card) => {
-    card.classList.add('startJourneycard');
+    card.classList.add('start-journey-card-item');
 
     const cells = [...card.children];
 
@@ -13,26 +13,26 @@ export default function decorate(block) {
 
     // Image
     if (imageCell) {
-      imageCell.classList.add('startJourneycard-image');
+      imageCell.classList.add('start-journey-card-image');
 
       const image = imageCell.querySelector('img');
 
       if (image) {
-        image.classList.add('startJourneycard-icon');
+        image.classList.add('start-journey-card-icon');
       }
     }
 
     // Content
     if (contentCell) {
-      contentCell.classList.add('startJourneycard-content');
+      contentCell.classList.add('start-journey-card-content');
 
       // Heading / title
       const heading = contentCell.querySelector(
-        'h1, h2, h3, h4, h5, h6'
+        'h1, h2, h3, h4, h5, h6',
       );
 
       if (heading) {
-        heading.classList.add('startJourneycard-title');
+        heading.classList.add('start-journey-card-title');
       }
 
       // Text and CTA
@@ -43,8 +43,8 @@ export default function decorate(block) {
 
         if (link) {
           // CTA
-          paragraph.classList.add('startJourneycard-cta');
-          link.classList.add('startJourneycard-link');
+          paragraph.classList.add('start-journey-card-cta');
+          link.classList.add('start-journey-card-link');
 
           const linkText = link.textContent.trim().toLowerCase();
 
@@ -54,7 +54,7 @@ export default function decorate(block) {
           }
         } else {
           // Description
-          paragraph.classList.add('startJourneycard-description');
+          paragraph.classList.add('start-journey-card-description');
         }
       });
     }

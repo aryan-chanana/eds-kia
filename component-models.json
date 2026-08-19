@@ -566,7 +566,7 @@
     ]
   },
   {
-    "id": "startJourneycard",
+    "id": "start-journey-card",
     "fields": [
       {
         "component": "reference",

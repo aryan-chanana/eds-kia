@@ -1,15 +1,10 @@
 /* Start Your Kia Journey - Cards */
 
-.cards.startJourneycard > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px;
+.start-journey-card {
+  display: block;
 }
 
-.cards.startJourneycard > ul > li {
+.start-journey-card > .start-journey-card-item {
   box-sizing: border-box;
   border: 0;
   background-color: #cfcfcf;
@@ -28,8 +23,7 @@
     box-shadow 0.4s ease;
 }
 
-/* Card image / icon */
-.cards.startJourneycard .cards-card-image {
+.start-journey-card .start-journey-card-image {
   line-height: 0;
   width: 100%;
   margin: 0 0 25px;
@@ -38,7 +32,7 @@
   align-items: center;
 }
 
-.cards.startJourneycard > ul > li img {
+.start-journey-card .start-journey-card-image img {
   width: 90px;
   height: auto;
   aspect-ratio: auto;
@@ -48,17 +42,16 @@
   transition: filter 0.3s ease;
 }
 
-/* Card content */
-.cards.startJourneycard .cards-card-body {
+.start-journey-card .start-journey-card-content {
   margin: 0;
   padding: 0;
   width: 100%;
   text-align: center;
 }
 
-/* Card title */
-.cards.startJourneycard .cards-card-body strong,
-.cards.startJourneycard .cards-card-body h3 {
+.start-journey-card .start-journey-card-content strong,
+.start-journey-card .start-journey-card-content h3,
+.start-journey-card .start-journey-card-title {
   display: block;
   margin: 0 0 12px;
   font-size: 28px;
@@ -67,16 +60,15 @@
   text-align: center;
 }
 
-/* Card description */
-.cards.startJourneycard .cards-card-body p {
+.start-journey-card .start-journey-card-description,
+.start-journey-card .start-journey-card-content p {
   margin: 0;
   font-size: 18px;
   line-height: 1.5;
   text-align: center;
 }
 
-/* Hover effect */
-.cards.startJourneycard > ul > li:hover {
+.start-journey-card > .start-journey-card-item:hover {
   background-color: #000;
   color: #fff;
   transform: scale(1.03);
@@ -84,67 +76,56 @@
   position: relative;
   z-index: 2;
 }
-.startJourneycard-heading {
-    font-size: 38px;
-  }
 
-  .startJourneycard-heading {
-    padding: 0 20px;
-    font-size: 32px;
-  }
-.cards.startJourneycard > ul > li:hover img {
+.start-journey-card > .start-journey-card-item:hover img {
   filter: brightness(0) invert(1);
 }
 
+.start-journey-card-heading {
+  font-size: 38px;
+  padding: 0 20px;
+}
 
-/* Tablet */
 @media (max-width: 900px) {
-  .cards.startJourneycard > ul {
-    gap: 24px;
-  }
-
-  .cards.startJourneycard > ul > li {
+  .start-journey-card > .start-journey-card-item {
     min-height: 340px;
     padding: 40px 25px;
   }
 
-  .cards.startJourneycard > ul > li img {
+  .start-journey-card .start-journey-card-image img {
     width: 80px;
   }
 
-  .cards.startJourneycard .cards-card-body strong,
-  .cards.startJourneycard .cards-card-body h3 {
+  .start-journey-card .start-journey-card-content strong,
+  .start-journey-card .start-journey-card-content h3,
+  .start-journey-card .start-journey-card-title {
     font-size: 24px;
   }
 
-  .cards.startJourneycard .cards-card-body p {
+  .start-journey-card .start-journey-card-description,
+  .start-journey-card .start-journey-card-content p {
     font-size: 16px;
   }
 }
 
-
-/* Mobile */
 @media (max-width: 600px) {
-  .cards.startJourneycard > ul {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cards.startJourneycard > ul > li {
+  .start-journey-card > .start-journey-card-item {
     min-height: 280px;
     padding: 40px 20px;
   }
 
-  .cards.startJourneycard > ul > li img {
+  .start-journey-card .start-journey-card-image img {
     width: 70px;
   }
 
-  .cards.startJourneycard .cards-card-body strong,
-  .cards.startJourneycard .cards-card-body h3 {
+  .start-journey-card .start-journey-card-content strong,
+  .start-journey-card .start-journey-card-content h3,
+  .start-journey-card .start-journey-card-title {
     font-size: 22px;
   }
 
-  .cards.startJourneycard .cards-card-body p {
+  .start-journey-card .start-journey-card-description,
+  .start-journey-card .start-journey-card-content p {
     font-size: 16px;
   }
 }

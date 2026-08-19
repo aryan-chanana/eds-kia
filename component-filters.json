@@ -69,9 +69,9 @@
     "components": []
   },
   {
-    "id": "startJourneycard",
+    "id": "start-journey-card",
     "components": [
-      "startJourneycard"
+      "start-journey-card"
     ]
   },
   {
