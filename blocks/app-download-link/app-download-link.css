@@ -10,6 +10,7 @@
 main > .section > .app-download-link-wrapper{
   max-width: 1400px;
 }
+
 .app-download-link-block .adl-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -21,16 +22,17 @@ main > .section > .app-download-link-wrapper{
         margin-right: auto;
 }
 
-@media(min-width:1024px){
+@media(width >=1024px){
   .app-download-link-block .adl-wrapper {
-  margin-left: 5.6640625%;
-        margin-right: 5.6640625%;
+  margin-left: 5.6641%;
+        margin-right: 5.6641%;
   }
 }
-@media(min-width:768px){
+
+@media(width >=768px){
   .app-download-link-block .adl-wrapper {
-margin-left: 8.33333333%;
-        margin-right: 8.33333333%;
+margin-left: 8.3333%;
+        margin-right: 8.3333%;
   }
 }
         
@@ -99,6 +101,7 @@ margin-left: 8.33333333%;
   gap: 12px;
   align-self: stretch;
 }
+
 .adl-title-mobile{
     color: #fff;
   font-size: 1.3rem;
@@ -108,6 +111,7 @@ margin-left: 8.33333333%;
   text-align: center;
   display: none;
 }
+
 .app-download-link-block .adl-badge {
   display: inline-block;
   cursor: pointer;
@@ -119,7 +123,7 @@ margin-left: 8.33333333%;
 }
 
 /* Mobile: stack phone above content, everything centered */
-@media only screen and (max-width: 767px) {
+@media only screen and (width <= 767px) {
   .app-download-link-block {
     padding: 32px 16px;
   }
@@ -141,7 +145,7 @@ margin-left: 8.33333333%;
 
   .app-download-link-block .adl-links {
     align-items: center;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .app-download-link-block .adl-title {
@@ -151,9 +155,11 @@ margin-left: 8.33333333%;
   .adl-title-mobile{
   display: block;
 }
+
   .app-download-link-block .adl-icon {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
+
   .app-download-link-block .adl-phone{
     width: auto;
   }

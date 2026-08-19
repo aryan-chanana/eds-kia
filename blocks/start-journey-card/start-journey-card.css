@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* Full-width section, no outer margins so the grey band and grid can span edge-to-edge */
 main > .section.start-journey-card-container {
   margin: 0;
@@ -24,7 +26,7 @@ main > .section.start-journey-card-container > .default-content-wrapper {
   width: 100%;
 }
 
-.section.start-journey-card-container > .default-content-wrapper {
+main > .section.start-journey-card-container > .default-content-wrapper {
   grid-column: 1 / -1;
   text-align: center;
   margin: 0 0 24px;
@@ -43,7 +45,7 @@ main > .section.start-journey-card-container > .default-content-wrapper {
 }
 
 /* Individual block wrapper — one card per block */
-.section.start-journey-card-container > .start-journey-card-wrapper {
+main > .section.start-journey-card-container > .start-journey-card-wrapper {
   min-width: 0;
 }
 
@@ -52,11 +54,11 @@ main > .section.start-journey-card-container > .default-content-wrapper {
 }
 
 /* Heading-only block (no image) — its wrapper spans the full row */
-.section.start-journey-card-container > .start-journey-card-wrapper:has(> .start-journey-card--heading) {
+.section.start-journey-card-container > .start-journey-card-wrapper:has(> .start-journey-card-heading) {
   grid-column: 1 / -1;
 }
 
-.start-journey-card.start-journey-card--heading {
+.start-journey-card.start-journey-card-heading {
   text-align: center;
   background-color: transparent;
   padding: 0;
@@ -64,7 +66,7 @@ main > .section.start-journey-card-container > .default-content-wrapper {
   border-radius: 0;
 }
 
-.start-journey-card.start-journey-card--heading * {
+.start-journey-card.start-journey-card-heading * {
   margin: 0;
   font-family: var(--heading-font-family);
   color: #05141f;
@@ -197,7 +199,7 @@ main > .section.start-journey-card-container > .default-content-wrapper {
   .section.start-journey-card-container > .default-content-wrapper h1,
   .section.start-journey-card-container > .default-content-wrapper h2,
   .section.start-journey-card-container > .default-content-wrapper h3,
-  .start-journey-card.start-journey-card--heading * {
+  .start-journey-card.start-journey-card-heading * {
     font-size: 40px;
   }
 
@@ -239,7 +241,7 @@ main > .section.start-journey-card-container > .default-content-wrapper {
   .section.start-journey-card-container > .default-content-wrapper h1,
   .section.start-journey-card-container > .default-content-wrapper h2,
   .section.start-journey-card-container > .default-content-wrapper h3,
-  .start-journey-card.start-journey-card--heading * {
+  .start-journey-card.start-journey-card-heading * {
     font-size: 48px;
     margin-bottom: 12px;
   }

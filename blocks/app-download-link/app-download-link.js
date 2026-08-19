@@ -1,56 +1,44 @@
-function getPicture(row) {
-  if (!row) return null;
-  const existing = row.querySelector('picture');
-  if (existing) return existing;
-
-  const img = row.querySelector('img');
+function firstPicture(cell) {
+  if (!cell) return null;
+  const picture = cell.querySelector('picture');
+  if (picture) return picture;
+  const img = cell.querySelector('img');
   if (!img) return null;
-
-  const picture = document.createElement('picture');
-  picture.append(img);
-  return picture;
+  const wrap = document.createElement('picture');
+  wrap.append(img);
+  return wrap;
 }
 
-function getHref(row) {
-  if (!row) return '';
-  const anchor = row.querySelector('a');
-  if (anchor?.getAttribute('href')) return anchor.getAttribute('href');
-
-  const text = row.textContent.trim();
+function firstHref(cell) {
+  if (!cell) return '';
+  const anchor = cell.querySelector('a[href]');
+  if (anchor) return anchor.getAttribute('href');
+  const text = (cell.textContent || '').trim();
   if (!text) return '';
   return /^https?:\/\//i.test(text) ? text : `https://${text}`;
 }
 
-function getLabel(row) {
-  return row ? row.textContent.trim() : '';
+function labelFromImage(picture) {
+  const img = picture?.querySelector('img');
+  const alt = img?.getAttribute('alt');
+  return alt && alt.trim() ? alt.trim() : 'Download app';
 }
 
 export default function decorate(block) {
   const rows = [...block.children];
+  if (!rows.length) return;
 
-  // Fixed row order authored in the block table, one field per row:
-  // 1. Background image (optional)
-  // 2. Phone mockup image
-  // 3. Title text
-  // 4. Feature banner image
-  // 5. Subtitle text
-  // 6+. Up to 4 store badges, each as 3 consecutive rows: image, link, label
-  const [bgRow, phoneRow, titleRow, iconRow, subtitleRow, ...badgeRows] = rows;
-
-  // 1. Optional section background image -> block background, discard row
-  if (bgRow) {
-    const bgImg = bgRow.querySelector('img');
-    if (bgImg) {
-      block.style.backgroundImage = `url('${bgImg.currentSrc || bgImg.src}')`;
-      block.classList.add('has-bg-image');
-    }
-    bgRow.remove();
-  }
+  // Header rows: block-level fields, one field per row (single cell each).
+  // Badge rows: block items, one item per row with 2 cells [image, link].
+  const headerRows = rows.filter((row) => row.children.length < 2);
+  const badgeRows = rows.filter((row) => row.children.length >= 2);
+  const [phoneRow, titleRow, iconRow, subtitleRow] = headerRows;
 
   block.classList.add('app-download-link-block');
+
   const top = document.createElement('div');
-  const mobileTitle = titleRow.cloneNode(true);
-  if (mobileTitle) {
+  if (titleRow) {
+    const mobileTitle = titleRow.cloneNode(true);
     mobileTitle.className = 'adl-title-mobile';
     top.append(mobileTitle);
   }
@@ -58,13 +46,11 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
 
-  // 2. Phone mockup (left column)
   if (phoneRow) {
     phoneRow.className = 'adl-phone';
     wrapper.append(phoneRow);
   }
 
-  // Right column: title, feature banner, subtitle, badges
   const body = document.createElement('div');
   body.className = 'adl-body';
 
@@ -86,33 +72,27 @@ export default function decorate(block) {
     linksWrap.append(subtitleRow);
   }
 
-  // 3. Up to 4 store badges — each badge is 3 rows: image, link, label
   const badgeContainer = document.createElement('div');
   badgeContainer.className = 'adl-badges';
 
-  for (let i = 0; i < badgeRows.length; i += 3) {
-    const [imgRow, linkRow, labelRow] = badgeRows.slice(i, i + 3);
+  badgeRows.forEach((row) => {
+    const [imageCell, linkCell] = [...row.children];
+    const picture = firstPicture(imageCell);
+    const href = firstHref(linkCell);
+    if (!picture || !href) return;
 
-    const picture = getPicture(imgRow);
-    const href = getHref(linkRow);
+    const img = picture.querySelector('img');
+    if (img) img.loading = 'lazy';
 
-    // Skip empty/unfilled badge slots (author left 3rd/4th badge blank)
-    if (picture && href) {
-      const img = picture.querySelector('img');
-      if (img) {
-        img.loading = 'lazy';
-      }
-
-      const badge = document.createElement('a');
-      badge.className = 'adl-badge';
-      badge.href = href;
-      badge.target = '_blank';
-      badge.rel = 'noopener noreferrer';
-      badge.setAttribute('aria-label', getLabel(labelRow) || 'Download app');
-      badge.append(picture);
-      badgeContainer.append(badge);
-    }
-  }
+    const badge = document.createElement('a');
+    badge.className = 'adl-badge';
+    badge.href = href;
+    badge.target = '_blank';
+    badge.rel = 'noopener noreferrer';
+    badge.setAttribute('aria-label', labelFromImage(picture));
+    badge.append(picture);
+    badgeContainer.append(badge);
+  });
 
   linksWrap.append(badgeContainer);
   body.append(linksWrap);

@@ -27,7 +27,9 @@
   },
   {
     "id": "app-download-link",
-    "components": []
+    "components": [
+      "app-download-badge"
+    ]
   },
   {
     "id": "cards",
