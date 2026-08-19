@@ -45,7 +45,7 @@
         },
         {
           "component": "text",
-          "name": "imageLink",
+          "name": "button",
           "label": "Image Link",
           "value": "",
           "valueType": "string"
