@@ -1,262 +1,195 @@
-/* Start Your Kia Journey - Cards */
-
-
-
-.start-journey-card {
-
-  display: block;
-
+/* Section-level grid: multiple start-journey-card blocks lay out 2x2 */
+.section.start-journey-card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 32px 16px;
+  background-color: #f5f0e8;
 }
 
-
-
-.start-journey-card > .start-journey-card-item {
-
-  box-sizing: border-box;
-
-  border: 0;
-
-  background-color: #cfcfcf;
-
-  border-radius: 6px;
-
-  min-height: 380px;
-
-  padding: 50px 30px;
-
+.section.start-journey-card-container > .default-content-wrapper {
+  grid-column: 1 / -1;
   text-align: center;
+  margin: 0 0 8px;
+}
 
+.section.start-journey-card-container > .default-content-wrapper h1,
+.section.start-journey-card-container > .default-content-wrapper h2,
+.section.start-journey-card-container > .default-content-wrapper h3 {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  color: #05141f;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Individual block wrapper — one card per block */
+.section.start-journey-card-container > .start-journey-card-wrapper {
+  min-width: 0;
+}
+
+.section.start-journey-card-container > .start-journey-card-wrapper > .start-journey-card {
+  height: 100%;
+}
+
+/* Heading-only block (no image authored) — treat description as section heading */
+.start-journey-card.start-journey-card--heading {
+  grid-column: 1 / -1;
+  text-align: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.start-journey-card.start-journey-card--heading * {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  color: #05141f;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Card item */
+.start-journey-card > .start-journey-card-item {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 220px;
+  padding: 40px 24px;
+  background-color: #dcdcdc;
+  border: 2px solid transparent;
+  border-radius: 0;
+  text-align: center;
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: flex-start;
-
-  transition:
-
-    background-color 0.4s ease,
-
-    color 0.4s ease,
-
-    transform 0.4s ease,
-
-    box-shadow 0.4s ease;
-
+  gap: 12px;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
+.start-journey-card > .start-journey-card-item:hover,
+.start-journey-card > .start-journey-card-item:focus-within {
+  border-color: #05141f;
+  background-color: #d0d0d0;
+}
 
-
+/* Icon */
 .start-journey-card .start-journey-card-image {
-
   line-height: 0;
-
   width: 100%;
-
-  margin: 0 0 25px;
-
+  margin: 0 0 8px;
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
 }
-
-
 
 .start-journey-card .start-journey-card-image img {
-
-  width: 90px;
-
+  width: 64px;
   height: auto;
-
   aspect-ratio: auto;
-
   object-fit: contain;
-
   display: block;
-
   margin: 0 auto;
-
-  transition: filter 0.3s ease;
-
 }
 
-
-
+/* Text content */
 .start-journey-card .start-journey-card-content {
-
   margin: 0;
-
   padding: 0;
-
   width: 100%;
-
   text-align: center;
-
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-
-
 
 .start-journey-card .start-journey-card-content strong,
-
+.start-journey-card .start-journey-card-content h1,
+.start-journey-card .start-journey-card-content h2,
 .start-journey-card .start-journey-card-content h3,
-
+.start-journey-card .start-journey-card-content h4,
 .start-journey-card .start-journey-card-title {
-
   display: block;
-
-  margin: 0 0 12px;
-
-  font-size: 28px;
-
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 22px;
   line-height: 1.2;
-
-  font-weight: 600;
-
+  font-weight: 700;
+  color: #05141f;
   text-align: center;
-
 }
-
-
 
 .start-journey-card .start-journey-card-description,
-
 .start-journey-card .start-journey-card-content p {
-
   margin: 0;
-
-  font-size: 18px;
-
+  font-size: 14px;
   line-height: 1.5;
-
+  color: #333;
   text-align: center;
-
 }
 
+@media (width >= 600px) {
+  .section.start-journey-card-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 48px 32px;
+  }
 
-
-.start-journey-card > .start-journey-card-item:hover {
-
-  background-color: #000;
-
-  color: #fff;
-
-  transform: scale(1.03);
-
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-
-  position: relative;
-
-  z-index: 2;
-
-}
-
-
-
-.start-journey-card > .start-journey-card-item:hover img {
-
-  filter: brightness(0) invert(1);
-
-}
-
-
-
-.start-journey-card-heading {
-
-  font-size: 38px;
-
-  padding: 0 20px;
-
-}
-
-
-
-@media (max-width: 900px) {
+  .section.start-journey-card-container > .default-content-wrapper h1,
+  .section.start-journey-card-container > .default-content-wrapper h2,
+  .section.start-journey-card-container > .default-content-wrapper h3,
+  .start-journey-card.start-journey-card--heading * {
+    font-size: 40px;
+  }
 
   .start-journey-card > .start-journey-card-item {
-
-    min-height: 340px;
-
-    padding: 40px 25px;
-
+    min-height: 240px;
+    padding: 48px 32px;
   }
-
-
 
   .start-journey-card .start-journey-card-image img {
-
-    width: 80px;
-
+    width: 72px;
   }
 
-
-
   .start-journey-card .start-journey-card-content strong,
-
+  .start-journey-card .start-journey-card-content h1,
+  .start-journey-card .start-journey-card-content h2,
   .start-journey-card .start-journey-card-content h3,
-
+  .start-journey-card .start-journey-card-content h4,
   .start-journey-card .start-journey-card-title {
-
     font-size: 24px;
-
   }
-
-
 
   .start-journey-card .start-journey-card-description,
-
   .start-journey-card .start-journey-card-content p {
-
-    font-size: 16px;
-
+    font-size: 15px;
   }
-
 }
 
+@media (width >= 900px) {
+  .section.start-journey-card-container {
+    gap: 24px;
+    padding: 64px 40px;
+  }
 
-
-@media (max-width: 600px) {
+  .section.start-journey-card-container > .default-content-wrapper h1,
+  .section.start-journey-card-container > .default-content-wrapper h2,
+  .section.start-journey-card-container > .default-content-wrapper h3,
+  .start-journey-card.start-journey-card--heading * {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
 
   .start-journey-card > .start-journey-card-item {
-
-    min-height: 280px;
-
-    padding: 40px 20px;
-
+    min-height: 260px;
+    padding: 56px 40px;
   }
-
-
 
   .start-journey-card .start-journey-card-image img {
-
-    width: 70px;
-
+    width: 80px;
   }
-
-
-
-  .start-journey-card .start-journey-card-content strong,
-
-  .start-journey-card .start-journey-card-content h3,
-
-  .start-journey-card .start-journey-card-title {
-
-    font-size: 22px;
-
-  }
-
-
-
-  .start-journey-card .start-journey-card-description,
-
-  .start-journey-card .start-journey-card-content p {
-
-    font-size: 16px;
-
-  }
-
 }
-
