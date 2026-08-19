@@ -71,6 +71,10 @@ export default function decorate(block) {
     }
 
   });
+<<<<<<< Updated upstream
 
 }
 
+=======
+}
+>>>>>>> Stashed changes
