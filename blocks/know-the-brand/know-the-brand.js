@@ -84,26 +84,6 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  const lightBackground = block.querySelector(
-    '[data-aue-prop="lightBackground"]',
-  );
-
-  if (lightBackground?.textContent.trim() === 'true') {
-    block.classList.add('light-background');
-  }
-
-  /*
-   * Remove the toggle row from the content rows
-   * so it doesn't interfere with heading/cards.
-   */
-  if (lightBackground) {
-    const metadataRow = lightBackground.closest('div');
-
-    if (metadataRow && metadataRow.parentElement === block) {
-      metadataRow.remove();
-    }
-  }
-
   rows = [...block.children];
 
   const [headingRow, descriptionRow, ...cardRows] = rows;
