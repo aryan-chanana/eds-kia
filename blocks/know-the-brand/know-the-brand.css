@@ -191,17 +191,14 @@
   transform: translate(-50%, -50%);
   background-color: #fff;
   mask: center / contain no-repeat;
-  mask: center / contain no-repeat;
 }
 
 .know-the-brand-next::before {
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='square' d='M3 12 H20 M13 5 L20 12 L13 19'/></svg>");
   mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='square' d='M3 12 H20 M13 5 L20 12 L13 19'/></svg>");
 }
 
 .know-the-brand-prev::before {
   transform: translate(-50%, -50%) rotate(180deg);
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='square' d='M3 12 H20 M13 5 L20 12 L13 19'/></svg>");
   mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='square' d='M3 12 H20 M13 5 L20 12 L13 19'/></svg>");
 }
 
