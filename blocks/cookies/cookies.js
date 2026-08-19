@@ -32,7 +32,7 @@ export default function decorate(block) {
     }
   })();
 
-  if (alreadyAccepted && !IS_AUTHOR) {
+  if (alreadyAccepted) {
     const wrapper = block.closest('.cookies-wrapper');
     (wrapper || block).remove();
     return;
@@ -55,13 +55,11 @@ export default function decorate(block) {
   button.className = 'cookies-accept';
   button.textContent = buttonLabel || 'Accept & Close';
   button.addEventListener('click', () => {
-    if (!IS_AUTHOR) {
-      try {
-        localStorage.setItem(STORAGE_KEY, 'accepted');
-      } catch {
-        // localStorage may be unavailable (private mode / disabled).
-        // The banner still closes for this session.
-      }
+    try {
+      localStorage.setItem(STORAGE_KEY, 'accepted');
+    } catch {
+      // localStorage may be unavailable (private mode / disabled).
+      // The banner still closes for this session.
     }
     const wrapper = block.closest('.cookies-wrapper');
     (wrapper || block).remove();
