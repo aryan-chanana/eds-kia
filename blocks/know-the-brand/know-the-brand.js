@@ -143,21 +143,18 @@ export default function decorate(block) {
     return card.offsetWidth + gap;
   };
 
-  const updateArrows = () => {
-    const canScroll = track.scrollWidth - track.clientWidth > 1;
+ const updateArrows = () => {
+  const maxScrollLeft = track.scrollWidth - track.clientWidth;
 
-    if (!canScroll) {
-      prev.hidden = true;
-      next.hidden = true;
-      return;
-    }
+  if (maxScrollLeft <= 1) {
+    prev.hidden = true;
+    next.hidden = true;
+    return;
+  }
 
-    prev.hidden = track.scrollLeft <= 1;
-    next.hidden = (
-      track.scrollLeft + track.clientWidth
-      >= track.scrollWidth - 1
-    );
-  };
+  prev.hidden = track.scrollLeft <= 1;
+  next.hidden = track.scrollLeft >= maxScrollLeft - 1;
+};
 
   prev.addEventListener('click', () => {
     track.scrollBy({
