@@ -62,11 +62,10 @@ main > .section > div:has(.know-the-brand) {
   }
 }
 
-
 .know-the-brand-track {
   display: flex;
   gap: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
