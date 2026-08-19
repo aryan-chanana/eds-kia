@@ -20,7 +20,8 @@
       "nav-item",
       "nav-tools",
       "start-journey-card",
-      "explore-range"
+      "explore-range",
+      "cookies"
     ]
   },
   {
@@ -73,7 +74,13 @@
   {
     "id": "start-journey-card",
     "components": [
-      "start-journey-card"
+      "start-journey-card-description"
+    ]
+  },
+  {
+    "id": "startJourney",
+    "components": [
+      "startJourney_card"
     ]
   }
 ]
