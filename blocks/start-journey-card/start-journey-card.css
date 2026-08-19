@@ -2,15 +2,15 @@
 .section.start-journey-card-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  padding: 32px 16px;
-  background-color: #f5f0e8;
+  gap: 20px;
+  padding: 48px 20px;
+  background-color: #e8e8e8;
 }
 
 .section.start-journey-card-container > .default-content-wrapper {
   grid-column: 1 / -1;
   text-align: center;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
 }
 
 .section.start-journey-card-container > .default-content-wrapper h1,
@@ -34,13 +34,17 @@
   height: 100%;
 }
 
-/* Heading-only block (no image authored) — treat description as section heading */
-.start-journey-card.start-journey-card--heading {
+/* Heading-only block (no image) — its wrapper spans the full row */
+.section.start-journey-card-container > .start-journey-card-wrapper:has(> .start-journey-card--heading) {
   grid-column: 1 / -1;
+}
+
+.start-journey-card.start-journey-card--heading {
   text-align: center;
   background-color: transparent;
   padding: 0;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
+  border-radius: 0;
 }
 
 .start-journey-card.start-journey-card--heading * {
@@ -57,19 +61,19 @@
 .start-journey-card > .start-journey-card-item {
   box-sizing: border-box;
   height: 100%;
-  min-height: 220px;
-  padding: 40px 24px;
-  background-color: #dcdcdc;
+  min-height: 300px;
+  padding: 56px 32px;
+  background-color: #d5d5d5;
   color: #333;
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   text-align: center;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -177,12 +181,13 @@
   }
 
   .start-journey-card > .start-journey-card-item {
-    min-height: 240px;
-    padding: 48px 32px;
+    min-height: 340px;
+    padding: 64px 40px;
+    border-radius: 10px;
   }
 
   .start-journey-card .start-journey-card-image img {
-    width: 72px;
+    width: 84px;
   }
 
   .start-journey-card .start-journey-card-content strong,
@@ -215,11 +220,12 @@
   }
 
   .start-journey-card > .start-journey-card-item {
-    min-height: 260px;
-    padding: 56px 40px;
+    min-height: 380px;
+    padding: 72px 48px;
+    border-radius: 12px;
   }
 
   .start-journey-card .start-journey-card-image img {
-    width: 80px;
+    width: 96px;
   }
 }
