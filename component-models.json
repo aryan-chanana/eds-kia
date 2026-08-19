@@ -481,6 +481,12 @@
         "label": "Title",
         "value": "",
         "valueType": "string"
+      },
+      {
+         "component": "richtext",
+          "name": "text",
+          "label": "Description",
+          "valueType": "string"
       }
     ]
   }
