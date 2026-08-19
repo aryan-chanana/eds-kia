@@ -80,9 +80,31 @@ function buildCard(row) {
 }
 
 export default function decorate(block) {
-  const rows = [...block.children];
+  let rows = [...block.children];
 
   if (!rows.length) return;
+
+  const lightBackground = block.querySelector(
+    '[data-aue-prop="lightBackground"]',
+  );
+
+  if (lightBackground?.textContent.trim() === 'true') {
+    block.classList.add('light-background');
+  }
+
+  /*
+   * Remove the toggle row from the content rows
+   * so it doesn't interfere with heading/cards.
+   */
+  if (lightBackground) {
+    const metadataRow = lightBackground.closest('div');
+
+    if (metadataRow && metadataRow.parentElement === block) {
+      metadataRow.remove();
+    }
+  }
+
+  rows = [...block.children];
 
   const [headingRow, descriptionRow, ...cardRows] = rows;
 
@@ -109,14 +131,12 @@ export default function decorate(block) {
   const prev = document.createElement('button');
   prev.type = 'button';
   prev.className = 'know-the-brand-arrow know-the-brand-prev';
-  prev.setAttribute('aria-label', 'Previous cards');
-  prev.innerHTML = '&#8592;';
+  prev.setAttribute('aria-label', 'Previous slide');
 
   const next = document.createElement('button');
   next.type = 'button';
   next.className = 'know-the-brand-arrow know-the-brand-next';
-  next.setAttribute('aria-label', 'Next cards');
-  next.innerHTML = '&#8594;';
+  next.setAttribute('aria-label', 'Next slide');
 
   const track = document.createElement('div');
   track.className = 'know-the-brand-track';
@@ -143,18 +163,21 @@ export default function decorate(block) {
     return card.offsetWidth + gap;
   };
 
- const updateArrows = () => {
-  const maxScrollLeft = track.scrollWidth - track.clientWidth;
+  const updateArrows = () => {
+    const maxScrollLeft = Math.max(
+      0,
+      track.scrollWidth - track.clientWidth,
+    );
 
-  if (maxScrollLeft <= 1) {
-    prev.hidden = true;
-    next.hidden = true;
-    return;
-  }
+    if (maxScrollLeft <= 1) {
+      prev.hidden = true;
+      next.hidden = true;
+      return;
+    }
 
-  prev.hidden = track.scrollLeft <= 1;
-  next.hidden = track.scrollLeft >= maxScrollLeft - 1;
-};
+    prev.hidden = track.scrollLeft <= 1;
+    next.hidden = track.scrollLeft >= maxScrollLeft - 1;
+  };
 
   prev.addEventListener('click', () => {
     track.scrollBy({
