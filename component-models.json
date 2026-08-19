@@ -454,7 +454,119 @@
     ]
   },
   {
-    "id": "startJourneycard",
+    "id": "nav-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "description": "Top-level nav label (e.g. Cars, Buy, Owners, VR Showroom).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "href",
+        "label": "Link"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "bannerImage",
+        "label": "Banner Image",
+        "description": "Optional. When set, the dropdown shows this image on the left. Leave empty for a plain link list or a top-level link.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "bannerImageAlt",
+        "label": "Banner Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "bannerLabel",
+        "label": "Banner Caption",
+        "description": "Optional caption shown under the banner image.",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "nav-link",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "label": "Text",
+        "description": "Label shown in the dropdown (e.g. SONET, or a section heading like Service and Maintenance).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "href",
+        "label": "Link",
+        "description": "Where the link points. Leave empty when Role is a heading."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Hover Image",
+        "description": "Optional. When set, hovering this link swaps the mega-menu's banner image to this one (used for the Cars-style mega-menu).",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Hover Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "role",
+        "label": "Role",
+        "description": "How this item behaves in the mega-menu.",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Link",
+            "value": ""
+          },
+          {
+            "name": "Link — start a new column",
+            "value": "break"
+          },
+          {
+            "name": "Heading — style as heading (no link)",
+            "value": "heading"
+          },
+          {
+            "name": "Heading — start a new column",
+            "value": "break-heading"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nav-tools",
+    "fields": [
+      {
+        "component": "text",
+        "name": "dealerLabel",
+        "label": "Dealer Button Text",
+        "description": "Label for the right-hand dealer CTA (e.g. Find a Dealer).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "dealerHref",
+        "label": "Dealer Link"
+      }
+    ]
+  },
+  {
+    "id": "startJourney_card",
     "fields": [
       {
         "component": "text",
@@ -466,7 +578,7 @@
     ]
   },
   {
-    "id": "startJourneycard",
+    "id": "startJourney_card",
     "fields": [
       {
         "component": "reference",
@@ -475,17 +587,36 @@
         "multi": false,
         "valueType": "string"
       },
-       {
-         "component": "richtext",
-          "name": "text",
-          "label": "Title",
-          "valueType": "string"
+      {
+        "component": "richtext",
+        "name": "title",
+        "label": "Title",
+        "value": "",
+        "valueType": "string"
       },
       {
         "component": "text",
-        "name": "description",
-        "label": "Description",
+        "name": "text",
+        "label": "Text",
         "value": "",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "startJourneycard",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Description",
         "valueType": "string"
       }
     ]

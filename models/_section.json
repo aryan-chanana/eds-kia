@@ -51,7 +51,9 @@
         "cards",
         "columns",
         "fragment",
-        "know-the-brand"
+        "know-the-brand",
+        "nav-item",
+        "nav-tools"
       ]
     }
   ]
