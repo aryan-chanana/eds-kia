@@ -130,25 +130,25 @@ export default function decorate(block) {
   carousel.append(prev, track, next);
 
   const getStep = () => {
-  const card = track.querySelector('.know-the-brand-card');
+    const card = track.querySelector('.know-the-brand-card');
 
-  if (!card) return track.clientWidth;
+    if (!card) return track.clientWidth;
 
-  return card.offsetWidth;
-};
+    return card.offsetWidth;
+  };
 
-const updateArrows = () => {
-  const maxScrollLeft = track.scrollWidth - track.clientWidth;
+  const updateArrows = () => {
+    const maxScrollLeft = track.scrollWidth - track.clientWidth;
 
-  if (maxScrollLeft <= 1) {
-    prev.hidden = true;
-    next.hidden = true;
-    return;
-  }
+    if (maxScrollLeft <= 1) {
+      prev.hidden = true;
+      next.hidden = true;
+      return;
+    }
 
-  prev.hidden = track.scrollLeft <= 1;
-  next.hidden = track.scrollLeft >= maxScrollLeft - 1;
-};
+    prev.hidden = track.scrollLeft <= 1;
+    next.hidden = track.scrollLeft >= maxScrollLeft - 1;
+  };
 
   prev.addEventListener('click', () => {
     track.scrollBy({

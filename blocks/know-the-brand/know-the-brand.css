@@ -191,7 +191,7 @@ main > .section > div:has(.know-the-brand) {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 20%);
   cursor: pointer;
 }
 
