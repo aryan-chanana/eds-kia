@@ -55,12 +55,13 @@ export default function decorate(block) {
   button.className = 'cookies-accept';
   button.textContent = buttonLabel || 'Accept & Close';
   button.addEventListener('click', () => {
-    if (IS_AUTHOR) return;
-    try {
-      localStorage.setItem(STORAGE_KEY, 'accepted');
-    } catch {
-      // localStorage may be unavailable (private mode / disabled).
-      // The banner still closes for this session.
+    if (!IS_AUTHOR) {
+      try {
+        localStorage.setItem(STORAGE_KEY, 'accepted');
+      } catch {
+        // localStorage may be unavailable (private mode / disabled).
+        // The banner still closes for this session.
+      }
     }
     const wrapper = block.closest('.cookies-wrapper');
     (wrapper || block).remove();
