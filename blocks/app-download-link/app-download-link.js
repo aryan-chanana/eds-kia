@@ -1,3 +1,5 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 function firstPicture(cell) {
   if (!cell) return null;
   const picture = cell.querySelector('picture');
@@ -24,25 +26,28 @@ function labelFromImage(picture) {
   return alt && alt.trim() ? alt.trim() : 'Download app';
 }
 
-function cellWithClass(source, className) {
-  if (!source) return null;
-  const clone = source.cloneNode(true);
-  clone.className = className;
-  return clone;
+function wrapCell(cell, className) {
+  if (!cell) return null;
+  cell.className = className;
+  return cell;
 }
 
 export default function decorate(block) {
+  if (block.dataset.adlDecorated === 'true') return;
+  block.dataset.adlDecorated = 'true';
+
   const rows = [...block.children];
   if (!rows.length) return;
 
-  // A badge row has BOTH an image and a link inside it — that's a badge item.
+  // A badge row contains BOTH an image and a link — that pattern uniquely
+  // identifies a badge item regardless of how EDS split fields into rows.
   const badgeRows = rows.filter((row) => (
     row.querySelector('img, picture') && row.querySelector('a[href]')
   ));
   const headerRows = rows.filter((row) => !badgeRows.includes(row));
 
-  // Header field cells can arrive either as cells in one row or as one-cell rows.
-  // Flatten them and classify by content: pictures vs text.
+  // Header cells can arrive in one row or spread across single-cell rows;
+  // flatten and pick by content type.
   const headerCells = headerRows.flatMap((row) => [...row.children]);
   const pictureCells = headerCells.filter((c) => c.querySelector('img, picture'));
   const textCells = headerCells.filter((c) => !c.querySelector('img, picture'));
@@ -55,28 +60,31 @@ export default function decorate(block) {
   block.classList.add('app-download-link-block');
 
   const top = document.createElement('div');
-  const mobileTitle = cellWithClass(titleCell, 'adl-title-mobile');
-  if (mobileTitle) top.append(mobileTitle);
+  if (titleCell) {
+    const mobileTitle = titleCell.cloneNode(true);
+    mobileTitle.className = 'adl-title-mobile';
+    top.append(mobileTitle);
+  }
 
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
 
-  const phone = cellWithClass(phoneCell, 'adl-phone');
+  const phone = wrapCell(phoneCell, 'adl-phone');
   if (phone) wrapper.append(phone);
 
   const body = document.createElement('div');
   body.className = 'adl-body';
 
-  const title = cellWithClass(titleCell, 'adl-title');
+  const title = wrapCell(titleCell, 'adl-title');
   if (title) body.append(title);
 
-  const icon = cellWithClass(iconCell, 'adl-icon');
+  const icon = wrapCell(iconCell, 'adl-icon');
   if (icon) body.append(icon);
 
   const linksWrap = document.createElement('div');
   linksWrap.className = 'adl-links';
 
-  const subtitle = cellWithClass(subtitleCell, 'adl-subtitle');
+  const subtitle = wrapCell(subtitleCell, 'adl-subtitle');
   if (subtitle) linksWrap.append(subtitle);
 
   const badgeContainer = document.createElement('div');
@@ -99,6 +107,7 @@ export default function decorate(block) {
     badge.target = '_blank';
     badge.rel = 'noopener noreferrer';
     badge.setAttribute('aria-label', labelFromImage(picture));
+    moveInstrumentation(row, badge);
     badge.append(picture);
     badgeContainer.append(badge);
   });
@@ -107,7 +116,5 @@ export default function decorate(block) {
   body.append(linksWrap);
   wrapper.append(body);
 
-  block.textContent = '';
-  block.append(top);
-  block.append(wrapper);
+  block.replaceChildren(top, wrapper);
 }
