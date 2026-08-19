@@ -52,4 +52,13 @@ export default function decorate(block) {
       }
     }
   });
+
+  // Group badge rows so they lay out side by side.
+  const badgeRows = [...block.querySelectorAll(':scope > .adl-badge-row')];
+  if (badgeRows.length > 1) {
+    const group = document.createElement('div');
+    group.className = 'adl-badges';
+    badgeRows[0].before(group);
+    badgeRows.forEach((row) => group.append(row));
+  }
 }

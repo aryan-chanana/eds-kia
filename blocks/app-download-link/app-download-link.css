@@ -64,7 +64,15 @@
   margin: 0;
 }
 
-/* Badges: each badge row hosts an <a class="adl-badge"> */
+/* Badges — grouped by JS into .adl-badges, laid out side by side */
+.app-download-link-block .adl-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
 .app-download-link-block .adl-badge-row {
   display: flex;
   justify-content: center;
@@ -103,6 +111,7 @@
   .app-download-link-block .adl-title,
   .app-download-link-block .adl-icon,
   .app-download-link-block .adl-subtitle,
+  .app-download-link-block .adl-badges,
   .app-download-link-block .adl-badge-row {
     grid-column: 2;
     justify-self: center;
@@ -118,15 +127,3 @@
   }
 }
 
-/* Put the badge row flush next to each other on wide screens */
-@media (width >= 600px) {
-  .app-download-link-block .adl-badge-row {
-    display: inline-flex;
-  }
-
-  /* Pull adjacent badge rows onto one line via negative-top on all but the
-     first badge row — cheap way to avoid a wrapper element. */
-  .app-download-link-block .adl-badge-row + .adl-badge-row {
-    margin-left: 16px;
-  }
-}
