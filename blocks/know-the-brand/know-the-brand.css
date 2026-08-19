@@ -1,14 +1,18 @@
-
-
 .know-the-brand {
   width: 100%;
-  padding: 40px 75px;
+  padding: 72px 0;
   background: #f6f3ee;
+  box-sizing: border-box;
 }
-
 
 .know-the-brand.light-background {
   background: #f0f1f3;
+}
+
+@media (max-width: 700px) {
+  .know-the-brand {
+    padding: 45px 0 60px;
+  }
 }
 
 .know-the-brand-heading {
@@ -32,15 +36,27 @@
   color: #171717;
 }
 
-
 .know-the-brand-carousel {
   position: relative;
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 0 55px;
+  padding: 0;
   box-sizing: border-box;
 }
+
+@media (width >= 600px) {
+  .know-the-brand-carousel {
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 1200px) {
+  .know-the-brand-carousel {
+    padding: 0 40px;
+  }
+}
+
 
 .know-the-brand-track {
   display: flex;
@@ -203,11 +219,11 @@
 }
 
 .know-the-brand-prev {
-  left: -40px;
+  left: 0;
 }
 
 .know-the-brand-next {
-  right: -40px;
+  right: 0;
 }
 
 .know-the-brand-arrow:hover,
@@ -248,14 +264,6 @@
     font-size: 16px;
   }
 
-  .know-the-brand-carousel {
-  position: relative;
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0 55px;
-  box-sizing: border-box;
-}
 
   .know-the-brand-card {
     flex-basis: 100%;
