@@ -191,14 +191,12 @@ main > .section > div:has(.know-the-brand) {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(0 0 0 / 20%);
-  color: #fff;
-  box-shadow: none;
-  transform: none;
+  background: rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  font-size: 30px;
-  line-height: 1;
-  transition: background-color 0.125s ease-out;
+}
+
+.know-the-brand-arrow[hidden] {
+  display: none;
 }
 
 .know-the-brand-arrow::before {
