@@ -164,10 +164,14 @@ export default function decorate(block) {
   };
 
   const updateArrows = () => {
+<<<<<<< Updated upstream
     const maxScrollLeft = Math.max(
       0,
       track.scrollWidth - track.clientWidth,
     );
+=======
+    const maxScrollLeft = track.scrollWidth - track.clientWidth;
+>>>>>>> Stashed changes
 
     if (maxScrollLeft <= 1) {
       prev.hidden = true;

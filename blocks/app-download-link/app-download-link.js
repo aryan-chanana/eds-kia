@@ -1,23 +1,23 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function firstPicture(cell) {
-  if (!cell) return null;
-  const picture = cell.querySelector('picture');
+function firstPicture(node) {
+  if (!node) return null;
+  const picture = node.querySelector('picture');
   if (picture) return picture;
-  const img = cell.querySelector('img');
+  const img = node.querySelector('img');
   if (!img) return null;
   const wrap = document.createElement('picture');
   wrap.append(img);
   return wrap;
 }
 
-function firstHref(cell) {
-  if (!cell) return '';
-  const anchor = cell.querySelector('a[href]');
+function firstHref(node) {
+  if (!node) return '';
+  const anchor = node.querySelector('a[href]');
   if (anchor) return anchor.getAttribute('href');
-  const text = (cell.textContent || '').trim();
+  const text = (node.textContent || '').trim();
   if (!text) return '';
-  return /^https?:\/\//i.test(text) ? text : `https://${text}`;
+  return /^https?:\/\/|^\//i.test(text) ? text : `https://${text}`;
 }
 
 function labelFromImage(picture) {
@@ -26,10 +26,12 @@ function labelFromImage(picture) {
   return alt && alt.trim() ? alt.trim() : 'Download app';
 }
 
-function wrapCell(cell, className) {
-  if (!cell) return null;
-  cell.className = className;
-  return cell;
+function containsImage(node) {
+  return !!node && !!node.querySelector('img, picture');
+}
+
+function containsLink(node) {
+  return !!node && !!node.querySelector('a[href]');
 }
 
 export default function decorate(block) {
@@ -39,23 +41,33 @@ export default function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
-  // A badge row contains BOTH an image and a link — that pattern uniquely
-  // identifies a badge item regardless of how EDS split fields into rows.
-  const badgeRows = rows.filter((row) => (
-    row.querySelector('img, picture') && row.querySelector('a[href]')
-  ));
-  const headerRows = rows.filter((row) => !badgeRows.includes(row));
+  // Every row-or-cell that carries authored content — we don't care whether
+  // EDS delivered fields as rows-with-cells or one-row-per-field, we just
+  // walk every cell in DOM order and bucket by content shape.
+  const cells = rows.flatMap((row) => {
+    const children = [...row.children];
+    return children.length ? children : [row];
+  });
 
-  // Header cells can arrive in one row or spread across single-cell rows;
-  // flatten and pick by content type.
-  const headerCells = headerRows.flatMap((row) => [...row.children]);
-  const pictureCells = headerCells.filter((c) => c.querySelector('img, picture'));
-  const textCells = headerCells.filter((c) => !c.querySelector('img, picture'));
+  const pictureCells = cells.filter(containsImage);
+  const linkCells = cells.filter((c) => containsLink(c) && !containsImage(c));
+  const textCells = cells.filter((c) => !containsImage(c) && !containsLink(c));
 
+  // Header fields, in model order:
+  //   phoneImage → first picture,  iconImage → second picture,
+  //   title      → first text,     subtitle  → second text.
   const phoneCell = pictureCells[0];
   const iconCell = pictureCells[1];
   const titleCell = textCells[0];
   const subtitleCell = textCells[1];
+
+  // Badge items: any picture past the two header images is a badge image,
+  // paired with a badge link in the same DOM order.
+  const badgePictureCells = pictureCells.slice(2);
+  const badgePairs = badgePictureCells.map((imgCell, i) => ({
+    imgCell,
+    linkCell: linkCells[i],
+  })).filter(({ imgCell, linkCell }) => imgCell && linkCell);
 
   block.classList.add('app-download-link-block');
 
@@ -69,32 +81,37 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
 
-  const phone = wrapCell(phoneCell, 'adl-phone');
-  if (phone) wrapper.append(phone);
+  if (phoneCell) {
+    phoneCell.className = 'adl-phone';
+    wrapper.append(phoneCell);
+  }
 
   const body = document.createElement('div');
   body.className = 'adl-body';
 
-  const title = wrapCell(titleCell, 'adl-title');
-  if (title) body.append(title);
+  if (titleCell) {
+    titleCell.className = 'adl-title';
+    body.append(titleCell);
+  }
 
-  const icon = wrapCell(iconCell, 'adl-icon');
-  if (icon) body.append(icon);
+  if (iconCell) {
+    iconCell.className = 'adl-icon';
+    body.append(iconCell);
+  }
 
   const linksWrap = document.createElement('div');
   linksWrap.className = 'adl-links';
 
-  const subtitle = wrapCell(subtitleCell, 'adl-subtitle');
-  if (subtitle) linksWrap.append(subtitle);
+  if (subtitleCell) {
+    subtitleCell.className = 'adl-subtitle';
+    linksWrap.append(subtitleCell);
+  }
 
   const badgeContainer = document.createElement('div');
   badgeContainer.className = 'adl-badges';
 
-  badgeRows.forEach((row) => {
-    const cells = [...row.children];
-    const imageCell = cells.find((c) => c.querySelector('img, picture'));
-    const linkCell = cells.find((c) => c.querySelector('a[href]'));
-    const picture = firstPicture(imageCell);
+  badgePairs.forEach(({ imgCell, linkCell }) => {
+    const picture = firstPicture(imgCell);
     const href = firstHref(linkCell);
     if (!picture || !href) return;
 
@@ -107,7 +124,7 @@ export default function decorate(block) {
     badge.target = '_blank';
     badge.rel = 'noopener noreferrer';
     badge.setAttribute('aria-label', labelFromImage(picture));
-    moveInstrumentation(row, badge);
+    moveInstrumentation(imgCell, badge);
     badge.append(picture);
     badgeContainer.append(badge);
   });
