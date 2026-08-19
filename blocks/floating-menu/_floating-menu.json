@@ -49,12 +49,20 @@
           "required": true
         },
         {
-          "component": "text",
+          "component": "select",
           "valueType": "string",
           "name": "icon",
-          "label": "Icon Code",
-          "description": "CSS icon class used for the ::before content, e.g. icon-handle, icon-schedule, icon-brochure, icon-chat, icon-vehicle-solid",
-          "value": ""
+          "label": "Icon",
+          "description": "Icon shown next to the label.",
+          "value": "",
+          "options": [
+            { "name": "None", "value": "" },
+            { "name": "Handle (offer / call)", "value": "icon-handle" },
+            { "name": "Schedule (calendar)", "value": "icon-schedule" },
+            { "name": "Brochure", "value": "icon-brochure" },
+            { "name": "Chat", "value": "icon-chat" },
+            { "name": "Vehicle", "value": "icon-vehicle-solid" }
+          ]
         },
         {
           "component": "text",

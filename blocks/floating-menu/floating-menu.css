@@ -92,7 +92,9 @@
   margin-bottom: 10px;
 }
 
-.floating-menu-link {
+.floating-menu-link,
+.floating-menu-link:any-link,
+.floating-menu-link:visited {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -101,6 +103,7 @@
 }
 
 .floating-menu-link .text {
+  color: #fff;
   font-size: .875rem;
 }
 
