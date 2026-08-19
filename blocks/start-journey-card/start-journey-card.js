@@ -1,15 +1,11 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function extractLink(textCell) {
-  if (!textCell) return null;
-  const linkPara = [...textCell.querySelectorAll('p')].find((p) => {
-    const a = p.querySelector('a[href]');
-    return a && p.textContent.trim() === a.textContent.trim();
-  });
-  if (!linkPara) return null;
-  const href = linkPara.querySelector('a').getAttribute('href');
-  linkPara.remove();
-  return href;
+function extractHref(cell) {
+  if (!cell) return null;
+  const anchor = cell.querySelector('a[href]');
+  if (anchor) return anchor.getAttribute('href');
+  const text = (cell.textContent || '').trim();
+  return text || null;
 }
 
 export default function decorate(block) {
@@ -22,8 +18,8 @@ export default function decorate(block) {
   }
 
   rows.forEach((row) => {
-    const [imageCell, textCell] = [...row.children];
-    const href = extractLink(textCell);
+    const [imageCell, linkCell, textCell] = [...row.children];
+    const href = extractHref(linkCell);
 
     const item = document.createElement(href ? 'a' : 'div');
     item.className = 'start-journey-card-item';

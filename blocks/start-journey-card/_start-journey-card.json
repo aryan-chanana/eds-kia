@@ -44,6 +44,11 @@
           "multi": false
         },
         {
+          "component": "aem-content",
+          "name": "imageLink",
+          "label": "Image Link"
+        },
+        {
           "component": "richtext",
           "name": "text",
           "label": "Description",
