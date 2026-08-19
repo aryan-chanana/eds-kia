@@ -37,6 +37,18 @@
       "id": "startJourney_card",
       "fields": [
         {
+          "component": "text",
+          "name": "heading",
+          "label": "Heading",
+          "value": "",
+          "valueType": "string"
+        }
+        ]
+        },
+    {
+      "id": "startJourney_card",
+      "fields": [
+        {
           "component": "reference",
           "name": "image",
           "label": "Image",
@@ -67,5 +79,6 @@
         "startJourney_card"
       ]
     }
-  ]
-}
+   ]
+   
+   }
