@@ -24,59 +24,68 @@ function labelFromImage(picture) {
   return alt && alt.trim() ? alt.trim() : 'Download app';
 }
 
+function cellWithClass(source, className) {
+  if (!source) return null;
+  const clone = source.cloneNode(true);
+  clone.className = className;
+  return clone;
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
-  // Header rows: block-level fields, one field per row (single cell each).
-  // Badge rows: block items, one item per row with 2 cells [image, link].
-  const headerRows = rows.filter((row) => row.children.length < 2);
-  const badgeRows = rows.filter((row) => row.children.length >= 2);
-  const [phoneRow, titleRow, iconRow, subtitleRow] = headerRows;
+  // A badge row has BOTH an image and a link inside it — that's a badge item.
+  const badgeRows = rows.filter((row) => (
+    row.querySelector('img, picture') && row.querySelector('a[href]')
+  ));
+  const headerRows = rows.filter((row) => !badgeRows.includes(row));
+
+  // Header field cells can arrive either as cells in one row or as one-cell rows.
+  // Flatten them and classify by content: pictures vs text.
+  const headerCells = headerRows.flatMap((row) => [...row.children]);
+  const pictureCells = headerCells.filter((c) => c.querySelector('img, picture'));
+  const textCells = headerCells.filter((c) => !c.querySelector('img, picture'));
+
+  const phoneCell = pictureCells[0];
+  const iconCell = pictureCells[1];
+  const titleCell = textCells[0];
+  const subtitleCell = textCells[1];
 
   block.classList.add('app-download-link-block');
 
   const top = document.createElement('div');
-  if (titleRow) {
-    const mobileTitle = titleRow.cloneNode(true);
-    mobileTitle.className = 'adl-title-mobile';
-    top.append(mobileTitle);
-  }
+  const mobileTitle = cellWithClass(titleCell, 'adl-title-mobile');
+  if (mobileTitle) top.append(mobileTitle);
 
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
 
-  if (phoneRow) {
-    phoneRow.className = 'adl-phone';
-    wrapper.append(phoneRow);
-  }
+  const phone = cellWithClass(phoneCell, 'adl-phone');
+  if (phone) wrapper.append(phone);
 
   const body = document.createElement('div');
   body.className = 'adl-body';
 
-  if (titleRow) {
-    titleRow.className = 'adl-title';
-    body.append(titleRow);
-  }
+  const title = cellWithClass(titleCell, 'adl-title');
+  if (title) body.append(title);
 
-  if (iconRow) {
-    iconRow.className = 'adl-icon';
-    body.append(iconRow);
-  }
+  const icon = cellWithClass(iconCell, 'adl-icon');
+  if (icon) body.append(icon);
 
   const linksWrap = document.createElement('div');
   linksWrap.className = 'adl-links';
 
-  if (subtitleRow) {
-    subtitleRow.className = 'adl-subtitle';
-    linksWrap.append(subtitleRow);
-  }
+  const subtitle = cellWithClass(subtitleCell, 'adl-subtitle');
+  if (subtitle) linksWrap.append(subtitle);
 
   const badgeContainer = document.createElement('div');
   badgeContainer.className = 'adl-badges';
 
   badgeRows.forEach((row) => {
-    const [imageCell, linkCell] = [...row.children];
+    const cells = [...row.children];
+    const imageCell = cells.find((c) => c.querySelector('img, picture'));
+    const linkCell = cells.find((c) => c.querySelector('a[href]'));
     const picture = firstPicture(imageCell);
     const href = firstHref(linkCell);
     if (!picture || !href) return;
