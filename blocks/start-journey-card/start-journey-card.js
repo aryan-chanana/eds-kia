@@ -1,76 +1,90 @@
-
-
 export default function decorate(block) {
-
   const cards = [...block.children];
 
-
+  block.classList.add('start-journey-card');
 
   cards.forEach((card) => {
-
-    card.classList.add('startJourneycard');
-
-
+    card.classList.add('start-journey-card-item');
 
     const cells = [...card.children];
 
-
-
     const imageCell = cells[0];
-
-    const textCell = cells[1];
-
-
+    const imageLinkCell = cells[1];
+    const contentCell = cells[2];
 
     // Image
-
     if (imageCell) {
-
-      imageCell.classList.add('startJourneycard-image');
-
-
+      imageCell.classList.add('start-journey-card-image');
 
       const image = imageCell.querySelector('img');
 
       if (image) {
+        image.classList.add('start-journey-card-icon');
 
-        image.classList.add('startJourneycard-icon');
+        // Get Image Link from Universal Editor field
+        const imageLink = imageLinkCell?.textContent.trim();
 
+        if (imageLink) {
+          const link = document.createElement('a');
+
+          link.href = imageLink;
+          link.className = 'start-journey-card-image-link';
+
+          // Preserve image accessibility
+          link.setAttribute('aria-label', image.alt || 'Learn more');
+
+          // Wrap picture inside anchor
+          const picture = image.closest('picture');
+
+          if (picture) {
+            picture.parentElement.insertBefore(link, picture);
+            link.appendChild(picture);
+          } else {
+            image.parentElement.insertBefore(link, image);
+            link.appendChild(image);
+          }
+        }
       }
-
     }
 
+    // Content
+    if (contentCell) {
+      contentCell.classList.add('start-journey-card-content');
 
-
-    // Text content
-
-    if (textCell) {
-
-      textCell.classList.add('startJourneycard-content');
-
-
-
-      const heading = textCell.querySelector('h2, h3, h4');
-
-
+      // Heading / title
+      const heading = contentCell.querySelector(
+        'h1, h2, h3, h4, h5, h6',
+      );
 
       if (heading) {
-
-        heading.classList.add('startJourneycard-title');
-
+        heading.classList.add('start-journey-card-title');
       }
 
+      // Text and CTA
+      const paragraphs = contentCell.querySelectorAll('p');
 
+      paragraphs.forEach((paragraph) => {
+        const link = paragraph.querySelector('a');
 
-      textCell.querySelectorAll('p').forEach((paragraph) => {
+        if (link) {
+          paragraph.classList.add('start-journey-card-cta');
+          link.classList.add('start-journey-card-link');
 
-        paragraph.classList.add('startJourneycard-description');
+          const linkText = link.textContent.trim().toLowerCase();
 
+          // Get a Quote
+          if (linkText === 'get a quote') {
+            link.href = '/in/buy/get-a-quote.html';
+          }
+        } else {
+          paragraph.classList.add('start-journey-card-description');
+        }
       });
-
     }
 
+    // Hide the Image Link authoring cell from the rendered card
+    if (imageLinkCell) {
+      imageLinkCell.classList.add('start-journey-card-image-link-field');
+    }
   });
-
 }
-
