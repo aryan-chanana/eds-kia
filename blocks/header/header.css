@@ -353,29 +353,32 @@ header:has(.kia-header) {
 
 .btn-dealer {
   position: relative;
-  padding: 9px 18px 9px 30px;
+  padding: 9px 18px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  color: #05141f;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.btn-dealer::before {
-  content: '|';
-  position: absolute;
-  top: 50%;
-  left: 6px;
-  transform: translateY(-50%);
+.btn-dealer:any-link,
+.btn-dealer:visited {
+  color: #05141f;
+  text-decoration: none;
+}
+
+.btn-dealer .btn-dealer-pipe {
+  display: inline-block;
+  color: #05141f;
+  opacity: 0.5;
   font-weight: 300;
   font-size: 22px;
   line-height: 1;
-  color: #05141f;
-  opacity: 0.5;
-  pointer-events: none;
+  margin-right: 4px;
 }
 
 .btn-dealer .location-icon {
@@ -389,15 +392,9 @@ header:has(.kia-header) {
 }
 
 .btn-dealer .location-icon svg {
-  width: 100%;
-  height: 100%;
+  width: 18px;
+  height: 18px;
   display: block;
-  stroke: currentcolor;
-}
-
-.kia-header.scrolled .btn-dealer::before,
-.kia-header.scrolled .btn-dealer .location-icon {
-  color: #05141f;
 }
 
 .btn-dealer:hover {
@@ -664,7 +661,7 @@ a{
   /* Keep the dealer button visible on tablet, but compact — text label
      still shows to give context alongside the location icon. */
   .btn-dealer {
-    padding: 9px 12px 9px 22px;
+    padding: 9px 12px;
     font-size: 12px;
   }
 }
@@ -673,15 +670,10 @@ a{
    + location icon fit comfortably across the width. */
 @media (width <= 640px) {
   .btn-dealer {
-    padding: 9px 10px 9px 20px;
+    padding: 9px 10px;
   }
 
   .btn-dealer .btn-dealer-label {
     display: none;
-  }
-
-  .btn-dealer::before {
-    height: 22px;
-    top: 30%;
   }
 }

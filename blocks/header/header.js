@@ -3,7 +3,7 @@ import { loadFragment } from '../fragment/fragment.js';
 
 const CLOSE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
-const LOCATION_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+const LOCATION_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#05141f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 
 function textOf(cell) {
   return (cell?.textContent || '').trim();
@@ -348,7 +348,7 @@ c0.05,0,0.1-0.03,0.17-0.07L26.73,9.61c0.45-0.27,0.73-0.35,1.25-0.35h10.23c0.71,0
     const dealerA = document.createElement('a');
     dealerA.className = 'btn-dealer';
     dealerA.href = tools.dealerHref || '#';
-    dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span><span class="btn-dealer-label">${tools.dealerLabel}</span>`;
+    dealerA.innerHTML = `<span class="btn-dealer-pipe" aria-hidden="true">|</span><span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span><span class="btn-dealer-label">${tools.dealerLabel}</span>`;
     actions.append(dealerA);
     headerInner.append(actions);
   }
