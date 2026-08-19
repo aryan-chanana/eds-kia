@@ -25,6 +25,16 @@
   justify-content: center;
 }
 
+.start-your-kia-journey-heading {
+  max-width: 1200px;
+  margin: 0 auto 14px;
+  padding: 0 32px;
+  text-align: center;
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #071522;
+}
 .start-your-kia-journey .startJourney_card-image {
   display: flex;
   justify-content: center;
@@ -68,14 +78,22 @@
   z-index: 5;
 }
 
+  .start-your-kia-journey-heading {
+    font-size: 38px;
+  }
+
+  .start-your-kia-journey-heading {
+    padding: 0 20px;
+    font-size: 32px;
+  }
+
 .start-your-kia-journey ul > li:hover img {
   filter: brightness(0) invert(1);
 }
 
-@media (max-width: 768px) {
-  .start-your-kia-journey ul {
-    grid-template-columns: 1fr;
-    gap: 24px;
+@media (max-width: 700px) {
+  .start-your-kia-journey {
+    padding: 45px 0 60px;
   }
 
   .start-your-kia-journey ul > li {
