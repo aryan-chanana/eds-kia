@@ -121,6 +121,32 @@ function isContentCell(cell) {
 
 const isDisclaimerText = (el) => /^\s*(disclaimer|#?t&?c|terms|\*)/i.test(el.textContent.trim());
 
+const hasHeading = (cell) => !!cell?.querySelector('h1, h2, h3, h4, h5, h6');
+
+/**
+ * Pulls .mp4/.webm/.ogg/.mov links out of the Content cell so authors can
+ * paste a video URL straight into the richtext instead of using the
+ * desktop/mobile media-picker fields. The first link found is the desktop
+ * source, an optional second is the mobile source; both are removed from
+ * the cell (and their wrapping paragraph, if it becomes empty) so they
+ * never render as visible text/CTAs.
+ * @param {Element} cell
+ */
+function extractContentVideoLinks(cell) {
+  if (!cell) return { desktop: '', mobile: '' };
+  const links = [...cell.querySelectorAll('a[href]')].filter((a) => isVideo(a.getAttribute('href')));
+  const [desktop, mobile] = links.map((a) => a.getAttribute('href'));
+  links.forEach((a) => {
+    const p = a.closest('p');
+    if (p && p.textContent.trim() === a.textContent.trim() && p.children.length === 1) {
+      p.remove();
+    } else {
+      a.remove();
+    }
+  });
+  return { desktop: desktop || '', mobile: mobile || '' };
+}
+
 function buildSlide(row, index) {
   const cells = [...row.children];
 
@@ -130,9 +156,15 @@ function buildSlide(row, index) {
     (c) => !isMediaCell(c) && /^(white|navy)$/i.test(c.textContent.trim()),
   );
 
-  // Content = a cell with a heading or link that isn't the enum cell.
-  const contentCell = cells.find((c) => c !== ctaCell && isContentCell(c));
-  const mediaCells = cells.filter(isMediaCell);
+  // Content = a cell with a heading (always wins, even if it also carries a
+  // video link) or, failing that, any non-asset cell with a link.
+  const contentCell = cells.find((c) => c !== ctaCell && (hasHeading(c) || isContentCell(c)));
+  const mediaCells = cells.filter((c) => c !== contentCell && c !== ctaCell && isMediaCell(c));
+
+  // A .mp4/.webm/.ogg/.mov link authored directly inside Content is a
+  // fallback background video (first = desktop, optional second = mobile),
+  // used when the desktop/mobile media-picker fields are left empty.
+  const contentVideo = extractContentVideoLinks(contentCell);
 
   // CTA colour: default (non-italic) = white text on black; an italicised CTA
   // link flips it to black text on white. The dropdown, when set, wins.
@@ -147,9 +179,10 @@ function buildSlide(row, index) {
   slide.setAttribute('aria-roledescription', 'Slide');
   moveInstrumentation(row, slide);
 
-  // separate desktop + mobile media (mobile falls back to desktop when empty)
-  const desktopSrc = mediaSrc(mediaCells[0]);
-  const mobileSrc = mediaSrc(mediaCells[1]);
+  // separate desktop + mobile media (mobile falls back to desktop when empty);
+  // the media-picker fields take priority over a video link found in Content.
+  const desktopSrc = mediaSrc(mediaCells[0]) || contentVideo.desktop;
+  const mobileSrc = mediaSrc(mediaCells[1]) || contentVideo.mobile;
   const poster = mediaCells[0]?.querySelector('img')?.getAttribute('src');
 
   // content (title / tagline / CTA)
