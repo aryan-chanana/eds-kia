@@ -49,6 +49,14 @@
   max-width: unset;
   padding: 0;
 }
+/* When the hero is the first section, slide it up under the transparent fixed
+   header so it is full-bleed to the very top of the viewport (matching the
+   source). Otherwise the reserved header strip shows the white page background
+   as a bar above the hero. The header text stays readable because it is white
+   over the hero at the top of the page. */
+main > .section.hero-slider-container:first-of-type {
+  margin-top: calc(-1 * var(--kia-header-h, 80px));
+}
 
 /* viewport + track --------------------------------------------------------- */
 .hero-slider-viewport {
