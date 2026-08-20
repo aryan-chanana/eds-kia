@@ -1,4 +1,4 @@
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors */
 
 /* =========================================================
    Kia India — Header
@@ -18,13 +18,6 @@
 /* Reserve layout space for the fixed header on any page that mounts this block. */
 header:has(.kia-header) {
   height: var(--kia-header-h);
-}
-
-/* Hero-led pages (first section is a hero/hero-slider): let that section sit
-   flush at the top of the page so the fixed, transparent header floats over
-   it — matching kia.com — instead of pushing it down by the header's height. */
-body.has-hero-header header:has(.kia-header) {
-  height: 0;
 }
 
 .kia-header,
@@ -66,12 +59,13 @@ body.has-hero-header header:has(.kia-header) {
   right: 0;
   z-index: 1000;
   background-color: transparent;
-  color: #000;
-  transition: box-shadow 0.25s var(--kia-ease);
+  color: #fff;
+  transition: background-color 0.25s var(--kia-ease), color 0.25s var(--kia-ease), box-shadow 0.25s var(--kia-ease);
 }
 
-.kia-header.scrolled{
+.kia-header.scrolled {
   background-color: #fff;
+  color: #05141f;
 }
 
 .kia-header::before {
@@ -129,7 +123,8 @@ body.has-hero-header header:has(.kia-header) {
   left: 0;
   width: 100%;
   height: 100%;
-  color: #07141f;
+  color: currentcolor;
+  fill: currentcolor;
 }
 
 /* ============ HAMBURGER (mobile only) ============ */
@@ -360,25 +355,32 @@ body.has-hero-header header:has(.kia-header) {
 
 .btn-dealer {
   position: relative;
-  padding: 9px 18px 9px 30px;
+  padding: 9px 18px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  color: currentcolor;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.btn-dealer::before {
-  content: '';
-  position: absolute;
-  top: 25%;
-  left: 0;
-  height: 30px;
-  border-left: 1px solid;
-  opacity: 0.2;
+.btn-dealer:any-link,
+.btn-dealer:visited {
+  color: currentcolor;
+  text-decoration: none;
+}
+
+.btn-dealer .btn-dealer-pipe {
+  display: inline-block;
+  color: currentcolor;
+  opacity: 0.5;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1;
+  margin-right: 4px;
 }
 
 .btn-dealer .location-icon {
@@ -388,12 +390,14 @@ body.has-hero-header header:has(.kia-header) {
   width: 18px;
   height: 18px;
   color: currentcolor;
+  flex-shrink: 0;
 }
 
 .btn-dealer .location-icon svg {
-  width: 100%;
-  height: 100%;
+  width: 18px;
+  height: 18px;
   display: block;
+  stroke: currentcolor;
 }
 
 .btn-dealer:hover {
@@ -657,7 +661,22 @@ a{
     justify-content: space-between;
   }
 
+  /* Keep the dealer button visible on tablet, but compact — text label
+     still shows to give context alongside the location icon. */
   .btn-dealer {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+}
+
+/* On mobile, the dealer button collapses to icon-only so hamburger + logo
+   + location icon fit comfortably across the width. */
+@media (width <= 640px) {
+  .btn-dealer {
+    padding: 9px 10px;
+  }
+
+  .btn-dealer .btn-dealer-label {
     display: none;
   }
 }
