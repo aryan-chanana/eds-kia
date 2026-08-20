@@ -20,6 +20,13 @@ header:has(.kia-header) {
   height: var(--kia-header-h);
 }
 
+/* Hero-led pages (first section is a hero/hero-slider): let that section sit
+   flush at the top of the page so the fixed, transparent header floats over
+   it — matching kia.com — instead of pushing it down by the header's height. */
+body.has-hero-header header:has(.kia-header) {
+  height: 0;
+}
+
 .kia-header,
 .kia-header a,
 .kia-header button,

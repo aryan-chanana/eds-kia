@@ -110,6 +110,18 @@ export function decorateButtons(main) {
 }
 
 /**
+ * Marks the page as hero-led when its first section opens with a hero or
+ * hero-slider block, so the header can float transparently over it instead
+ * of reserving its usual layout space.
+ * @param {Element} main The main element
+ */
+function markHeroHeader(main) {
+  const firstSection = main.querySelector('.section');
+  const hasHero = !!firstSection?.querySelector('[data-block-name="hero"], [data-block-name="hero-slider"]');
+  document.body.classList.toggle('has-hero-header', hasHero);
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -120,6 +132,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  markHeroHeader(main);
 }
 
 /**
